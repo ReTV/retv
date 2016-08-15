@@ -36,24 +36,24 @@ ${ADDONSYNC} "$SRCROOT/addons"  "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome"
 ${SYNC} "$SRCROOT/media"    "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome"
 
 # sync touch skin if it exists
-if [ -f "$SRCROOT/addons/skin.re-touched/addon.xml" ]; then
-SYNCSKIN_A=${SKINSYNC}
-if [ -f "$SRCROOT/addons/skin.re-touched/media/Textures.xbt" ]; then
-SYNCSKIN_A="${SKINSYNC} --exclude *.png --exclude *.jpg"
-fi
-${SYNCSKIN_A} "$SRCROOT/addons/skin.re-touched"    "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons"
-${SYNC} "$SRCROOT/addons/skin.re-touched/background"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.re-touched"
-${SYNC} "$SRCROOT/addons/skin.re-touched/icon.png"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.re-touched"
-fi
+#if [ -f "$SRCROOT/addons/skin.re-touched/addon.xml" ]; then
+#SYNCSKIN_A=${SKINSYNC}
+#if [ -f "$SRCROOT/addons/skin.re-touched/media/Textures.xbt" ]; then
+#SYNCSKIN_A="${SKINSYNC} --exclude *.png --exclude *.jpg"
+#fi
+#${SYNCSKIN_A} "$SRCROOT/addons/skin.re-touched"    "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons"
+#${SYNC} "$SRCROOT/addons/skin.re-touched/background"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.re-touched"
+#${SYNC} "$SRCROOT/addons/skin.re-touched/icon.png"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.re-touched"
+#fi
 
 # sync skin.confluence
-SYNCSKIN_B=${SKINSYNC}
-if [ -f "$SRCROOT/addons/skin.confluence/media/Textures.xbt" ]; then
-SYNCSKIN_B="${SKINSYNC} --exclude *.png --exclude *.jpg"
-fi
-${SYNCSKIN_B} "$SRCROOT/addons/skin.confluence"     "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons"
-${SYNC} "$SRCROOT/addons/skin.confluence/backgrounds"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.confluence"
-${SYNC} "$SRCROOT/addons/skin.confluence/icon.png"    "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.confluence"
+#SYNCSKIN_B=${SKINSYNC}
+#if [ -f "$SRCROOT/addons/skin.confluence/media/Textures.xbt" ]; then
+#SYNCSKIN_B="${SKINSYNC} --exclude *.png --exclude *.jpg"
+#fi
+#${SYNCSKIN_B} "$SRCROOT/addons/skin.confluence"     "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons"
+#${SYNC} "$SRCROOT/addons/skin.confluence/backgrounds"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.confluence"
+#${SYNC} "$SRCROOT/addons/skin.confluence/icon.png"    "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome/addons/skin.confluence"
 
 ${SYNC} "$SRCROOT/system"     "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome"
 ${SYNC} "$SRCROOT/userdata"   "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome"

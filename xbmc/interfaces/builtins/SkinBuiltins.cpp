@@ -397,8 +397,8 @@ static int SkinDebug(const std::vector<std::string>& params)
 CBuiltins::CommandMap CSkinBuiltins::GetOperations() const
 {
   return {
-           {"reloadskin",         {"Reload Kodi's skin", 0, ReloadSkin}},
-           {"unloadskin",         {"Unload Kodi's skin", 0, UnloadSkin}},
+           {"reloadskin",         {"Reload ReTV's skin", 0, ReloadSkin}},
+           {"unloadskin",         {"Unload ReTV's skin", 0, UnloadSkin}},
            {"skin.reset",         {"Resets a skin setting to default", 1, SkinReset}},
            {"skin.resetsettings", {"Resets all skin settings", 0, SkinResetAll}},
            {"skin.setaddon",      {"Prompts and set an addon", 2, SetAddon}},

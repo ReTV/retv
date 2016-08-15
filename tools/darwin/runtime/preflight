@@ -34,10 +34,10 @@ sub get_app_home {
     my $home = get_home();
     return if !defined $home;
     if ( $os eq "osx" ) {
-        return $home."/Library/Application Support/Kodi";
+        return $home."/Library/Application Support/ReTV";
     }
     elsif ( $os eq "linux" ) {
-        return $home."/.kodi";
+        return $home."/.retv";
     }
     return;
 }

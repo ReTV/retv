@@ -33,9 +33,9 @@ ${SYNC} "$SRCROOT/xbmc/osx/Credits.html" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Conten
 ${SYNC} "$SRCROOT/tools/darwin/runtime"	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/tools/darwin"
 ${ADDONSYNC} "$SRCROOT/addons"		"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME"
 ${SYNC} "$SRCROOT/media" 		"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME"
-${SYNCSKIN} "$SRCROOT/addons/skin.confluence" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons"
-${SYNC} "$SRCROOT/addons/skin.confluence/backgrounds" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons/skin.confluence"
-${SYNC} "$SRCROOT/addons/skin.confluence/icon.png" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons/skin.confluence"
+#${SYNCSKIN} "$SRCROOT/addons/skin.confluence" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons"
+#${SYNC} "$SRCROOT/addons/skin.confluence/backgrounds" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons/skin.confluence"
+#${SYNC} "$SRCROOT/addons/skin.confluence/icon.png" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME/addons/skin.confluence"
 ${SYNC} "$SRCROOT/system" 		"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME"
 ${SYNC} "$SRCROOT/userdata" 	"$TARGET_BUILD_DIR/$TARGET_NAME/Contents/Resources/$APP_NAME"
 
