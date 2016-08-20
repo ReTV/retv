@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=ReTV
+Comment=This session will start ReTV
+Exec=retv-standalone
+TryExec=retv-standalone
+Type=Application
