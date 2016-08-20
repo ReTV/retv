@@ -19,7 +19,7 @@ SKINSYNC="rsync -aq --exclude .git* --exclude CVS* --exclude .svn* --exclude .cv
 # rsync command for including everything but the skins
 ADDONSYNC="rsync -aq --exclude .git* --exclude CVS* --exclude .svn* --exclude .cvsignore* --exclude .cvspass* --exclude .DS_Store* --exclude addons/skin.confluence --exclude addons/skin.re-touched --exclude visualization.*"
 
-# binary name is Kodi but we build Kodi.bin so to get a clean binary each time
+# binary name is ReTV but we build ReTV.bin so to get a clean binary each time
 mv $TARGET_BUILD_DIR/$TARGET_NAME/$APP_NAME.bin $TARGET_BUILD_DIR/$TARGET_NAME/$APP_NAME
 
 mkdir -p "$TARGET_BUILD_DIR/$TARGET_NAME/AppData/AppHome"

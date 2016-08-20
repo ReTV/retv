@@ -1386,15 +1386,6 @@ else
   AC_MSG_RESULT($x11_disabled)
 fi
 
-# touch skin
-use_touch_skin=no
-if [[ -f "addons/skin.re-touched/addon.xml" ]]; then 
-  use_touch_skin=yes
-  USE_TOUCH_SKIN=1
-  AC_DEFINE([HAS_TOUCH_SKIN], [1], [Whether to build the touch skin.])
-else
-  USE_TOUCH_SKIN=0
-fi
 
 # libssh
 if test "x$use_ssh" = "xno"; then
@@ -2034,12 +2025,6 @@ else
   final_message="$final_message\n  Joystick:\tNo"
 fi
 
-if test "$use_touch_skin" = "yes"; then
-  final_message="$final_message\n  Touch skin:\tYes"
-else
-  final_message="$final_message\n  Touch skin:\tNo"
-fi
-
 if test "$use_x11" = "yes"; then
   USE_X11=1
   final_message="$final_message\n  X11:\t\tYes"
@@ -2348,7 +2333,6 @@ fi
 
 OUTPUT_FILES="Makefile \
     Makefile.include \
-    addons/skin.confluence/media/Makefile \
     xbmc/Makefile \
     xbmc/cdrip/Makefile \
     xbmc/cores/Makefile \
@@ -2435,10 +2419,6 @@ if test "$use_wayland" = "yes"; then
 OUTPUT_FILES="$OUTPUT_FILES xbmc/windowing/tests/wayland/Makefile"
 fi
 
-if test "$use_touch_skin" = "yes"; then
-OUTPUT_FILES="$OUTPUT_FILES addons/skin.re-touched/media/Makefile"
-fi
-
 if test "$use_codec_libstagefright" = "yes"; then
 OUTPUT_FILES="$OUTPUT_FILES xbmc/cores/dvdplayer/DVDCodecs/Video/libstagefrightICS/Makefile"
 fi
@@ -2490,7 +2470,6 @@ AC_SUBST(USE_STATIC_FFMPEG)
 AC_SUBST(GNUTLS_ALL_LIBS)
 AC_SUBST(VORBISENC_ALL_LIBS)
 AC_SUBST(DCADEC_ALL_LIBS)
-AC_SUBST(USE_TOUCH_SKIN)
 AC_SUBST(USE_LIBAV_HACKS)
 AC_SUBST(PYTHON_VERSION)
 AC_SUBST(OUTPUT_FILES)

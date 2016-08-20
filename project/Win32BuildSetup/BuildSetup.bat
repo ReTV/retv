@@ -225,18 +225,18 @@ set WORKSPACE=%CD%\..\..
     IF EXIST error.log del error.log > NUL
   )
 
-  ECHO ------------------------------------------------------------
-  ECHO Building Confluence Skin...
-  cd ..\..\addons\skin.confluence
-  call build.bat > NUL
-  cd %build_path%
+  rem ECHO ------------------------------------------------------------
+  rem ECHO Building Confluence Skin...
+  rem cd ..\..\addons\skin.confluence
+  rem call build.bat > NUL
+  rem cd %build_path%
   
-  IF EXIST  ..\..\addons\skin.re-touched\build.bat (
-    ECHO Building Touch Skin...
-    cd ..\..\addons\skin.re-touched
-    call build.bat > NUL
-    cd %build_path%
-  )
+  rem IF EXIST  ..\..\addons\skin.re-touched\build.bat (
+  rem   ECHO Building Touch Skin...
+  rem   cd ..\..\addons\skin.re-touched
+  rem   call build.bat > NUL
+  rem   cd %build_path%
+  rem )
   
   rem restore color and title, some scripts mess these up
   COLOR 1B
