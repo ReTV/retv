@@ -1,7 +1,3 @@
-[submodule "addons/screensaver.retv.slideshow"]
-	path = addons/screensaver.retv.slideshow
-	url = https://ReTV-Dev@bitbucket.org/retv-kodi/screensaver.retv.slideshow.git
-    branch = beta-master
 [submodule "addons/resource.uisounds.retv"]
 	path = addons/resource.uisounds.retv
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/resource.uisounds.retv.git
@@ -21,4 +17,16 @@
 [submodule "addons/service.subtitles.retv"]
 	path = addons/service.subtitles.retv
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/service.subtitles.retv.git
+	branch = beta-master
+[submodule "addons/screensaver.retv.slideshow"]
+	path = addons/screensaver.retv.slideshow
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/screensaver.retv.slideshow.git
+	branch = beta-master
+[submodule "addons/script.retv"]
+	path = addons/script.retv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.retv.git
+	branch = beta-master
+[submodule "addons/skin.retv.2"]
+	path = addons/skin.retv.2
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/skin.retv.2.git
 	branch = beta-master
