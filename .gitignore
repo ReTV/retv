@@ -118,15 +118,8 @@ config.log
 /addons/audiodecoder.*
 
 /addons/repository.retvbeta.live
-/addons/resource.uisounds.retv
 /addons/retv.search.youtube
-/addons/screensaver.retv.slideshow
-
-/addons/script.module.searchbase
-
-/addons/script.module.youtube.dl
 /addons/script.retv
-/addons/service.subtitles.retv
 /addons/skin.retv.2
 
 # /lib/
