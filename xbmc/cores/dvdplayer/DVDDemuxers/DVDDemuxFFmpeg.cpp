@@ -236,7 +236,7 @@ bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput, bool streaminfo, bool filein
   m_pFormatContext->interrupt_callback = int_cb;
 
   // try to abort after 30 seconds
-  m_timeout.Set(30000);
+  m_timeout.Set(g_advancedSettings.m_FFMpegWaitTimeout);
 
   if( m_pInput->IsStreamType(DVDSTREAM_TYPE_FFMPEG) )
   {
@@ -696,7 +696,7 @@ DemuxPacket* CDVDDemuxFFmpeg::Read()
       m_pkt.pkt.data = NULL;
 
       // timeout reads after 100ms
-      m_timeout.Set(20000);
+	  m_timeout.Set(g_advancedSettings.m_FFMpegWaitTimeout);
       m_pkt.result = av_read_frame(m_pFormatContext, &m_pkt.pkt);
       m_timeout.SetInfinite();
     }
