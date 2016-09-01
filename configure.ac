@@ -2396,17 +2396,17 @@ OUTPUT_FILES="Makefile \
     tools/darwin/packaging/migrate_to_kodi_ios.sh \
     xbmc/osx/Info.plist \
     xbmc/osx/ios/XBMCIOS-Info.plist \
-    project/cmake/kodi-config.cmake \
+    project/cmake/retv-config.cmake \
     project/cmake/xbmc-config.cmake \
     tools/android/packaging/xbmc/AndroidManifest.xml \
     tools/android/packaging/Makefile \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/Splash.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/Main.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCBroadcastReceiver.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCOnFrameAvailableListener.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCSettingsContentObserver.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCOnAudioFocusChangeListener.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCVideoView.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Splash.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Main.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCBroadcastReceiver.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnFrameAvailableListener.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCSettingsContentObserver.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnAudioFocusChangeListener.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCVideoView.java \
     tools/android/packaging/xbmc/activity_main.xml \
     tools/android/packaging/xbmc/strings.xml \
     addons/xbmc.addon/addon.xml"
