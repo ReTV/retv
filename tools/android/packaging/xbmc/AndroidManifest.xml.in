@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- BEGIN_INCLUDE(manifest) -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.xbmc.@APP_NAME_LC@"
+    package="org.bnplus.@APP_NAME_LC@"
     android:versionCode="@APP_VERSION_CODE@"
     android:versionName="@APP_VERSION@" >
 
@@ -30,7 +30,7 @@
             android:configChanges="orientation|keyboard|keyboardHidden|navigation|touchscreen|screenLayout|screenSize"
             android:finishOnTaskLaunch="true"
             android:launchMode="singleInstance"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,7 +74,7 @@
             android:finishOnTaskLaunch="true"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
 
             <!-- Tell NativeActivity the name of or .so -->
