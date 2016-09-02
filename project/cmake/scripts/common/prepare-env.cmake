@@ -56,8 +56,8 @@ if(NOT WIN32)
   endif()
 endif()
 
-# generate the proper kodi-config.cmake file
-configure_file(${APP_ROOT}/project/cmake/kodi-config.cmake.in ${APP_LIB_DIR}/kodi-config.cmake @ONLY)
+# generate the proper retv-config.cmake file
+configure_file(${APP_ROOT}/project/cmake/retv-config.cmake.in ${APP_LIB_DIR}/retv-config.cmake @ONLY)
 
 # copy cmake helpers to lib/kodi
 file(COPY ${APP_ROOT}/project/cmake/scripts/common/addon-helpers.cmake
