@@ -15,10 +15,10 @@ COPYDIRS = system addons media
 GCC_VERSION=$(shell $(CC) -dumpversion)
 ZIP=zip
 
-SIGN_STORE=~/.android/debug.keystore
-SIGN_STOREPASS=android
-SIGN_KEY=androiddebugkey
-SIGN_KEYPASS=
+SIGN_STORE=~/.android/bnp.keystore
+SIGN_STOREPASS=HKsi30md02345
+SIGN_KEY=retvkey
+SIGN_KEYPASS=s4k5xzn8h9nlx6xeq2w0
 
 ifneq ($(strip $(SIGN_KEYPASS)),)
 SIGN_KEYPASS_OPT=-keypass $(SIGN_KEYPASS)

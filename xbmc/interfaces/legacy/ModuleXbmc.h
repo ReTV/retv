@@ -418,6 +418,19 @@ namespace XBMCAddon
     */
     String convertLanguage(const char* language, int format); 
 
+	/**
+	* getUrl(url) -- HTTP Gets a URL
+	*
+	* url: URL to get
+	*
+	*
+	* example:
+	*   - language = xbmc.getUrl("http://www.kodi.tv")
+	*/
+	String getUrl(const char* url);
+
+
+
     SWIG_CONSTANT_FROM_GETTER(int,SERVER_WEBSERVER);
     SWIG_CONSTANT_FROM_GETTER(int,SERVER_AIRPLAYSERVER);
     SWIG_CONSTANT_FROM_GETTER(int,SERVER_UPNPSERVER);

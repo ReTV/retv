@@ -61,6 +61,9 @@
 #include <vector>
 #include "utils/log.h"
 
+#include "filesystem/CurlFile.h"
+#include "filesystem/DllLibCurl.h"
+
 using namespace KODI::MESSAGING;
 
 namespace XBMCAddon
@@ -520,6 +523,23 @@ namespace XBMCAddon
       }
       return convertedLanguage;
     }
+
+
+	String getUrl(const char* url)
+	{
+		XFILE::CCurlFile http;
+		//http.SetContentEncoding("gzip");
+
+		std::string surl(url);
+
+		std::string content;
+		if (!http.Get(surl, content))
+			return "";
+
+		return content;
+	}
+
+
 
     int getSERVER_WEBSERVER() { return CApplication::ES_WEBSERVER; }
     int getSERVER_AIRPLAYSERVER() { return CApplication::ES_AIRPLAYSERVER; }

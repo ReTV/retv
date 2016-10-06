@@ -27,7 +27,7 @@ import os
 import xbmc, xbmcgui, xbmcvfs, xbmcaddon
 from net import HTTP
 
-__libbaseurl__ = "https://github.com/DiMartinoXBMC/script.module.libtorrent/raw/master/python_libtorrent"
+__libbaseurl__ = "http://content.retv.in/downloads/script.module.libtorrent/python_libtorrent"
 __settings__ = xbmcaddon.Addon(id='script.module.libtorrent')
 __version__ = __settings__.getAddonInfo('version')
 __plugin__ = __settings__.getAddonInfo('name') + " v." + __version__

@@ -46,7 +46,7 @@ else:
 
 log('dirname:' +str(dirname))
 
-versions = ['0.16.19', '1.0.6', '1.0.7', '1.0.8', '1.0.9', '1.1.0']
+versions = ['0.16.19', '1.0.6', '1.0.7', '1.0.8', '1.0.9', '1.1.0', '1.1.1']
 default_path = versions[-1]
 set_version = int(__settings__.getSetting('set_version'))
 if getSettingAsBool('custom_version'):
@@ -121,7 +121,7 @@ try:
         except:
             # If no permission in dest_path we need to go deeper!
             try:
-                dest_path=lm.android_workaround(new_dest_path='/data/data/org.xbmc.kodi/lib/')
+                dest_path=lm.android_workaround(new_dest_path='/data/data/org.bnplus.retv/lib/')
                 dll_path=os.path.join(dest_path, 'liblibtorrent.so')
                 log('NEW CDLL path = ' + dll_path)
                 liblibtorrent=CDLL(dll_path)
