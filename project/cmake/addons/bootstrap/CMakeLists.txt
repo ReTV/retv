@@ -2,6 +2,9 @@ project(kodi-addons-bootstrap)
 
 cmake_minimum_required(VERSION 2.8)
 
+# No PVR Addons
+set(ADDONS_TO_BUILD "adsp.basic adsp.biquad.filters adsp.freesurround audiodecoder.2sf audiodecoder.dumb audiodecoder.fluidsynth audiodecoder.gme audiodecoder.gsf audiodecoder.modplug audiodecoder.ncsf audiodecoder.nosefart audiodecoder.openmpt audiodecoder.organya audiodecoder.qsf audiodecoder.sidplay audiodecoder.snesapu audiodecoder.ssf audiodecoder.stsound audiodecoder.timidity audiodecoder.vgmstream audioencoder.flac audioencoder.lame audioencoder.vorbis audioencoder.wav screensaver.asteroids screensaver.biogenesis screensaver.greynetic screensaver.matrixtrails screensaver.pingpong screensaver.pyro screensaver.shadertoy screensaver.stars screensavers.rsxs visualization.fishbmc visualization.goom visualization.milkdrop visualization.milkdrop2 visualization.projectm visualization.shadertoy visualization.spectrum visualization.vortex visualization.vsxu visualization.waveform")
+
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
 
 # make sure CMAKE_INSTALL_PREFIX is properly set
