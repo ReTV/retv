@@ -36,7 +36,7 @@ class CVariant
 public:
   enum VariantType
   {
-    VariantTypeInteger,
+    VariantTypeInteger=0,
     VariantTypeUnsignedInteger,
     VariantTypeBoolean,
     VariantTypeString,

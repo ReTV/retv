@@ -1230,9 +1230,15 @@ namespace XBMCAddon
     {
       XBMC_TRACE;
 
+	  long prevSelection = getSelectedPosition();
+
       for (std::vector<Alternative<String, const XBMCAddon::xbmcgui::ListItem* > >::const_iterator iter = items.begin(); iter != items.end(); ++iter)
         addItem(*iter,false);
-      sendLabelBind(vecItems.size());
+	  sendLabelBind(vecItems.size(), prevSelection);
+
+	  // Maintain focus to the last
+	  //if (prevSelection!=-1)
+		//selectItem(prevSelection);
     }
 
     void ControlList::internAddListItem(AddonClass::Ref<ListItem> pListItem, bool sendMessage)
@@ -1248,7 +1254,7 @@ namespace XBMCAddon
         sendLabelBind(vecItems.size());
     }
 
-    void ControlList::sendLabelBind(int tail)
+    void ControlList::sendLabelBind(int tail, long newFocus)
     {
       // construct a CFileItemList to pass 'em on to the list
       CGUIListItemPtr items(new CFileItemList());
@@ -1257,6 +1263,10 @@ namespace XBMCAddon
 
       CGUIMessage msg(GUI_MSG_LABEL_BIND, iParentId, iControlId, 0, 0, items);
       msg.SetPointer(items.get());
+
+	  if (newFocus != -1)
+		  msg.SetParam1(newFocus);
+
       g_windowManager.SendThreadMessage(msg, iParentId);
     }
 

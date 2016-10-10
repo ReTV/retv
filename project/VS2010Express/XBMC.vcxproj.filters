@@ -367,6 +367,9 @@
     <Filter Include="interfaces\builtins">
       <UniqueIdentifier>{248ffbc4-43f5-4aaf-b259-2dd4f840fcef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="retv">
+      <UniqueIdentifier>{ea3e99d3-d913-460e-8023-13cb967848e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\xbmc\win32\pch.cpp">
@@ -3227,6 +3230,18 @@
     </ClCompile>
     <ClCompile Include="..\..\xbmc\pvr\PVRSettings.cpp">
       <Filter>pvr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\retv\ReTV.cpp">
+      <Filter>retv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\interfaces\legacy\ModuleRetv.cpp">
+      <Filter>interfaces\legacy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\interfaces\python\generated\AddonModuleRetv.cpp">
+      <Filter>interfaces\python\generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\interfaces\legacy\SubscriptionInfo.cpp">
+      <Filter>interfaces\legacy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6262,6 +6277,15 @@
     <ClInclude Include="..\..\xbmc\pvr\PVRSettings.h">
       <Filter>pvr</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\xbmc\retv\ReTV.h">
+      <Filter>retv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\interfaces\legacy\ModuleRetv.h">
+      <Filter>interfaces\legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\interfaces\legacy\SubscriptionInfo.h">
+      <Filter>interfaces\legacy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\xbmc\win32\XBMC_PC.rc">
@@ -6304,6 +6328,9 @@
       <Filter>win32</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\xbmc\interfaces\swig\AddonModuleXbmcwsgi.i">
+      <Filter>interfaces\swig</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\xbmc\interfaces\swig\AddonModuleRetv.i">
       <Filter>interfaces\swig</Filter>
     </CustomBuild>
   </ItemGroup>

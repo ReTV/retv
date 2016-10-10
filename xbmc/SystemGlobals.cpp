@@ -31,6 +31,8 @@
 #include "PartyModeManager.h"
 #include "PlayListPlayer.h"
 #include "guilib/LocalizeStrings.h"
+#include "retv/retv.h"
+
 #ifdef HAS_PYTHON
 #include "interfaces/python/XBPython.h"
 #endif
@@ -59,6 +61,8 @@
 
   XCURL::DllLibCurlGlobal g_curlInterface;
   CPartyModeManager     g_partyModeManager;
+
+  //ReTV g_retv;
 
 #ifdef HAS_PYTHON
   XBPython           g_pythonParser;

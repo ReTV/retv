@@ -756,7 +756,7 @@ namespace XBMCAddon
       virtual void setStaticContent(const ListItemList* items);
 
 #ifndef SWIG
-      void sendLabelBind(int tail);
+      void sendLabelBind(int tail, long newFocus=-1);
 
       SWIGHIDDENVIRTUAL bool canAcceptMessages(int actionId) 
       { return ((actionId == ACTION_SELECT_ITEM) | (actionId == ACTION_MOUSE_LEFT_CLICK)); }

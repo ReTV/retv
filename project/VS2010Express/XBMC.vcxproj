@@ -597,6 +597,7 @@
     <ClCompile Include="..\..\xbmc\interfaces\legacy\Keyboard.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\LanguageHook.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\ListItem.cpp" />
+    <ClCompile Include="..\..\xbmc\interfaces\legacy\ModuleRetv.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\ModuleXbmc.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\ModuleXbmcgui.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\ModuleXbmcplugin.cpp" />
@@ -605,6 +606,7 @@
     <ClCompile Include="..\..\xbmc\interfaces\legacy\Player.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\PlayList.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\String.cpp" />
+    <ClCompile Include="..\..\xbmc\interfaces\legacy\SubscriptionInfo.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\Window.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\WindowDialog.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\legacy\WindowDialogMixin.cpp" />
@@ -616,6 +618,9 @@
     <ClCompile Include="..\..\xbmc\interfaces\python\AddonPythonInvoker.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\python\CallbackHandler.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\python\ContextItemAddonInvoker.cpp" />
+    <ClCompile Include="..\..\xbmc\interfaces\python\generated\AddonModuleRetv.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\xbmc\interfaces\python\generated\AddonModuleXbmc.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\python\generated\AddonModuleXbmcaddon.cpp" />
     <ClCompile Include="..\..\xbmc\interfaces\python\generated\AddonModuleXbmcgui.cpp" />
@@ -809,6 +814,7 @@
     <ClCompile Include="..\..\xbmc\rendering\dx\GUIWindowTestPatternDX.cpp" />
     <ClCompile Include="..\..\xbmc\rendering\dx\RenderSystemDX.cpp" />
     <ClCompile Include="..\..\xbmc\rendering\RenderSystem.cpp" />
+    <ClCompile Include="..\..\xbmc\retv\ReTV.cpp" />
     <ClCompile Include="..\..\xbmc\SectionLoader.cpp" />
     <ClCompile Include="..\..\xbmc\settings\AdvancedSettings.cpp" />
     <ClCompile Include="..\..\xbmc\settings\AudioDSPSettings.cpp" />
@@ -1046,6 +1052,7 @@
     <ClInclude Include="..\..\xbmc\interfaces\legacy\LanguageHook.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\List.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\ListItem.h" />
+    <ClInclude Include="..\..\xbmc\interfaces\legacy\ModuleRetv.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\ModuleXbmc.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\ModuleXbmcgui.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\ModuleXbmcplugin.h" />
@@ -1054,6 +1061,7 @@
     <ClInclude Include="..\..\xbmc\interfaces\legacy\Player.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\PlayList.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\RenderCapture.h" />
+    <ClInclude Include="..\..\xbmc\interfaces\legacy\SubscriptionInfo.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\swighelper.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\Tuple.h" />
     <ClInclude Include="..\..\xbmc\interfaces\legacy\Window.h" />
@@ -1103,6 +1111,7 @@
     <ClInclude Include="..\..\xbmc\profiles\windows\GUIWindowSettingsProfile.h" />
     <ClInclude Include="..\..\xbmc\pvr\PVRSettings.h" />
     <ClInclude Include="..\..\xbmc\pvr\timers\PVRTimerType.h" />
+    <ClInclude Include="..\..\xbmc\retv\ReTV.h" />
     <ClInclude Include="..\..\xbmc\settings\AudioDSPSettings.h" />
     <ClInclude Include="..\..\xbmc\settings\dialogs\GUIDialogAudioDSPManager.h" />
     <ClInclude Include="..\..\xbmc\settings\dialogs\GUIDialogAudioDSPSettings.h" />
@@ -2473,6 +2482,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="..\..\xbmc\interfaces\swig\AddonModuleRetv.i">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CALL ..\..\tools\codegenerator\GenerateSWIGBindings.bat %(RelativeDir) %(Filename)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating SWIG bindings</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)..\python\generated\%(Filename).cpp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating SWIG bindings</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)..\python\generated\%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CALL ..\..\tools\codegenerator\GenerateSWIGBindings.bat %(RelativeDir) %(Filename)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Testsuite|Win32'">CALL ..\..\tools\codegenerator\GenerateSWIGBindings.bat %(RelativeDir) %(Filename)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Testsuite|Win32'">Generating SWIG bindings</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Testsuite|Win32'">%(RelativeDir)..\python\generated\%(Filename).cpp</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
     <CustomBuild Include="..\..\xbmc\interfaces\swig\AddonModuleXbmc.i">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CALL ..\..\tools\codegenerator\GenerateSWIGBindings.bat %(RelativeDir) %(Filename)</Command>

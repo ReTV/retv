@@ -543,6 +543,9 @@ void CCurlFile::SetCommonOptions(CReadState* state)
     g_curlInterface.easy_setopt(h, CURLOPT_POSTFIELDS, m_postdata.c_str());
   }
 
+  if (m_acceptGzip)
+	  g_curlInterface.easy_setopt(h, CURLOPT_ACCEPT_ENCODING, "gzip, deflate");
+
   // setup Referer header if needed
   if (!m_referer.empty())
     g_curlInterface.easy_setopt(h, CURLOPT_REFERER, m_referer.c_str());
@@ -838,12 +841,15 @@ void CCurlFile::SetStreamProxy(const std::string &proxy, ProxyType type)
   CLog::Log(LOGDEBUG, "Overriding proxy from URL parameter: %s, type %d", m_proxy.c_str(), proxyType2CUrlProxyType[m_proxytype]);
 }
 
-bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML)
+bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse)
 {
   m_postdata = strPostData;
   m_postdataset = true;
+  m_acceptGzip = acceptGzipResponse;
   return Service(strURL, strHTML);
 }
+
+
 
 bool CCurlFile::Get(const std::string& strURL, std::string& strHTML)
 {
