@@ -37,7 +37,7 @@ namespace XBMCAddon
 
 	String callAPI(const char* endPoint, const char* postData)
 	{
-		return ReTV::GetInstance().callReTVAPI(endPoint, postData);
+		return ReTV::GetInstance().callAPI(endPoint, postData);
 	}
 
 	/*Tuple<String,String> getLoginInfo()
