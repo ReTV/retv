@@ -8,7 +8,7 @@
 
 #include "filesystem/PluginDirectory.h"
 #include "FileItem.h"
-#include "retv\ReTV.h"
+#include "retv/ReTV.h"
 #include "SubscriptionInfo.h"
 
 

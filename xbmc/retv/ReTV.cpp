@@ -11,7 +11,7 @@
 #include "utils/log.h"
 #include "utils/JSONVariantParser.h"
 #include "utils/Variant.h"
-#include "interfaces\legacy\SubscriptionInfo.h"
+#include "interfaces/legacy/SubscriptionInfo.h"
 
 using namespace XBMCAddon::retv;
 
