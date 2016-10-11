@@ -15,6 +15,7 @@ SRCS=	\
 	Keyboard.cpp \
 	LanguageHook.cpp \
 	ListItem.cpp \
+    ModuleRetv.cpp \
 	ModuleXbmc.cpp \
 	ModuleXbmcgui.cpp \
 	ModuleXbmcplugin.cpp \
@@ -23,6 +24,7 @@ SRCS=	\
 	Player.cpp \
 	PlayList.cpp \
 	String.cpp \
+    SubscriptionInfo.cpp \
 	Window.cpp \
 	WindowDialog.cpp \
 	WindowDialogMixin.cpp \
