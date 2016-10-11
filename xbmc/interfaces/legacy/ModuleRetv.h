@@ -44,6 +44,6 @@ namespace XBMCAddon
 	
 	float getFastForwardData();
 
-	XBMCAddon::retv::SubscriptionInfo* getLoginInfo();
+	//XBMCAddon::retv::SubscriptionInfo* getLoginInfo();
   }
 }

@@ -67,11 +67,11 @@ namespace XBMCAddon
 		return ReTV::GetInstance().getFFData();
 	}
 
-	XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
+	/*XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
 	{
 		//return ReTV::GetInstance().getSubscriptionInfo();
 		return &SubscriptionInfo();
-	}
+	}*/
 
   }
 }

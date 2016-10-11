@@ -92,8 +92,8 @@ bool ReTV::login()
 	//postData = "Hello World";
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s",postData);
-	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login));
+	CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login.c_str()));
 	if (!http.Post(makeApiURL(m_api_Login), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't login");
 		return false;
@@ -106,7 +106,7 @@ bool ReTV::login()
 	bool result = parseLoginResponse(loginResponse);
 
 	if (!result)
-		CLog::Log(LOGNOTICE, "ReTV: Login response : %s", content);
+		CLog::Log(LOGNOTICE, "ReTV: Login response : %s", content.c_str());
 
 	return result;
 }
@@ -152,7 +152,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 
 	m_loginTime = loginResponse["time"].asDouble();
 
-	CLog::Log(LOGNOTICE, "Sub details : %s - %ld - %f", m_authToken, (long)expiry, m_loginTime);
+	CLog::Log(LOGNOTICE, "Sub details : %s - %ld - %f", m_authToken.c_str(), (long)expiry, m_loginTime);
 
 	CVariant userData = data["user"];
 
@@ -176,7 +176,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	m_loggedIn = true;
 
 	//CLog::Log(LOGNOTICE, "Sub details : %s - %s ", m_planName, m_planCode);
-	CLog::Log(LOGNOTICE, "Sub details : %s - %s -%s", m_userNameF, m_userNameL, m_userEmail);
+	CLog::Log(LOGNOTICE, "Sub details : %s - %s -%s", m_userNameF.c_str(), m_userNameL.c_str(), m_userEmail.c_str());
 
 	return true;
 }
