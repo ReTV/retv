@@ -213,8 +213,8 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s", postData);
-	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint));
+	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
 	if (!http.Post(makeApiURL(endPoint), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
 		return "";
