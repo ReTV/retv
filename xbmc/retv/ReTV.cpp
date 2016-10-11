@@ -93,7 +93,7 @@ bool ReTV::login()
 	std::string content;
 
 	CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
-	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login.c_str()));
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
 	if (!http.Post(makeApiURL(m_api_Login), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't login");
 		return false;
