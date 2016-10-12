@@ -42,6 +42,11 @@ std::string ReTV::makeApiURL(std::string api)
 	return m_apiUrl + api;
 }
 
+std::string ReTV::makeMediaApiURL(std::string api)
+{
+    return m_mediaUrl + api;
+}
+
 
 /*
  Initialize the ReTV system. Store user data. Will change later
@@ -207,6 +212,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 	std::string postData = "{\"authtoken\": \"" + m_authToken + "\", \"devicecode\":\"" + m_deviceCode + "\"";
 
 	if (strlen(postVars) > 0)
+
 		postData = postData + ", " + postVars + "}";
 	else
 		postData = postData + "}";
@@ -222,6 +228,46 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 
 	return content;
 }
+
+std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars)
+{
+    if (strlen(endPoint) < 1)
+        return "";
+
+    // 1. Make API URL
+    // 2. Call API URL
+    // 3.
+
+    if (!m_initialized)
+        return "";
+
+    XFILE::CCurlFile http;
+
+    if (!http.IsInternet())
+        return "";
+
+    http.SetRequestHeader("Authorization", m_headerAuthorization);
+    http.SetRequestHeader("Content-Type", m_headerContentType);
+
+    std::string postData = "{\"authtoken\": \"" + m_authToken + "\", \"devicecode\":\"" + m_deviceCode + "\"";
+
+    if (strlen(postVars) > 0)
+        postData = postData + ", " + postVars + "}";
+    else
+        postData = postData + "}";
+
+    std::string content;
+
+    CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+    CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
+    if (!http.Post(makeMediaApiURL(endPoint), postData, content, true)){
+        CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
+        return "";
+    }
+
+    return content;
+}
+
 
 int ReTV::getSubEndTime()
 {

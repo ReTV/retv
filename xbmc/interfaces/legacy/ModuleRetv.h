@@ -39,6 +39,7 @@ namespace XBMCAddon
 	bool login();
 
 	String callAPI(const char* endPoint, const char* postData);
+	String callMediaAPI(const char* endPoint, const char* postData);
 
 	int getSubscriptionEndTime();
 	

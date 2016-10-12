@@ -28,10 +28,12 @@ public:
 	bool login();
 
 	std::string callAPI(const char* endPoint, const char* postVars);
+	std::string callMediaAPI(const char* endPoint, const char* postVars);
 
 	void Cleanup();
 
-	std::string makeApiURL(std::string api);
+    std::string makeApiURL(std::string api);
+    std::string makeMediaApiURL(std::string api);
 
 	XBMCAddon::retv::SubscriptionInfo* getSubscriptionInfo();
 
@@ -82,8 +84,8 @@ private:
 	const std::string m_apiUrlLive = "https://api.retv.in/index.php/api/";
 	const std::string m_apiUrlStaging = "https://staging.retv.in/api.retv.in/index.php/api/";
 	
-	const std::string m_mediaUrlLive = "http://files.retv.in/index.php/api/";
-	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/index.php/api/";
+	const std::string m_mediaUrlLive = "http://files.retv.in/";
+	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/";
 
 	// API end points
 	const std::string m_api_Login = "user/login";

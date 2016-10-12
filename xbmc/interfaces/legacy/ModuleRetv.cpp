@@ -40,6 +40,11 @@ namespace XBMCAddon
 		return ReTV::GetInstance().callAPI(endPoint, postData);
 	}
 
+    String callMediaAPI(const char* endPoint, const char* postData)
+    {
+      return ReTV::GetInstance().callMediaAPI(endPoint, postData);
+    }
+
 	/*Tuple<String,String> getLoginInfo()
 	{
 		std::string strTitle = "Hello";
