@@ -45,6 +45,8 @@ namespace XBMCAddon
 	
 	float getFastForwardData();
 
+    bool isLoggedIn();
+
 	//XBMCAddon::retv::SubscriptionInfo* getLoginInfo();
   }
 }

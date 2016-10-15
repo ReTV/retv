@@ -39,6 +39,8 @@ public:
 
 	int getSubEndTime();
 
+    bool isLoggedIn();
+
 	float getFFData();
 
 private:

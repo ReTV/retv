@@ -4,6 +4,7 @@
 *
 */
 
+#include <ctime>
 #include <string.h>
 #include "ReTV.h"
 #include "filesystem/CurlFile.h"
@@ -151,13 +152,13 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	CLog::Log(LOGNOTICE, "Plan Name: %d", accountData.isMember("planname"));
 
 
-	int64_t expiry = loginResponse["expiry"].asInteger();
+	m_expiryTime = loginResponse["expiry"].asInteger();
 	//m_subInfo.m_subscriptionEnd = expiry;
 
 
 	m_loginTime = loginResponse["time"].asDouble();
 
-	CLog::Log(LOGNOTICE, "Sub details : %s - %ld - %f", m_authToken.c_str(), (long)expiry, m_loginTime);
+	CLog::Log(LOGNOTICE, "Sub details : %s - %d - %f", m_authToken.c_str(), m_expiryTime, m_loginTime);
 
 	CVariant userData = data["user"];
 
@@ -279,6 +280,19 @@ float ReTV::getFFData()
 	return m_fastForwardData;
 }
 
+bool ReTV::isLoggedIn()
+{
+    time_t current_time = std::time(0);
+
+    CLog::Log(LOGNOTICE, "Auth Token: %s and current_time(%d) < expirytime(%d)", m_authToken.c_str(), current_time, m_expiryTime);
+    if (not m_authToken.empty() && current_time < m_expiryTime)
+    {
+        CLog::Log(LOGNOTICE, "Auth Token: %s and current_time(%d) < expirytime(%d)", m_authToken.c_str(), current_time, m_expiryTime);
+        return true;
+    }
+    CLog::Log(LOGNOTICE, "Not logged in or token expired.");
+    return false;
+}
 
 SubscriptionInfo* ReTV::getSubscriptionInfo()
 {

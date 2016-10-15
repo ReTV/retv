@@ -72,6 +72,11 @@ namespace XBMCAddon
 		return ReTV::GetInstance().getFFData();
 	}
 
+    bool isLoggedIn()
+    {
+        return ReTV::GetInstance().isLoggedIn();
+    }
+
 	/*XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
 	{
 		//return ReTV::GetInstance().getSubscriptionInfo();
