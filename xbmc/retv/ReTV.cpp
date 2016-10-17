@@ -205,7 +205,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 	XFILE::CCurlFile http;
 
 	if (!http.IsInternet())
-		return "";
+		return "{\"message\":\"\",\"errorcode\":0,\"data\":\"\"}";
 
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
@@ -223,9 +223,11 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
 	if (!http.Post(makeApiURL(endPoint), postData, content, true)){
-		CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
-		return "";
-	}
+        CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
+        CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
+        return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
+    }
+    CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
 
 	return content;
 }
@@ -245,7 +247,7 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars)
     XFILE::CCurlFile http;
 
     if (!http.IsInternet())
-        return "";
+        return "{\"message\":\"\",\"errorcode\":0,\"data\":\"\"}";
 
     http.SetRequestHeader("Authorization", m_headerAuthorization);
     http.SetRequestHeader("Content-Type", m_headerContentType);
@@ -263,7 +265,7 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars)
     CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
     if (!http.Post(makeMediaApiURL(endPoint), postData, content, true)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
-        return "";
+        return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
     }
 
     return content;
@@ -284,10 +286,11 @@ bool ReTV::isLoggedIn()
 {
     time_t current_time = std::time(0);
 
-    CLog::Log(LOGNOTICE, "Auth Token: %s and current_time(%d) < expirytime(%d)", m_authToken.c_str(), current_time, m_expiryTime);
+    CLog::Log(LOGNOTICE, "Checking if user is logged in.");
+    CLog::Log(LOGNOTICE, "Auth Token: %s \nCurrent Time: %ld \nToken Expiry: %ld", m_authToken.c_str(), (long)current_time, (long)m_expiryTime);
     if (not m_authToken.empty() && current_time < m_expiryTime)
     {
-        CLog::Log(LOGNOTICE, "Auth Token: %s and current_time(%d) < expirytime(%d)", m_authToken.c_str(), current_time, m_expiryTime);
+        CLog::Log(LOGNOTICE, "User is logged in");
         return true;
     }
     CLog::Log(LOGNOTICE, "Not logged in or token expired.");

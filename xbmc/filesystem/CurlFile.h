@@ -45,7 +45,8 @@ namespace XFILE
         PROXY_SOCKS5,
         PROXY_SOCKS5_REMOTE,
       } ProxyType;
-    
+
+      int responseCode;
       CCurlFile();
       virtual ~CCurlFile();
       virtual bool Open(const CURL& url);
