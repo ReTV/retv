@@ -813,8 +813,9 @@ void CCurlFile::ParseAndCorrectUrl(CURL &url2)
           SetStreamProxy(value, PROXY_HTTP);
         else if (name == "sslcipherlist")
           m_cipherlist = value;
-        else if (name == "connection-timeout")
-          m_connecttimeout = strtol(value.c_str(), NULL, 10);
+        else if (name == "connection-timeout") {
+            m_connecttimeout = strtol(value.c_str(), NULL, 10);
+        }
         else
           SetRequestHeader(it->first, value);
       }
@@ -841,26 +842,31 @@ void CCurlFile::SetStreamProxy(const std::string &proxy, ProxyType type)
   CLog::Log(LOGDEBUG, "Overriding proxy from URL parameter: %s, type %d", m_proxy.c_str(), proxyType2CUrlProxyType[m_proxytype]);
 }
 
-bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse)
+bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse, int timeout)
 {
   m_postdata = strPostData;
   m_postdataset = true;
   m_acceptGzip = acceptGzipResponse;
-  return Service(strURL, strHTML);
+  return Service(strURL, strHTML, timeout);
 }
 
 
 
-bool CCurlFile::Get(const std::string& strURL, std::string& strHTML)
+bool CCurlFile::Get(const std::string& strURL, std::string& strHTML, int timeout)
 {
   m_postdata = "";
   m_postdataset = false;
-  return Service(strURL, strHTML);
+  return Service(strURL, strHTML, timeout);
 }
 
-bool CCurlFile::Service(const std::string& strURL, std::string& strHTML)
+bool CCurlFile::Service(const std::string& strURL, std::string& strHTML, int timeout)
 {
-  const CURL pathToUrl(strURL);
+  CURL pathToUrl(strURL);
+  std::string options;
+  // Add connection timeout
+  options = "connection-timeout=" + std::to_string(timeout);
+  pathToUrl.SetProtocolOptions(options);
+
   if (Open(pathToUrl))
   {
     if (ReadData(strHTML))

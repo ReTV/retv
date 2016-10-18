@@ -32,8 +32,11 @@ namespace XCURL
   struct curl_slist;
 }
 
+
+
 namespace XFILE
 {
+  const int REQUEST_TIMEOUT = 10;
   class CCurlFile : public IFile
   {
     public:
@@ -65,8 +68,8 @@ namespace XFILE
       virtual int IoControl(EIoControl request, void* param);
       virtual std::string GetContentCharset(void)                { return GetServerReportedCharset(); }
 
-      bool Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse=false);
-      bool Get(const std::string& strURL, std::string& strHTML);
+      bool Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse=false, int timeout=REQUEST_TIMEOUT);
+      bool Get(const std::string& strURL, std::string& strHTML, int timeout=REQUEST_TIMEOUT);
       bool ReadData(std::string& strHTML);
       bool Download(const std::string& strURL, const std::string& strFileName, LPDWORD pdwSize = NULL);
       bool IsInternet();
@@ -155,7 +158,7 @@ namespace XFILE
       void SetCommonOptions(CReadState* state);
       void SetRequestHeaders(CReadState* state);
       void SetCorrectHeaders(CReadState* state);
-      bool Service(const std::string& strURL, std::string& strHTML);
+      bool Service(const std::string& strURL, std::string& strHTML, int timeout=REQUEST_TIMEOUT);
 
     protected:
       CReadState*     m_state;

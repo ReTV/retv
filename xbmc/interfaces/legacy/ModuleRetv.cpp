@@ -35,14 +35,14 @@ namespace XBMCAddon
 		return ReTV::GetInstance().login();
 	}
 
-	String callAPI(const char* endPoint, const char* postData)
+	String callAPI(const char* endPoint, const char* postData, int timeout)
 	{
-		return ReTV::GetInstance().callAPI(endPoint, postData);
+		return ReTV::GetInstance().callAPI(endPoint, postData, timeout);
 	}
 
-    String callMediaAPI(const char* endPoint, const char* postData)
+    String callMediaAPI(const char* endPoint, const char* postData, int timeout)
     {
-      return ReTV::GetInstance().callMediaAPI(endPoint, postData);
+        return ReTV::GetInstance().callMediaAPI(endPoint, postData, timeout);
     }
 
 	/*Tuple<String,String> getLoginInfo()

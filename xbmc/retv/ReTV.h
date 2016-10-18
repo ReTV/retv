@@ -11,6 +11,8 @@
 #include "interfaces/legacy/SubscriptionInfo.h"
 
 
+const int REQUEST_TIMEOUT = 10;
+
 class ReTV
 {
 public:
@@ -27,8 +29,8 @@ public:
 
 	bool login();
 
-	std::string callAPI(const char* endPoint, const char* postVars);
-	std::string callMediaAPI(const char* endPoint, const char* postVars);
+	std::string callAPI(const char* endPoint, const char* postVars, int timeout=REQUEST_TIMEOUT);
+	std::string callMediaAPI(const char* endPoint, const char* postVars, int timeout=REQUEST_TIMEOUT);
 
 	void Cleanup();
 

@@ -34,7 +34,7 @@ namespace XBMCAddon
     // This is a bit of a hack to get around a SWIG problem
     extern const int lLOGNOTICE;
 #endif
-
+    const int REQUEST_TIMEOUT = 10;
     /**
      * log(msg[, level]) -- Write a string to XBMC's log file and the debug window.\n
      *     msg            : string - text to output.\n
@@ -427,7 +427,7 @@ namespace XBMCAddon
 	* example:
 	*   - language = xbmc.getUrl("http://www.kodi.tv")
 	*/
-	String getUrl(const char* url);
+	String getUrl(const char* url, int timeout=REQUEST_TIMEOUT);
 
 
 

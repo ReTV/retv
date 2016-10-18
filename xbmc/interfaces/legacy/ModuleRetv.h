@@ -24,6 +24,7 @@ namespace XBMCAddon
      * url         : string - any string\n
      * 
      */
+    const int REQUEST_TIMEOUT = 10;
     String test(const String& url);
 
 
@@ -38,8 +39,8 @@ namespace XBMCAddon
 
 	bool login();
 
-	String callAPI(const char* endPoint, const char* postData);
-	String callMediaAPI(const char* endPoint, const char* postData);
+	String callAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
+	String callMediaAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
 
 	int getSubscriptionEndTime();
 	

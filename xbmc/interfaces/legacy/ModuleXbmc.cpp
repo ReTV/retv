@@ -525,7 +525,7 @@ namespace XBMCAddon
     }
 
 
-	String getUrl(const char* url)
+	String getUrl(const char* url, int timeout)
 	{
 		XFILE::CCurlFile http;
 		//http.SetContentEncoding("gzip");
@@ -533,9 +533,8 @@ namespace XBMCAddon
 		std::string surl(url);
 
 		std::string content;
-		if (!http.Get(surl, content))
-			return "";
-
+		if (!http.Get(surl, content, timeout))
+			return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
 		return content;
 	}
 

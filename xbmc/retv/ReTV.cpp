@@ -190,7 +190,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 
 
 
-std::string ReTV::callAPI(const char* endPoint, const char* postVars)
+std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeout)
 {
 	if (strlen(endPoint) < 1)
 		return "";
@@ -222,7 +222,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 
 	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
-	if (!http.Post(makeApiURL(endPoint), postData, content, true)){
+	if (!http.Post(makeApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
         return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
@@ -232,7 +232,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars)
 	return content;
 }
 
-std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars)
+std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int timeout)
 {
     if (strlen(endPoint) < 1)
         return "";
@@ -263,7 +263,7 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars)
 
     CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
     CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
-    if (!http.Post(makeMediaApiURL(endPoint), postData, content, true)){
+    if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
     }
