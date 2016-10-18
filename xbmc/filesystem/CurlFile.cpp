@@ -30,6 +30,7 @@
 #include <vector>
 #include <climits>
 #include <cassert>
+#include <sstream>
 
 #ifdef TARGET_POSIX
 #include <errno.h>
@@ -864,7 +865,9 @@ bool CCurlFile::Service(const std::string& strURL, std::string& strHTML, int tim
   CURL pathToUrl(strURL);
   std::string options;
   // Add connection timeout
-  options = "connection-timeout=" + std::to_string(timeout);
+  std::stringstream strstream;
+  strstream << "connection-timeout=" << timeout;
+  options = strstream.str();
   pathToUrl.SetProtocolOptions(options);
 
   if (Open(pathToUrl))

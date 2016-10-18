@@ -6,6 +6,7 @@
 
 #include <ctime>
 #include <string.h>
+#include <sstream>
 #include "ReTV.h"
 #include "filesystem/CurlFile.h"
 #include "interfaces/AnnouncementManager.h"
@@ -225,7 +226,9 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeou
 	if (!http.Post(makeApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
-        return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
+        std::stringstream strstream;
+        strstream << "{\"message\":\"\",\"errorcode\":" << http.responseCode << ",\"data\":\"\"}";
+        return strstream.str();
     }
     CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
 
@@ -265,7 +268,9 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int t
     CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
     if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
-        return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
+        std::stringstream strstream;
+		strstream << "{\"message\":\"\",\"errorcode\":" << http.responseCode << ",\"data\":\"\"}";
+        return strstream.str();
     }
 
     return content;

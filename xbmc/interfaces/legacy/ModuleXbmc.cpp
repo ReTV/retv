@@ -59,6 +59,7 @@
 
 #include "threads/SystemClock.h"
 #include <vector>
+#include <sstream>
 #include "utils/log.h"
 
 #include "filesystem/CurlFile.h"
@@ -533,8 +534,11 @@ namespace XBMCAddon
 		std::string surl(url);
 
 		std::string content;
-		if (!http.Get(surl, content, timeout))
-			return "{\"message\":\"\",\"errorcode\":" + std::to_string(http.responseCode) + ",\"data\":\"\"}";
+		if (!http.Get(surl, content, timeout)){
+            std::stringstream strstream;
+            strstream << "{\"message\":\"\",\"errorcode\":" << http.responseCode << ",\"data\":\"\"}";
+            return strstream.str();
+        }
 		return content;
 	}
 
