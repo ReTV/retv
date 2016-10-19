@@ -91,8 +91,11 @@ private:
 	const std::string m_mediaUrlLive = "http://files.retv.in/";
 	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/";
 
+    const std::string rpc_url = "http://localhost:4000/api";
+
 	// API end points
 	const std::string m_api_Login = "user/login";
 
 	bool parseLoginResponse(CVariant loginResponse);
+    bool initRPC();
 };
