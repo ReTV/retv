@@ -293,7 +293,7 @@ bool ReTV::isLoggedIn()
 
     CLog::Log(LOGNOTICE, "Checking if user is logged in.");
     CLog::Log(LOGNOTICE, "Auth Token: %s \nCurrent Time: %ld \nToken Expiry: %ld", m_authToken.c_str(), (long)current_time, (long)m_expiryTime);
-    if (not m_authToken.empty() && current_time < m_expiryTime)
+    if ( !m_authToken.empty() && current_time < m_expiryTime)
     {
         CLog::Log(LOGNOTICE, "User is logged in");
         return true;
