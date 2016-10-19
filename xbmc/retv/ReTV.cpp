@@ -59,11 +59,13 @@ bool ReTV::initialize(int type, const char*  deviceCode, const char*  mobileNumb
 
 	// Live
 	if (type == 0){
+        api_type = API_TYPE_LIVE;
 		m_apiUrl = m_apiUrlLive;
 		m_mediaUrl = m_mediaUrlLive;
 	}
 	// Staging
 	else{
+        api_type = API_TYPE_STAGING;
 		m_apiUrl = m_apiUrlStaging;
 		m_mediaUrl = m_mediaUrlStaging;
 	}
@@ -194,7 +196,7 @@ bool ReTV::initRPC(){
     std::stringstream rpc_payload;
     std::string content;
     XFILE::CCurlFile http;
-    rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<"], \"method\": \"initAPI\"}";
+    rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<", " << api_type << "], \"method\": \"initAPI\"}";
     CLog::Log(LOGNOTICE, "RPC payload : %s", rpc_payload.str().c_str());
     return http.Post(rpc_url, rpc_payload.str(), content, true);
 }

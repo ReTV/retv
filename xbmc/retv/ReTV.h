@@ -63,6 +63,9 @@ private:
 	XBMCAddon::retv::SubscriptionInfo m_subInfo;
 
 	unsigned int m_expiryTime;
+    int api_type;
+    const int API_TYPE_LIVE = 0;
+    const int API_TYPE_STAGING = 1;
 	double m_loginTime;
 
 	std::string m_planName;
