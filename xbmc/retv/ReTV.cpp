@@ -161,25 +161,23 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 
 	m_loginTime = loginResponse["time"].asDouble();
 
-	CLog::Log(LOGNOTICE, "Sub details : %s - %d - %f", m_authToken.c_str(), m_expiryTime, m_loginTime);
-
 	CVariant userData = data["user"];
 
-	//m_subInfo.setSubData(accountData["planname"].asString(), accountData["plancode"].asString(), accountData["startdate"].asInteger(), accountData["enddate"].asInteger(), accountData["fastforward"].asDouble());
-	/*m_subInfo.m_planName = accountData["planname"].asString();
-	m_subInfo.m_planCode = accountData["plancode"].asString();
-
-	m_subInfo.m_subscriptionStart = accountData["startdate"].asInteger();
-	m_subInfo.m_subscriptionEnd = accountData["enddate"].asInteger();
-	m_subInfo.m_fastForwardData = accountData["fastforward"].asDouble();*/
-	
-	//m_subInfo.setUserData(userData["firstname"].asString(), userData["lastname"].asString(), userData["address"].asString(), userData["country"].asString(), userData["city"].asString(), userData["email"].asString());
-	/*m_subInfo.m_userNameF = userData["firstname"].asString();
-	m_subInfo.m_userNameL = userData["lastname"].asString();
-	m_subInfo.m_userAddress = userData["address"].asString();
-	m_subInfo.m_userCountry = userData["country"].asString();
-	m_subInfo.m_userCity = userData["city"].asString();
-	m_subInfo.m_userEmail = userData["email"].asString();*/
+	m_subInfo.setSubData(accountData["planname"].asString(), accountData["plancode"].asString(), accountData["startdate"].asInteger(), accountData["enddate"].asInteger(), accountData["fastforward"].asDouble());
+//	m_subInfo.m_planName = accountData["planname"].asString();
+//	m_subInfo.m_planCode = accountData["plancode"].asString();
+//
+//	m_subInfo.m_subscriptionStart = accountData["startdate"].asInteger();
+//	m_subInfo.m_subscriptionEnd = accountData["enddate"].asInteger();
+//	m_subInfo.m_fastForwardData = accountData["fastforward"].asDouble();
+//
+//	m_subInfo.setUserData(userData["firstname"].asString(), userData["lastname"].asString(), userData["address"].asString(), userData["country"].asString(), userData["city"].asString(), userData["email"].asString());
+//	m_subInfo.m_userNameF = userData["firstname"].asString();
+//	m_subInfo.m_userNameL = userData["lastname"].asString();
+//	m_subInfo.m_userAddress = userData["address"].asString();
+//	m_subInfo.m_userCountry = userData["country"].asString();
+//	m_subInfo.m_userCity = userData["city"].asString();
+//	m_subInfo.m_userEmail = userData["email"].asString();
 
 
     // Initialize java rpc
@@ -197,7 +195,6 @@ bool ReTV::initRPC(){
     std::string content;
     XFILE::CCurlFile http;
     rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<", " << api_type << "], \"method\": \"initAPI\"}";
-    CLog::Log(LOGNOTICE, "RPC payload : %s", rpc_payload.str().c_str());
     return http.Post(rpc_url, rpc_payload.str(), content, true);
 }
 
@@ -232,7 +229,6 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeou
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
 	if (!http.Post(makeApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
@@ -275,7 +271,6 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int t
 
     std::string content;
 
-    CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
     CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
     if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, timeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
@@ -303,7 +298,6 @@ bool ReTV::isLoggedIn()
     time_t current_time = std::time(0);
 
     CLog::Log(LOGNOTICE, "Checking if user is logged in.");
-    CLog::Log(LOGNOTICE, "Auth Token: %s \nCurrent Time: %ld \nToken Expiry: %ld", m_authToken.c_str(), (long)current_time, (long)m_expiryTime);
     if ( !m_authToken.empty() && current_time < m_expiryTime)
     {
         CLog::Log(LOGNOTICE, "User is logged in");
@@ -311,6 +305,25 @@ bool ReTV::isLoggedIn()
     }
     CLog::Log(LOGNOTICE, "Not logged in or token expired.");
     return false;
+}
+
+std::string ReTV::getLinkByToken(const char* token)
+{
+    std::string url;
+    if (api_type == API_TYPE_LIVE)
+        url = m_mediaUrlLive;
+    else
+        url = m_mediaUrlStaging;
+
+    url.replace(6, 1, "/" + api_username + ":" + api_password + "@");
+    return url + "stream/?token=" + token;
+}
+
+std::string ReTV::getBaseUrl()
+{
+    if (api_type == API_TYPE_LIVE)
+        return m_apiUrlLive;
+    return m_apiUrlStaging;
 }
 
 SubscriptionInfo* ReTV::getSubscriptionInfo()
