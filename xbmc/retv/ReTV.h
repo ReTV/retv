@@ -99,5 +99,8 @@ private:
 	const std::string m_api_Login = "user/login";
 
 	bool parseLoginResponse(CVariant loginResponse);
+
+#if defined(ANDROID)
     bool initRPC();
+#endif
 };

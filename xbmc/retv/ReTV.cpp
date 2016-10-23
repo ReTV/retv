@@ -182,8 +182,11 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	m_subInfo.m_userEmail = userData["email"].asString();*/
 
 
-    // Initialize java rpc
-    initRPC();
+#if defined(ANDROID)
+	// Initialize java rpc, only for Android
+	initRPC();
+#endif
+
 	m_loggedIn = true;
 
 	//CLog::Log(LOGNOTICE, "Sub details : %s - %s ", m_planName, m_planCode);
@@ -192,6 +195,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	return true;
 }
 
+#if defined(ANDROID)
 bool ReTV::initRPC(){
     std::stringstream rpc_payload;
     std::string content;
@@ -200,7 +204,7 @@ bool ReTV::initRPC(){
     CLog::Log(LOGNOTICE, "RPC payload : %s", rpc_payload.str().c_str());
     return http.Post(rpc_url, rpc_payload.str(), content, true);
 }
-
+#endif
 
 std::string ReTV::callAPI(const char* endPoint, const char* postVars, int customTimeout)
 {
