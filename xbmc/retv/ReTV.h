@@ -11,7 +11,6 @@
 #include "interfaces/legacy/SubscriptionInfo.h"
 
 
-const int REQUEST_TIMEOUT = 10;
 
 class ReTV
 {
@@ -29,8 +28,8 @@ public:
 
 	bool login();
 
-	std::string callAPI(const char* endPoint, const char* postVars, int timeout=REQUEST_TIMEOUT);
-	std::string callMediaAPI(const char* endPoint, const char* postVars, int timeout=REQUEST_TIMEOUT);
+    std::string callAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
+    std::string callMediaAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
     std::string getLinkByToken(const char* token);
     std::string getBaseUrl();
 
