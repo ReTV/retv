@@ -1,5 +1,5 @@
 APP_NAME ReTV
-COMPANY_NAME `Billion Plus Computing Pvt. Ltd.`
+COMPANY_NAME Billion_Plus_Computing_Pvt_Ltd
 WEBSITE http://retv.in
 VERSION_MAJOR 16
 VERSION_MINOR 1

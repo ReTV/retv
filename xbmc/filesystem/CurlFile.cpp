@@ -622,11 +622,19 @@ void CCurlFile::SetCommonOptions(CReadState* state)
   if (m_customrequest.length() > 0)
     g_curlInterface.easy_setopt(h, CURLOPT_CUSTOMREQUEST, m_customrequest.c_str());
 
-  if (m_connecttimeout == 0)
-    m_connecttimeout = g_advancedSettings.m_curlconnecttimeout;
+  
+  if (m_connecttimeout == 0){
+	m_connecttimeout = g_advancedSettings.m_curlconnecttimeout;
+  }
+
+  int timeoutToUse = m_connecttimeout;
+  if (m_customtimeoutonce != -1){
+	  timeoutToUse = m_customtimeoutonce;
+	  m_customtimeoutonce = -1;
+  }
 
   // set our timeouts, we abort connection after m_timeout, and reads after no data for m_timeout seconds
-  g_curlInterface.easy_setopt(h, CURLOPT_CONNECTTIMEOUT, m_connecttimeout);
+  g_curlInterface.easy_setopt(h, CURLOPT_CONNECTTIMEOUT, timeoutToUse);
 
   // We abort in case we transfer less than 1byte/second
   g_curlInterface.easy_setopt(h, CURLOPT_LOW_SPEED_LIMIT, 1);
@@ -843,32 +851,33 @@ void CCurlFile::SetStreamProxy(const std::string &proxy, ProxyType type)
   CLog::Log(LOGDEBUG, "Overriding proxy from URL parameter: %s, type %d", m_proxy.c_str(), proxyType2CUrlProxyType[m_proxytype]);
 }
 
-bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse, int timeout)
+bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse, int customTimeout)
 {
   m_postdata = strPostData;
   m_postdataset = true;
   m_acceptGzip = acceptGzipResponse;
-  return Service(strURL, strHTML, timeout);
+  return Service(strURL, strHTML, customTimeout);
 }
 
 
 
-bool CCurlFile::Get(const std::string& strURL, std::string& strHTML, int timeout)
+bool CCurlFile::Get(const std::string& strURL, std::string& strHTML, int customTimeout)
 {
   m_postdata = "";
   m_postdataset = false;
-  return Service(strURL, strHTML, timeout);
+  return Service(strURL, strHTML, customTimeout);
 }
 
-bool CCurlFile::Service(const std::string& strURL, std::string& strHTML, int timeout)
+bool CCurlFile::Service(const std::string& strURL, std::string& strHTML, int customTimeout)
 {
   CURL pathToUrl(strURL);
-  std::string options;
+  
+  /*std::string options;
   // Add connection timeout
   std::stringstream strstream;
-  strstream << "connection-timeout=" << timeout;
+  strstream << "connection-timeout=" << customTimeout;
   options = strstream.str();
-  pathToUrl.SetProtocolOptions(options);
+  pathToUrl.SetProtocolOptions(options);*/
 
   if (Open(pathToUrl))
   {

@@ -202,7 +202,7 @@ bool ReTV::initRPC(){
 }
 
 
-std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeout)
+std::string ReTV::callAPI(const char* endPoint, const char* postVars, int customTimeout)
 {
 	if (strlen(endPoint) < 1)
 		return "";
@@ -234,7 +234,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeou
 
 	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
-	if (!http.Post(makeApiURL(endPoint), postData, content, true, timeout)){
+	if (!http.Post(makeApiURL(endPoint), postData, content, true, customTimeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
         std::stringstream strstream;
@@ -246,7 +246,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int timeou
 	return content;
 }
 
-std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int timeout)
+std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int customTimeout)
 {
     if (strlen(endPoint) < 1)
         return "";
@@ -277,7 +277,7 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int t
 
     CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
     CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
-    if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, timeout)){
+	if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, customTimeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         std::stringstream strstream;
 		strstream << "{\"message\":\"\",\"errorcode\":" << http.responseCode << ",\"data\":\"\"}";
