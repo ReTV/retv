@@ -28,10 +28,12 @@ public:
 
 	bool login();
 
-	std::string callAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
-	std::string callMediaAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
+    std::string callAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
+    std::string callMediaAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
+    std::string getLinkByToken(const char* token);
+    std::string getBaseUrl();
 
-	void Cleanup();
+    void Cleanup();
 
     std::string makeApiURL(std::string api);
     std::string makeMediaApiURL(std::string api);
@@ -86,6 +88,9 @@ private:
 
 	std::string m_apiUrl;
 	std::string m_mediaUrl;
+
+    std::string api_username = "retvAPIConsumer";
+    std::string api_password = "R$t^16";
 
 	const std::string m_apiUrlLive = "https://api.retv.in/index.php/api/";
 	const std::string m_apiUrlStaging = "https://staging.retv.in/api.retv.in/index.php/api/";

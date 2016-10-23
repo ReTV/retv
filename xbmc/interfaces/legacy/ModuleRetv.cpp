@@ -45,6 +45,16 @@ namespace XBMCAddon
         return ReTV::GetInstance().callMediaAPI(endPoint, postData, timeout);
     }
 
+    String getLinkByToken(const char* token)
+    {
+        return ReTV::GetInstance().getLinkByToken(token);
+    }
+
+    String getBaseUrl()
+    {
+        return ReTV::GetInstance().getBaseUrl();
+    }
+
 	/*Tuple<String,String> getLoginInfo()
 	{
 		std::string strTitle = "Hello";
@@ -77,11 +87,11 @@ namespace XBMCAddon
         return ReTV::GetInstance().isLoggedIn();
     }
 
-	/*XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
+	XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
 	{
-		//return ReTV::GetInstance().getSubscriptionInfo();
-		return &SubscriptionInfo();
-	}*/
+		return ReTV::GetInstance().getSubscriptionInfo();
+//		return &SubscriptionInfo();
+	}
 
   }
 }
