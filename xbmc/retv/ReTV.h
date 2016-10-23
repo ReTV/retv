@@ -100,7 +100,7 @@ private:
 
 	bool parseLoginResponse(CVariant loginResponse);
 
-#if defined(ANDROID)
+#if defined(TARGET_ANDROID)
     bool initRPC();
 #endif
 };

@@ -182,7 +182,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	m_subInfo.m_userEmail = userData["email"].asString();*/
 
 
-#if defined(ANDROID)
+#if defined(TARGET_ANDROID)
 	// Initialize java rpc, only for Android
 	initRPC();
 #endif
@@ -195,7 +195,7 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	return true;
 }
 
-#if defined(ANDROID)
+#if defined(TARGET_ANDROID)
 bool ReTV::initRPC(){
     std::stringstream rpc_payload;
     std::string content;
