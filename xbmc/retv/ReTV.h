@@ -93,7 +93,7 @@ private:
     std::string api_password = "R$t^16";
 
 	const std::string m_apiUrlLive = "https://api.retv.in/index.php/api/";
-	const std::string m_apiUrlStaging = "https://staging.retv.in/api.retv.in/index.php/api/";
+	const std::string m_apiUrlStaging = "http://staging.retv.in/api.retv.in/index.php/api/";
 	
 	const std::string m_mediaUrlLive = "http://files.retv.in/";
 	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/";

@@ -14,6 +14,8 @@
 #include "utils/JSONVariantParser.h"
 #include "utils/Variant.h"
 #include "interfaces/legacy/SubscriptionInfo.h"
+#include "utils/SystemInfo.h"
+#include "guiinfo/GUIInfoLabels.h"
 
 using namespace XBMCAddon::retv;
 
@@ -94,6 +96,19 @@ bool ReTV::login()
 		return false;
 
 	
+	/*CLog::Log(LOGNOTICE, "App Name : %s", CSysInfo::GetAppName());
+	CLog::Log(LOGNOTICE, "GetBuildTargetPlatformName : %s", CSysInfo::GetBuildTargetPlatformName());
+	CLog::Log(LOGNOTICE, "GetBuildTargetPlatformVersion : %s", CSysInfo::GetBuildTargetPlatformVersion());
+	CLog::Log(LOGNOTICE, "GetManufacturerName : %s", CSysInfo::GetManufacturerName());
+	CLog::Log(LOGNOTICE, "GetModelName : %s", CSysInfo::GetModelName());
+	CLog::Log(LOGNOTICE, "GetBuildTargetCpuFamily : %s", CSysInfo::GetBuildTargetCpuFamily());
+	CLog::Log(LOGNOTICE, "GetDeviceName : %s", CSysInfo::GetDeviceName());
+	CLog::Log(LOGNOTICE, "GetOsName : %s", CSysInfo::GetOsName());
+	//CLog::Log(LOGNOTICE, "MAC: %s", g_sysinfo.GetInfo(NETWORK_MAC_ADDRESS));
+	CLog::Log(LOGNOTICE, "Kernel Bitness : %d", CSysInfo::GetKernelBitness());
+	CLog::Log(LOGNOTICE, "App Name : %s", CSysInfo::GetAppName());
+	*/
+
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
 	
