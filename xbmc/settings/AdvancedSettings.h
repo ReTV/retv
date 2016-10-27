@@ -247,6 +247,7 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
 
     bool m_playlistAsFolders;
     bool m_detectAsUdf;
+	bool m_showOnlyMediaFiles;	///< \brief Show only media files in FileManager
 
     unsigned int m_fanartRes; ///< \brief the maximal resolution to cache fanart at (assumes 16x9)
     unsigned int m_imageRes;  ///< \brief the maximal resolution to cache images at (assumes 16x9)
@@ -371,6 +372,9 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
 
     //! \brief Returns a list of music extension for filtering in the GUI
     std::string GetMusicExtensions() const;
+
+	//! \brief Returns a list of all Multimedia playabale extensions for filtering in GUI
+	std::string GetMultimediaExtensions() const;
 
     void SetDebugMode(bool debug);
 

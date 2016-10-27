@@ -976,6 +976,7 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
     m_imageScalingAlgorithm = CPictureScalingAlgorithm::FromString(tmp);
   XMLUtils::GetBoolean(pRootElement, "playlistasfolders", m_playlistAsFolders);
   XMLUtils::GetBoolean(pRootElement, "detectasudf", m_detectAsUdf);
+  XMLUtils::GetBoolean(pRootElement, "showonlymediafiles", m_showOnlyMediaFiles);
 
   // music thumbs
   TiXmlElement* pThumbs = pRootElement->FirstChildElement("musicthumbs");
@@ -1380,4 +1381,12 @@ std::string CAdvancedSettings::GetMusicExtensions() const
   }
 
   return result;
+}
+
+std::string CAdvancedSettings::GetMultimediaExtensions() const
+{
+	// Concatenate Music, Video & Picture extensions
+	std::string result = GetMusicExtensions() + "|" + m_pictureExtensions + "|" + m_videoExtensions;
+
+	return result;
 }

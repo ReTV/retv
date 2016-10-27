@@ -49,6 +49,7 @@
 #include "guilib/LocalizeStrings.h"
 #include "utils/StringUtils.h"
 #include "utils/log.h"
+#include "settings/AdvancedSettings.h"
 
 #include "utils/JobManager.h"
 #include "utils/FileOperationJob.h"
@@ -534,6 +535,9 @@ void CGUIWindowFileManager::OnClick(int iList, int iItem)
   {
     if (CGUIDialogMediaSource::ShowAndAddMediaSource("files"))
     {
+		if (g_advancedSettings.m_showOnlyMediaFiles)
+			m_rootDir.SetMask(g_advancedSettings.GetMultimediaExtensions());
+
       m_rootDir.SetSources(*CMediaSourceSettings::GetInstance().GetSources("files"));
       Update(0,m_Directory[0]->GetPath());
       Update(1,m_Directory[1]->GetPath());
@@ -967,6 +971,8 @@ void CGUIWindowFileManager::OnPopupMenu(int list, int item, bool bContextDriven 
     // and do the popup menu
     if (CGUIDialogContextMenu::SourcesMenu("files", pItem, posX, posY))
     {
+	  if (g_advancedSettings.m_showOnlyMediaFiles)
+		m_rootDir.SetMask(g_advancedSettings.GetMultimediaExtensions());
       m_rootDir.SetSources(*CMediaSourceSettings::GetInstance().GetSources("files"));
       if (m_Directory[1 - list]->IsVirtualDirectoryRoot())
         Refresh();
@@ -1129,6 +1135,8 @@ int64_t CGUIWindowFileManager::CalculateFolderSize(const std::string &strDirecto
   int64_t totalSize = 0;
   CFileItemList items;
   CVirtualDirectory rootDir;
+
+  // We don't set the mask for Multimedia here as we need the size of the entire directory
   rootDir.SetSources(*CMediaSourceSettings::GetInstance().GetSources("files"));
   rootDir.GetDirectory(pathToUrl, items, false);
   for (int i=0; i < items.Size(); i++)
@@ -1207,6 +1215,8 @@ void CGUIWindowFileManager::SetInitialPath(const std::string &path)
 {
   // check for a passed destination path
   std::string strDestination = path;
+  if (g_advancedSettings.m_showOnlyMediaFiles)
+	m_rootDir.SetMask(g_advancedSettings.GetMultimediaExtensions());
   m_rootDir.SetSources(*CMediaSourceSettings::GetInstance().GetSources("files"));
   if (!strDestination.empty())
   {
