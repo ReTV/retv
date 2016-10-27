@@ -481,14 +481,15 @@ bool CGUIWindowFileManager::Update(int iList, const std::string &strDirectory)
 
   m_strParentPath[iList] = (m_rootDir.IsSource(strDirectory) ? "" : strParentPath);
 
-  if (strDirectory.empty())
+  // We don't want to show the Profile directory in listing
+  /*if (strDirectory.empty())
   {
     CFileItemPtr pItem(new CFileItem("special://profile/", true));
     pItem->SetLabel(g_localizeStrings.Get(20070));
     pItem->SetArt("thumb", "DefaultFolder.png");
     pItem->SetLabelPreformated(true);
     m_vecItems[iList]->Add(pItem);
-  }
+  }*/
 
   // if we have a .tbn file, use itself as the thumb
   for (int i = 0; i < (int)m_vecItems[iList]->Size(); i++)
