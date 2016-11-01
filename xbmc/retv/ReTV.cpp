@@ -173,15 +173,14 @@ std::string ReTV::login(const char* mobileNumber)
 	CLog::Log(LOGNOTICE, "Called Login");
 
 	if (!m_initialized)
-		return false;
+		return "{\"successcode\": 700 } ";
 
 	m_mobileNumber = mobileNumber;
 
 	XFILE::CCurlFile http;
 
 	if (!http.IsInternet())
-		return false;
-
+		return "{\"errorcode\": 0 } ";
 
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
@@ -194,10 +193,10 @@ std::string ReTV::login(const char* mobileNumber)
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
 	if (!http.Post(makeApiURL(m_api_Login), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't login");
-		return false;
+		return "{\"errorcode\": 0 } ";
 	}
 
-	CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content);
+	CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content.c_str());
 
 
 	return parseLoginResponse(content);
