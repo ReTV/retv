@@ -30,3 +30,6 @@
 	path = addons/skin.retv.2
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/skin.retv.2.git
 	branch = beta-master
+[submodule "addons/script.retv.autocompletion"]
+	path = addons/script.retv.autocompletion
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.retv.autocompletion.git
