@@ -316,7 +316,7 @@ int ReTV::parseValidationResponse(std::string validationResponseString)
 #if defined(TARGET_ANDROID)
 bool ReTV::initRPC(){
 	if (m_platformInfo.m_platformId != ReTVPlatform::ReTVDevice)
-		return;
+		return false;
     std::stringstream rpc_payload;
     std::string content;
     XFILE::CCurlFile http;
@@ -587,7 +587,7 @@ void ReTV::readPlatformInfo()
 
 	m_deviceCode = m_platformInfo.m_macAddress;
 
-	CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode); 
+	CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode.c_str()); 
 
 	/*std::vector<CNetworkInterface*>::iterator it;
 
@@ -633,9 +633,14 @@ std::string ReTV::getDeviceActivationJSON()
 	
 	activationJSON += "  \"mobile\": \""		+ m_mobileNumber + "\"";
 	activationJSON += ", \"devicecode\":\""		+ m_platformInfo.m_macAddress + "\"";
-	activationJSON += ", \"id\":\""				+ std::to_string(m_platformInfo.m_platformId) + "\"";
+    
+    std::stringstream ss;
+    ss << m_platformInfo.m_platformId;
+	activationJSON += ", \"id\":\""				+ ss.str() + "\"";
 	activationJSON += ", \"arch\":\""			+ m_platformInfo.m_arch + "\"";
-	activationJSON += ", \"bitness\":\""		+ std::to_string(m_platformInfo.m_bitness) + "\"";
+    
+    ss << m_platformInfo.m_bitness;
+	activationJSON += ", \"bitness\":\""		+ ss.str() + "\"";
 	activationJSON += ", \"os\":\""				+ m_platformInfo.m_os + "\"";
 	activationJSON += ", \"os_version\":\""		+ m_platformInfo.m_osVersion + "\"";
 	activationJSON += ", \"manufacturer\":\""	+ m_platformInfo.m_manufacturer + "\"";

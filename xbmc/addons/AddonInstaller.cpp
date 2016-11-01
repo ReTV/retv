@@ -563,7 +563,6 @@ bool CAddonInstallJob::DoWork()
 		// If it is, we need to inject the HTTP username & password into the url
 		if (m_addon->Author() == ReTV::Author)
 		{
-			CLog::Log(LOGDEBUG, "Addon is ReTV Addon : %s", m_addon->Name());
 			// ReTV Addon
 			// Make proper url
 			path = ReTV::makeAuthenticatedUrl(m_addon->Path());
