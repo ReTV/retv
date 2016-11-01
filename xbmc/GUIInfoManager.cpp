@@ -99,6 +99,8 @@
 #include "cores/VideoRenderers/BaseRenderer.h"
 #include "interfaces/info/InfoExpression.h"
 
+#include "retv/ReTV.h"
+
 #if defined(TARGET_DARWIN_OSX)
 #include "osx/smc.h"
 #include "linux/LinuxResourceCounter.h"
@@ -221,7 +223,8 @@ const infomap player_labels[] =  {{ "hasmedia",         PLAYER_HAS_MEDIA },     
                                   { "isinternetstream", PLAYER_ISINTERNETSTREAM },
                                   { "pauseenabled",     PLAYER_CAN_PAUSE },
                                   { "seekenabled",      PLAYER_CAN_SEEK },
-                                  { "channelpreviewactive", PLAYER_IS_CHANNEL_PREVIEW_ACTIVE}};
+                                  { "channelpreviewactive", PLAYER_IS_CHANNEL_PREVIEW_ACTIVE},
+								  { "torrentcache",		PLAYER_TORRENT_PROGRESS } };
 
 const infomap player_param[] =   {{ "art",              PLAYER_ITEM_ART }};
 
@@ -2322,6 +2325,10 @@ bool CGUIInfoManager::GetInt(int &value, int info, int contextWindow, const CGUI
         }
       }
       return true;
+	case PLAYER_TORRENT_PROGRESS:
+		CLog::Log(LOGNOTICE, "Torrent progress value : %d", ReTV::torrentProgress);
+		value = ReTV::torrentProgress;
+		return true;
     case SYSTEM_FREE_MEMORY:
     case SYSTEM_USED_MEMORY:
       {

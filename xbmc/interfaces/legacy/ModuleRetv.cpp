@@ -9,7 +9,9 @@
 #include "filesystem/PluginDirectory.h"
 #include "FileItem.h"
 #include "retv/ReTV.h"
+#include "utils/log.h"
 #include "SubscriptionInfo.h"
+#include "utils/SystemInfo.h"
 
 
 namespace XBMCAddon
@@ -23,36 +25,46 @@ namespace XBMCAddon
     }
 
 
-
-	bool initialize(int type, const char* deviceCode, const char* mobileNumber)
+	bool isRegistered()
 	{
-		return ReTV::GetInstance().initialize(type, deviceCode, mobileNumber);
+		return g_retv.isActivated();
 	}
 
 
-	bool login()
+	String registerDevice(const char* mobileNumber)
 	{
-		return ReTV::GetInstance().login();
+		return g_retv.registerDevice(mobileNumber);
+	}
+
+	String validateNumber(const char* authCode)
+	{
+		return g_retv.validateNumber(authCode);
+	}
+
+
+	String login(const char* mobileNumber)
+	{
+		return g_retv.login(mobileNumber);
 	}
 
 	String callAPI(const char* endPoint, const char* postData, int timeout)
 	{
-		return ReTV::GetInstance().callAPI(endPoint, postData, timeout);
+		return g_retv.callAPI(endPoint, postData, timeout);
 	}
 
     String callMediaAPI(const char* endPoint, const char* postData, int timeout)
     {
-        return ReTV::GetInstance().callMediaAPI(endPoint, postData, timeout);
+		return g_retv.callMediaAPI(endPoint, postData, timeout);
     }
 
     String getLinkByToken(const char* token)
     {
-        return ReTV::GetInstance().getLinkByToken(token);
+		return g_retv.getLinkByToken(token);
     }
 
     String getBaseUrl()
     {
-        return ReTV::GetInstance().getBaseUrl();
+		return g_retv.getBaseUrl();
     }
 
 	/*Tuple<String,String> getLoginInfo()
@@ -74,24 +86,39 @@ namespace XBMCAddon
 
 	int getSubscriptionEndTime()
 	{
-		return ReTV::GetInstance().getSubEndTime();
+		return g_retv.getSubEndTime();
 	}
 
 	float getFastForwardData()
 	{
-		return ReTV::GetInstance().getFFData();
+		return g_retv.getFFData();
 	}
 
     bool isLoggedIn()
     {
-        return ReTV::GetInstance().isLoggedIn();
+		return g_retv.isLoggedIn();
     }
 
 	XBMCAddon::retv::SubscriptionInfo* getLoginInfo()
 	{
-		return ReTV::GetInstance().getSubscriptionInfo();
+		return g_retv.getSubscriptionInfo();
 //		return &SubscriptionInfo();
 	}
 
+	bool hasInternet()
+	{
+		CLog::Log(LOGNOTICE, "Has Internet : %d", g_sysinfo.HasInternet());
+		return g_sysinfo.HasInternet();
+	}
+
+	int getPlatform()
+	{
+		return g_retv.getPlatform();
+	}
+
+	void setTorrentProgress(int percent)
+	{
+		ReTV::torrentProgress = percent;
+	}
   }
 }

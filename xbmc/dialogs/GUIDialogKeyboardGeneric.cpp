@@ -61,6 +61,8 @@ using namespace KODI::MESSAGING;
 #define CTL_LABEL_HZCODE      313
 #define CTL_LABEL_HZLIST      314
 
+#define CTL_LABEL_COM	      315
+
 #define CTL_BUTTON_BACKSPACE    8
 #define CTL_BUTTON_SPACE       32
 
@@ -409,6 +411,10 @@ void CGUIDialogKeyboardGeneric::OnClickButton(int iButtonControl)
   else if (iButtonControl == CTL_BUTTON_SPACE)
   {
     Character(" ");
+  }
+  else if (iButtonControl == CTL_LABEL_COM)
+  {
+	Character("com");
   }
   else
   {

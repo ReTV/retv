@@ -78,8 +78,8 @@ namespace XBMCAddon
 		}
 
 		void SubscriptionInfo::setPhone(std::string phone){}
-		void SubscriptionInfo::setSubData(std::string planName, std::string planCode, int subStart, int subEnd, double ffData){}
-		void SubscriptionInfo::setUserData(std::string fname, std::string lname, std::string address, std::string country, std::string city, std::string email){}
+		void SubscriptionInfo::setSubData(std::string planName, std::string planCode, int subStart, int subEnd, int validity, double ffData){}
+		void SubscriptionInfo::setUserData(std::string fname, std::string lname, std::string email, std::string address, std::string city, std::string country){}
 	}
 }
 

@@ -363,6 +363,9 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
     bool m_jsonOutputCompact;
     unsigned int m_jsonTcpPort;
 
+	int m_apiType;
+	std::string m_forcedDeviceId;
+	
     bool m_enableMultimediaKeys;
     std::vector<std::string> m_settingsFiles;
     void ParseSettingsFile(const std::string &file);

@@ -43,6 +43,7 @@
 #include "dialogs/GUIDialogOK.h"
 #include "dialogs/GUIDialogExtendedProgressBar.h"
 #include "URL.h"
+#include "retv/ReTV.h"
 
 #include <functional>
 
@@ -556,7 +557,21 @@ bool CAddonInstallJob::DoWork()
       // zip passed in - download + extract
       if (!CFile::Exists(package))
       {
-        std::string path(m_addon->Path());
+        std::string path;
+
+		// Check if this is a retv Addon
+		// If it is, we need to inject the HTTP username & password into the url
+		if (m_addon->Author() == ReTV::Author)
+		{
+			CLog::Log(LOGDEBUG, "Addon is ReTV Addon : %s", m_addon->Name());
+			// ReTV Addon
+			// Make proper url
+			path = ReTV::makeAuthenticatedUrl(m_addon->Path());
+		}
+		else
+			path = m_addon->Path();
+
+
         if (!DownloadPackage(path, dest))
         {
           CFile::Delete(package);

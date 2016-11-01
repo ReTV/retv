@@ -12,18 +12,31 @@
 #include "interfaces/AnnouncementManager.h"
 #include "utils/log.h"
 #include "utils/JSONVariantParser.h"
+#include "utils/JSONVariantWriter.h"
 #include "utils/Variant.h"
 #include "interfaces/legacy/SubscriptionInfo.h"
 #include "utils/SystemInfo.h"
 #include "guiinfo/GUIInfoLabels.h"
+#include "Application.h"
+#include "network/Network.h"
+#include "filesystem/File.h"
+#include "filesystem/SpecialProtocol.h"
+#include "utils/StringUtils.h"
+#include "system.h"
+#include "settings/AdvancedSettings.h"
+#include "addons/AddonDatabase.h"
 
 using namespace XBMCAddon::retv;
+using namespace XFILE;
 
-ReTV& ReTV::GetInstance()
-{
-	static ReTV retv;
-	return retv;
-}
+ReTV g_retv;
+
+const std::string ReTV::Author = "Billion Plus Computing Pvt. Ltd.";
+
+std::string ReTV::m_updateRepoUsername = "retv";
+std::string ReTV::m_updateRepoPassword = "dsd234SGFD823hd234";
+
+int ReTV::torrentProgress = 0;
 
 
 ReTV::ReTV()
@@ -52,68 +65,129 @@ std::string ReTV::makeMediaApiURL(std::string api)
 }
 
 
-/*
- Initialize the ReTV system. Store user data. Will change later
-*/
-bool ReTV::initialize(int type, const char*  deviceCode, const char*  mobileNumber)
+void ReTV::Initialize()
 {
-	CLog::Log(LOGNOTICE, "Initialize : %d - %s - %s", type, deviceCode, mobileNumber);
+	CLog::Log(LOGNOTICE, "Initializing ReTV");
 
 	// Live
-	if (type == 0){
-        api_type = API_TYPE_LIVE;
+	api_type = g_advancedSettings.m_apiType;
+
+	if (api_type == API_TYPE_LIVE){
 		m_apiUrl = m_apiUrlLive;
 		m_mediaUrl = m_mediaUrlLive;
 	}
 	// Staging
 	else{
-        api_type = API_TYPE_STAGING;
 		m_apiUrl = m_apiUrlStaging;
 		m_mediaUrl = m_mediaUrlStaging;
 	}
 
-	this->m_deviceCode = deviceCode;
-	this->m_mobileNumber = mobileNumber;
-
-	//m_subInfo = SubscriptionInfo();
-	//m_subInfo.setPhone(mobileNumber);
+	// Read the platform Info
+	readPlatformInfo();
 
 	m_initialized = true;
 
 	// Done for now
-	return true;
 }
 
-bool ReTV::login()
+
+bool ReTV::isActivated()
+{
+	return m_isActivated;
+}
+
+
+std::string ReTV::registerDevice(const char* mobileNumber)
+{
+	if (!m_initialized)
+		// 700 = Not Initialized
+		return "{\"successcode\": 700 } ";
+
+	XFILE::CCurlFile http;
+
+	if (!http.IsInternet())
+		// Curl No internet
+		return "{\"errorcode\": 0 } ";
+
+	http.SetRequestHeader("Authorization", m_headerAuthorization);
+	http.SetRequestHeader("Content-Type", m_headerContentType);
+
+	m_mobileNumber = (std::string)mobileNumber;
+
+	std::string postData = getDeviceActivationJSON();
+
+	std::string content;
+
+	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Activate).c_str());
+	if (!http.Post(makeApiURL(m_api_Activate), postData, content, true)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldn't contact Activation URL");
+		return "{\"errorcode\": 0 } ";
+	}
+
+	CLog::Log(LOGNOTICE, "ReTV: Activation response : %s", content.c_str());
+
+	return content.c_str();
+}
+
+
+std::string ReTV::validateNumber(const char* authCode)
+{
+	if (!m_initialized)
+		// 700 = Not Initialized
+		return "{\"successcode\": 700 } ";
+
+	XFILE::CCurlFile http;
+
+	if (!http.IsInternet())
+		// Curl No internet
+		return "{\"errorcode\": 0 } ";
+
+	http.SetRequestHeader("Authorization", m_headerAuthorization);
+	http.SetRequestHeader("Content-Type", m_headerContentType);
+
+	std::string postData = "{\"mobile\": \"" + m_mobileNumber + "\", \"devicecode\": \"" + m_platformInfo.m_macAddress + "\" ,\"authcode\":\"" + authCode + "\"}";
+
+	std::string content;
+
+	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Validate).c_str());
+	if (!http.Post(makeApiURL(m_api_Validate), postData, content, true)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldn't contact Validation URL");
+		return "{\"errorcode\": 0 } ";
+	}
+
+	CLog::Log(LOGNOTICE, "ReTV: Validation response : %s", content.c_str());
+
+	// We need to parse this and create our Registration file
+	// Parse the response
+	int result = parseValidationResponse(content);
+
+	return content.c_str();
+}
+
+std::string ReTV::login(const char* mobileNumber)
 {
 	CLog::Log(LOGNOTICE, "Called Login");
+
 	if (!m_initialized)
 		return false;
+
+	m_mobileNumber = mobileNumber;
 
 	XFILE::CCurlFile http;
 
 	if (!http.IsInternet())
 		return false;
 
-	
-	/*CLog::Log(LOGNOTICE, "App Name : %s", CSysInfo::GetAppName());
-	CLog::Log(LOGNOTICE, "GetBuildTargetPlatformName : %s", CSysInfo::GetBuildTargetPlatformName());
-	CLog::Log(LOGNOTICE, "GetBuildTargetPlatformVersion : %s", CSysInfo::GetBuildTargetPlatformVersion());
-	CLog::Log(LOGNOTICE, "GetManufacturerName : %s", CSysInfo::GetManufacturerName());
-	CLog::Log(LOGNOTICE, "GetModelName : %s", CSysInfo::GetModelName());
-	CLog::Log(LOGNOTICE, "GetBuildTargetCpuFamily : %s", CSysInfo::GetBuildTargetCpuFamily());
-	CLog::Log(LOGNOTICE, "GetDeviceName : %s", CSysInfo::GetDeviceName());
-	CLog::Log(LOGNOTICE, "GetOsName : %s", CSysInfo::GetOsName());
-	//CLog::Log(LOGNOTICE, "MAC: %s", g_sysinfo.GetInfo(NETWORK_MAC_ADDRESS));
-	CLog::Log(LOGNOTICE, "Kernel Bitness : %d", CSysInfo::GetKernelBitness());
-	CLog::Log(LOGNOTICE, "App Name : %s", CSysInfo::GetAppName());
-	*/
 
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
 	
-	std::string postData = "{\"mobile\": \"" + m_mobileNumber + "\", \"devicecode\":\"" + m_deviceCode + "\"}";
-	//postData = "Hello World";
+	std::string postData = getLoginJSON();
+
 	std::string content;
 
 	CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
@@ -123,41 +197,39 @@ bool ReTV::login()
 		return false;
 	}
 
+	CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content);
 
-	// Parse the response
-	CVariant loginResponse = CJSONVariantParser::Parse((const unsigned char *)content.c_str(), content.size());
 
-	bool result = parseLoginResponse(loginResponse);
-
-	if (!result)
-		CLog::Log(LOGNOTICE, "ReTV: Login response : %s", content.c_str());
-
-	return result;
+	return parseLoginResponse(content);
+	
 }
 
-bool ReTV::parseLoginResponse(CVariant loginResponse)
+std::string ReTV::parseLoginResponse(std::string loginResponseString)
 {
+	// Parse the response
+	CVariant loginResponse = CJSONVariantParser::Parse((const unsigned char *)loginResponseString.c_str(), loginResponseString.size());
+
 	if (!loginResponse.isObject()){
 		CLog::Log(LOGNOTICE, "Couldn't parse response");
-		return false;
+		return "{\"successcode\": 210 } ";
 	}
 
 	if (!loginResponse.isMember("successcode")){
 		CLog::Log(LOGNOTICE, "Success code not found");
-		return false;
+		return "{\"successcode\": 210 } ";
 	}
-
 
 	int successCode = loginResponse["successcode"].asInteger();
 
 	if (successCode != 100){
 		CLog::Log(LOGNOTICE, "Success code not proper");
-		return false;
+		return loginResponseString;
 	}
 
 	CLog::Log(LOGNOTICE, "Success code is proper");
 
 	m_authToken = loginResponse["authtoken"].asString();
+	loginResponse["authtoken"].clear();	// Don't send this back to python
 
 	CVariant data = loginResponse["data"];
 	CVariant account = data["account"];
@@ -176,23 +248,19 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 
 	m_loginTime = loginResponse["time"].asDouble();
 
-	CVariant userData = data["user"];
+	//CVariant userData = data["user"];
 
-	m_subInfo.setSubData(accountData["planname"].asString(), accountData["plancode"].asString(), accountData["startdate"].asInteger(), accountData["enddate"].asInteger(), accountData["fastforward"].asDouble());
-//	m_subInfo.m_planName = accountData["planname"].asString();
-//	m_subInfo.m_planCode = accountData["plancode"].asString();
-//
-//	m_subInfo.m_subscriptionStart = accountData["startdate"].asInteger();
-//	m_subInfo.m_subscriptionEnd = accountData["enddate"].asInteger();
-//	m_subInfo.m_fastForwardData = accountData["fastforward"].asDouble();
-//
-//	m_subInfo.setUserData(userData["firstname"].asString(), userData["lastname"].asString(), userData["address"].asString(), userData["country"].asString(), userData["city"].asString(), userData["email"].asString());
-//	m_subInfo.m_userNameF = userData["firstname"].asString();
-//	m_subInfo.m_userNameL = userData["lastname"].asString();
-//	m_subInfo.m_userAddress = userData["address"].asString();
-//	m_subInfo.m_userCountry = userData["country"].asString();
-//	m_subInfo.m_userCity = userData["city"].asString();
-//	m_subInfo.m_userEmail = userData["email"].asString();
+	//m_subInfo.setSubData(accountData["planname"].asString(), accountData["plancode"].asString(), accountData["startdate"].asInteger(), accountData["enddate"].asInteger(), accountData["fastforward"].asDouble());
+
+	if (loginResponse.isMember("us")){
+		ReTV::m_updateRepoUsername = loginResponse["us"].asString();
+		loginResponse["us"].clear(); // Don't send this back to python
+	}
+
+	if (loginResponse.isMember("up")){
+		ReTV::m_updateRepoPassword = loginResponse["up"].asString();
+		loginResponse["us"].clear(); // Don't send this back to python
+	}
 
 
 #if defined(TARGET_ANDROID)
@@ -205,11 +273,50 @@ bool ReTV::parseLoginResponse(CVariant loginResponse)
 	//CLog::Log(LOGNOTICE, "Sub details : %s - %s ", m_planName, m_planCode);
 	CLog::Log(LOGNOTICE, "Sub details : %s - %s -%s", m_userNameF.c_str(), m_userNameL.c_str(), m_userEmail.c_str());
 
-	return true;
+	return CJSONVariantWriter::Write(loginResponse,true);
 }
+
+
+int ReTV::parseValidationResponse(std::string validationResponseString)
+{
+	// We need to parse this and create our Registration file
+	// Parse the response
+	CVariant validationResponse = CJSONVariantParser::Parse((const unsigned char *)validationResponseString.c_str(), validationResponseString.size());
+
+
+	if (!validationResponse.isObject()){
+		CLog::Log(LOGNOTICE, "Couldn't parse response");
+		// API_NO_ACCESS CODE
+		return 202;
+	}
+
+	if (!validationResponse.isMember("successcode")){
+		CLog::Log(LOGNOTICE, "Success code not found");
+		// API_NO_ACCESS CODE
+		return 202;
+	}
+
+	int successCode = validationResponse["successcode"].asInteger();
+
+	if (successCode != 100){
+		CLog::Log(LOGNOTICE, "Success code not proper");
+		return successCode;
+	}
+
+	CLog::Log(LOGNOTICE, "Success code is proper");
+
+
+	// Validated & Activated
+	m_isActivated = true;
+	return 100;
+
+}
+
 
 #if defined(TARGET_ANDROID)
 bool ReTV::initRPC(){
+	if (m_platformInfo.m_platformId != ReTVPlatform::ReTVDevice)
+		return;
     std::stringstream rpc_payload;
     std::string content;
     XFILE::CCurlFile http;
@@ -351,3 +458,217 @@ SubscriptionInfo* ReTV::getSubscriptionInfo()
 }
 
 void Cleanup();
+
+
+/* Reads initial Subscription info */
+void ReTV::readSubscriptionInfo()
+{
+	m_isActivated = false;
+	/*
+	// Read in the subscription data
+	CReTVDatabase database;
+	database.Open();
+
+	m_isActivated = database.hasRegistrationData();
+
+	if (!m_isActivated){
+		CLog::Log(LOGNOTICE, "Registration table found, but no data in it");
+
+		return;
+	}
+
+	m_isActivated = database.readSubscriptionData(m_subInfo);
+
+	if (!m_isActivated){
+		CLog::Log(LOGNOTICE, "Error reading subscription data");
+
+		return;
+	}
+
+	this->m_mobileNumber = m_subInfo.getMobileNumber();
+	
+	database.Close();
+	*/
+}
+
+
+
+/* Reads platform information*/
+void ReTV::readPlatformInfo()
+{
+	// Get App Version
+	m_platformInfo.m_versionCore = g_sysinfo.GetVersion();
+
+	// Get Addon & Skin Version
+	CAddonDatabase database;
+	database.Open();
+
+	m_platformInfo.m_versionScript	= database.GetAddonVersion(c_retvScript).first.Upstream();
+	m_platformInfo.m_versionSkin	= database.GetAddonVersion(c_retvSkin).first.Upstream();
+	database.Close();
+
+	m_platformInfo.m_os = g_sysinfo.GetBuildTargetPlatformName();
+	
+	m_platformInfo.m_osVersion = g_sysinfo.GetOsVersion();
+
+	m_platformInfo.m_manufacturer = g_sysinfo.GetManufacturerName();
+
+	m_platformInfo.m_model = g_sysinfo.GetModelName();
+
+	m_platformInfo.m_deviceName = g_sysinfo.GetDeviceName();
+
+	m_platformInfo.m_arch = g_sysinfo.GetKernelCpuFamily();
+
+	m_platformInfo.m_bitness = g_sysinfo.GetKernelBitness();
+
+#if defined(TARGET_FREEBSD)
+	m_platformInfo.m_platformId = ReTVPlatform::FreeBSD;
+#elif defined(TARGET_DARWIN_IOS)
+	m_platformInfo.m_platformId = ReTVPlatform::iOS;
+#elif defined(TARGET_DARWIN_OSX)
+	m_platformInfo.m_platformId = ReTVPlatform::OSX;
+#elif defined (TARGET_ANDROID)
+	if (m_platformInfo.m_manufacturer == c_retvManufacturer)
+		m_platformInfo.m_platformId = ReTVPlatform::ReTVDevice;
+	else
+		m_platformInfo.m_platformId = ReTVPlatform::Android;
+#elif defined(TARGET_LINUX)
+	m_platformInfo.m_platformId = ReTVPlatform::Linux;
+#elif defined (TARGET_WINDOWS)
+	m_platformInfo.m_platformId = ReTVPlatform::Windows;
+#else
+	m_platformInfo.m_platformId = ReTVPlatform::Others;
+#endif
+
+	// Force Device ID if set in AdvancedSettings
+	if (!g_advancedSettings.m_forcedDeviceId.empty() ){
+		m_platformInfo.m_macAddress = g_advancedSettings.m_forcedDeviceId;
+		m_deviceCode = g_advancedSettings.m_forcedDeviceId;
+		return;
+	}
+
+	XBMC_TRACE;
+
+	// THe code below doesnt work if the Interface is not connected
+
+	// Always get the 1st connected Interface
+	// What happens when there is not interface
+	// Or what happens when another interface is added
+	// On all devices, except ReTV, this shouldn' be a problem
+	// But on ReTV, we might need to activate this again
+	/*CNetworkInterface* iface = g_application.getNetwork().GetFirstConnectedInterface();
+	if (iface)
+		//return iface->GetCurrentIPAddress();
+		m_platformInfo.m_macAddress = iface->GetMacAddress();
+	else
+		m_platformInfo.m_macAddress = "";
+
+	StringUtils::ToUpper(m_platformInfo.m_macAddress);
+
+	m_deviceCode = m_platformInfo.m_macAddress;
+
+	CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode);*/
+
+	// We rather get the 1st Interface in the list
+	// We cannot register if there are no network interfaces on this device
+	// If the 1st interface is disabled, then this approach won't work
+	// We need to inform the user that due to some hardware change the IDs have changed
+
+	std::vector<CNetworkInterface*> list = g_application.getNetwork().GetInterfaceList();
+
+	if (list.size() > 0){
+
+		m_platformInfo.m_macAddress = list[0]->GetMacAddress();
+		StringUtils::ToUpper(m_platformInfo.m_macAddress);
+	}
+	else{
+		m_platformInfo.m_macAddress = "";
+	}
+
+	m_deviceCode = m_platformInfo.m_macAddress;
+
+	CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode); 
+
+	/*std::vector<CNetworkInterface*>::iterator it;
+
+	int i = 0;
+
+	for (it = list.begin(); it < list.end(); it++, i++) {
+		
+		CNetworkInterface* a = *it;
+		CLog::Log(LOGNOTICE, "Attached Networks : %d - %s", i, a->GetName());
+	}*/
+
+}
+
+int ReTV::getPlatform()
+{
+	return m_platformInfo.m_platformId;
+}
+
+/*Gets the Login JSON as string*/
+std::string ReTV::getLoginJSON()
+{
+	std::string loginJSON = "{";
+
+	loginJSON += "  \"mobile\": \"" + m_mobileNumber + "\"";
+	loginJSON += ", \"devicecode\":\"" + m_deviceCode + "\"";
+
+	/*loginJSON += ", \"core_sw_ver\":\"" + m_platformInfo.m_versionCore + "\"";
+	loginJSON += ", \"script_sw_ver\":\"" + m_platformInfo.m_versionScript + "\"";
+	loginJSON += ", \"skin_sw_ver\":\"" + m_platformInfo.m_versionSkin + "\"";*/
+
+	loginJSON += "}";
+
+	return 	loginJSON;
+	;
+}
+
+/*Gets the Activation JSON as string*/
+std::string ReTV::getDeviceActivationJSON()
+{
+	// Form the JSON here
+	// from the Platform Info
+	std::string activationJSON = "{";
+	
+	activationJSON += "  \"mobile\": \""		+ m_mobileNumber + "\"";
+	activationJSON += ", \"devicecode\":\""		+ m_platformInfo.m_macAddress + "\"";
+	activationJSON += ", \"id\":\""				+ std::to_string(m_platformInfo.m_platformId) + "\"";
+	activationJSON += ", \"arch\":\""			+ m_platformInfo.m_arch + "\"";
+	activationJSON += ", \"bitness\":\""		+ std::to_string(m_platformInfo.m_bitness) + "\"";
+	activationJSON += ", \"os\":\""				+ m_platformInfo.m_os + "\"";
+	activationJSON += ", \"os_version\":\""		+ m_platformInfo.m_osVersion + "\"";
+	activationJSON += ", \"manufacturer\":\""	+ m_platformInfo.m_manufacturer + "\"";
+	activationJSON += ", \"brand\":\""			+ m_platformInfo.m_model + "\"";
+	activationJSON += ", \"device_model\":\""	+ m_platformInfo.m_model + "\"";
+	activationJSON += ", \"device_name\":\""	+ m_platformInfo.m_deviceName + "\"";
+
+	activationJSON += ", \"core_sw_ver\":\"" + m_platformInfo.m_versionCore + "\"";
+	activationJSON += ", \"script_sw_ver\":\"" + m_platformInfo.m_versionScript + "\"";
+	activationJSON += ", \"skin_sw_ver\":\"" + m_platformInfo.m_versionSkin + "\"";
+
+	activationJSON += "}";
+
+	return activationJSON;
+}
+
+
+std::string ReTV::makeAuthenticatedUrl(std::string url)
+{
+	size_t iPos = url.find("://");
+
+	// No http header found, directly add our authentication values
+	if (iPos == std::string::npos)
+	{
+		return m_updateRepoUsername + ":" + m_updateRepoUsername + "@" + url;
+	}
+	else{
+
+		std::string authUrl  = url.substr(0, iPos + 3); // Makes http(s)://
+
+		authUrl				+= m_updateRepoUsername + ":" + m_updateRepoUsername + "@";
+		authUrl				+= url.substr(iPos + 3);
+
+		return authUrl;
+	}
+}

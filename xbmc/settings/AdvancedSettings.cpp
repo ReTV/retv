@@ -45,6 +45,7 @@
 #include "utils/URIUtils.h"
 #include "utils/Variant.h"
 #include "utils/XMLUtils.h"
+#include "retv/ReTV.h"
 
 #if defined(TARGET_DARWIN_IOS)
 #include "osx/DarwinUtils.h"
@@ -355,6 +356,9 @@ void CAdvancedSettings::Initialize()
   m_jsonOutputCompact = true;
   m_jsonTcpPort = 9090;
 
+  m_apiType = ReTV::API_TYPE_LIVE;
+  m_forcedDeviceId = "";
+
   m_enableMultimediaKeys = false;
 
   m_canWindowed = true;
@@ -376,6 +380,8 @@ void CAdvancedSettings::Initialize()
   m_musicExtensions += "|.cdda";
   // internal video extensions
   m_videoExtensions += "|.pvr";
+
+  m_showOnlyMediaFiles = false;
 
   m_stereoscopicregex_3d = "[-. _]3d[-. _]";
   m_stereoscopicregex_sbs = "[-. _]h?sbs[-. _]";
@@ -770,6 +776,13 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
   {
     XMLUtils::GetBoolean(pElement, "compactoutput", m_jsonOutputCompact);
     XMLUtils::GetUInt(pElement, "tcpport", m_jsonTcpPort);
+  }
+
+  pElement = pRootElement->FirstChildElement("retv");
+  if (pElement)
+  {
+	  XMLUtils::GetString(pElement, "usecustomdeviceid", m_forcedDeviceId);
+	  XMLUtils::GetInt(pElement, "api", m_apiType, ReTV::API_TYPE_LIVE, ReTV::API_TYPE_STAGING);
   }
 
   pElement = pRootElement->FirstChildElement("samba");

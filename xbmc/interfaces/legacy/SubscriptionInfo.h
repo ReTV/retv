@@ -33,6 +33,7 @@ namespace XBMCAddon
 			std::string m_userCountry;
 			std::string m_userCity;
 			std::string m_userEmail;
+			std::string m_userPinCode;
 
 			std::string m_mobileNumber;
 
@@ -42,8 +43,8 @@ namespace XBMCAddon
 			virtual ~SubscriptionInfo();
 
 			void setPhone(std::string phone);
-			void setSubData(std::string planName, std::string planCode, int subStart, int subEnd, double ffData);
-			void setUserData(std::string fname, std::string lname, std::string address, std::string country, std::string city, std::string email);
+			void setSubData(std::string planName, std::string planCode, int subStart, int subEnd, int validity, double ffData);
+			void setUserData(std::string fname, std::string lname, std::string email, std::string address, std::string city, std::string country );
 
 			/**
 			* getURL() -- returns a string.\n

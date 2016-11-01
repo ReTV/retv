@@ -29,15 +29,30 @@ namespace XBMCAddon
 
 
 	/**
-	* initialize(type, deviceCode, mobileNumber) -- Initializes ReTV
+	* isRegistered() -- Checks whether we are registered with ReTV
+	*/
+	bool isRegistered();
+
+	/**
+	* registerDevice(mobileNumber) -- Calls the Registration API for ReTV
 	*
-	* url         : string - any string\n
+	* mobileNumber    : string - 10 digit mobile numer\n
 	*
 	*/
-	bool initialize(int type, const char* deviceCode, const char* mobileNumber);
+	String registerDevice(const char* mobileNumber);
 
 
-	bool login();
+	/**
+	* validateNumber(mobileNumber, authCode) -- Calls the Verification API for ReTV
+	*
+	* authCode	      : string - Authcode received on the mobile number
+	*
+	*/
+	String validateNumber(const char* authCode);
+
+
+
+	String login(const char* mobileNumber);
 
 	String callAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
 	String callMediaAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
@@ -51,5 +66,11 @@ namespace XBMCAddon
     bool isLoggedIn();
 
 	XBMCAddon::retv::SubscriptionInfo* getLoginInfo();
+
+	bool hasInternet();
+
+	int getPlatform();
+
+	void setTorrentProgress(int percent);
   }
 }
