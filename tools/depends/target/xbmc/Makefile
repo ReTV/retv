@@ -5,6 +5,7 @@ APP_NAME=$(shell awk '/APP_NAME/ {print tolower($$2)}' $(VERSION.TXT))
 
 SOURCE=../../../../
 
+
 export CXXFLAGS+=-O3
 export CFLAGS+=-O3
 
@@ -14,6 +15,14 @@ CONFIGURE = cp -f $(CONFIG_SUB) $(CONFIG_GUESS) build-aux/ ;\
 
 ifeq ($(OS),android)
 CONFIGURE += --enable-codec=amcodec --enable-breakpad --disable-libcec
+
+ifeq ($(lock),)
+$(info No Lock defined)
+else
+$(info Locking to manufacturer - $(lock) )
+export CXXFLAGS+=-DRETV_ANDROID_LOCK="\"$(lock)"\"
+endif
+
 endif
 
 ifeq ($(Configuration),Release)

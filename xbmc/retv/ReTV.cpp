@@ -94,6 +94,16 @@ void ReTV::Initialize()
 	// Read the platform Info
 	readPlatformInfo();
 
+#if defined(TARGET_ANDROID)
+#ifdef RETV_ANDROID_LOCK
+	// Quit if not running on ReTV
+	if(m_platformInfo.m_manufacturer!=std::string(RETV_ANDROID_LOCK)){
+		CLog::Log(LOGNOTICE, "ReTV: Incorrect Manufacturer - %s. Exiting!", m_platformInfo.m_manufacturer.c_str());
+		CApplicationMessenger::GetInstance().PostMsg(TMSG_QUIT);
+	}
+#endif
+#endif
+
 	m_initialized = true;
 
 	// Done for now
@@ -193,7 +203,7 @@ std::string ReTV::login(const char* mobileNumber)
 
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
-	
+
 	std::string postData = getLoginJSON();
 
 	std::string content;
