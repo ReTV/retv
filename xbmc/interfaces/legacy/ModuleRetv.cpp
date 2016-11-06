@@ -57,6 +57,11 @@ namespace XBMCAddon
 		return g_retv.callMediaAPI(endPoint, postData, timeout);
     }
 
+	bool callDownloadAPI(const char* fileId, const char* filePath)
+	{
+		return g_retv.callDownloadAPI(fileId, filePath);
+	}
+
     String getLinkByToken(const char* token)
     {
 		return g_retv.getLinkByToken(token);

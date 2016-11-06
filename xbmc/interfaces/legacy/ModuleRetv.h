@@ -56,6 +56,7 @@ namespace XBMCAddon
 
 	String callAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
 	String callMediaAPI(const char* endPoint, const char* postData, int timeout=REQUEST_TIMEOUT);
+	bool callDownloadAPI(const char* fileId, const char* filePath);
     String getLinkByToken(const char* token);
     String getBaseUrl();
 

@@ -10,7 +10,7 @@
   <global>
     <mouse>
       <leftclick>leftclick</leftclick>
-      <rightclick>rightclick</rightclick>
+      <rightclick>back</rightclick>
       <middleclick>middleclick</middleclick>
       <doubleclick id="0">doubleclick</doubleclick>
       <longclick id="0">contextmenu</longclick>

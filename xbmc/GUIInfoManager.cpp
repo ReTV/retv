@@ -2326,7 +2326,6 @@ bool CGUIInfoManager::GetInt(int &value, int info, int contextWindow, const CGUI
       }
       return true;
 	case PLAYER_TORRENT_PROGRESS:
-		CLog::Log(LOGNOTICE, "Torrent progress value : %d", ReTV::torrentProgress);
 		value = ReTV::torrentProgress;
 		return true;
     case SYSTEM_FREE_MEMORY:

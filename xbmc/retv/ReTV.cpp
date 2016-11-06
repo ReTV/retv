@@ -25,9 +25,16 @@
 #include "system.h"
 #include "settings/AdvancedSettings.h"
 #include "addons/AddonDatabase.h"
+#include "messaging/ApplicationMessenger.h"
+
+#if defined(TARGET_ANDROID)
+#include "android/activity/AndroidFeatures.h"
+#include "android/jni/Build.h"
+#endif
 
 using namespace XBMCAddon::retv;
 using namespace XFILE;
+using namespace KODI::MESSAGING;
 
 ReTV g_retv;
 
@@ -75,11 +82,13 @@ void ReTV::Initialize()
 	if (api_type == API_TYPE_LIVE){
 		m_apiUrl = m_apiUrlLive;
 		m_mediaUrl = m_mediaUrlLive;
+		m_downloadUrl = m_downloadUrlLive;
 	}
 	// Staging
 	else{
 		m_apiUrl = m_apiUrlStaging;
 		m_mediaUrl = m_mediaUrlStaging;
+		m_downloadUrl = m_downloadUrlStaging;
 	}
 
 	// Read the platform Info
@@ -193,7 +202,7 @@ std::string ReTV::login(const char* mobileNumber)
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
 	if (!http.Post(makeApiURL(m_api_Login), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't login");
-		return "{\"errorcode\": 0 } ";
+		return "{\"message\":\"\",\"errorcode\":0,\"data\":\"\"}";
 	}
 
 	CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content.c_str());
@@ -210,12 +219,12 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 
 	if (!loginResponse.isObject()){
 		CLog::Log(LOGNOTICE, "Couldn't parse response");
-		return "{\"successcode\": 210 } ";
+		return "{\"message\":\"\",\"errorcode\":210,\"data\":\"\"}";
 	}
 
 	if (!loginResponse.isMember("successcode")){
 		CLog::Log(LOGNOTICE, "Success code not found");
-		return "{\"successcode\": 210 } ";
+		return "{\"message\":\"\",\"errorcode\":210,\"data\":\"\"}";
 	}
 
 	int successCode = loginResponse["successcode"].asInteger();
@@ -258,7 +267,7 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 
 	if (loginResponse.isMember("up")){
 		ReTV::m_updateRepoPassword = loginResponse["up"].asString();
-		loginResponse["us"].clear(); // Don't send this back to python
+		loginResponse["up"].clear(); // Don't send this back to python
 	}
 
 
@@ -319,7 +328,7 @@ bool ReTV::initRPC(){
     std::stringstream rpc_payload;
     std::string content;
     XFILE::CCurlFile http;
-    rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<", " << api_type << "], \"method\": \"initAPI\"}";
+	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<", " << api_type << ReTV::m_updateRepoUsername << ReTV::m_updateRepoPassword << "], \"method\": \"initAPI\"}";
     return http.Post(rpc_url, rpc_payload.str(), content, true);
 }
 #endif
@@ -405,6 +414,33 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int c
     }
 
     return content;
+}
+
+bool ReTV::callDownloadAPI(const char* fileId, const char* filePath)
+{
+	if (strlen(fileId) < 1)
+		return false;
+
+	if (!m_initialized)
+		return "";
+
+	XFILE::CCurlFile http;
+
+	if (!http.IsInternet())
+		return false;
+
+	
+	std::string downloadUrl = makeAuthenticatedUrl(m_downloadUrl) + "file/get/" + m_authToken + "/" + fileId;
+
+	CLog::Log(LOGNOTICE, "Download URL : %s", downloadUrl.c_str());
+
+	
+	if (!http.Download(downloadUrl, filePath)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldn't Download file");
+		return false;
+	}
+
+	return true;
 }
 
 
@@ -520,6 +556,9 @@ void ReTV::readPlatformInfo()
 
 	m_platformInfo.m_bitness = g_sysinfo.GetKernelBitness();
 
+	m_platformInfo.m_brand = "";
+	m_platformInfo.m_product = "";
+
 #if defined(TARGET_FREEBSD)
 	m_platformInfo.m_platformId = ReTVPlatform::FreeBSD;
 #elif defined(TARGET_DARWIN_IOS)
@@ -531,6 +570,9 @@ void ReTV::readPlatformInfo()
 		m_platformInfo.m_platformId = ReTVPlatform::ReTVDevice;
 	else
 		m_platformInfo.m_platformId = ReTVPlatform::Android;
+
+	m_platformInfo.m_brand = CJNIBuild::BRAND.c_str();
+	m_platformInfo.m_product = CJNIBuild::PRODUCT.c_str();
 #elif defined(TARGET_LINUX)
 	m_platformInfo.m_platformId = ReTVPlatform::Linux;
 #elif defined (TARGET_WINDOWS)
@@ -643,7 +685,8 @@ std::string ReTV::getDeviceActivationJSON()
 	activationJSON += ", \"os\":\""				+ m_platformInfo.m_os + "\"";
 	activationJSON += ", \"os_version\":\""		+ m_platformInfo.m_osVersion + "\"";
 	activationJSON += ", \"manufacturer\":\""	+ m_platformInfo.m_manufacturer + "\"";
-	activationJSON += ", \"brand\":\""			+ m_platformInfo.m_model + "\"";
+	activationJSON += ", \"product\":\""		+ m_platformInfo.m_product + "\"";
+	activationJSON += ", \"brand\":\""			+ m_platformInfo.m_brand + "\"";
 	activationJSON += ", \"device_model\":\""	+ m_platformInfo.m_model + "\"";
 	activationJSON += ", \"device_name\":\""	+ m_platformInfo.m_deviceName + "\"";
 
@@ -664,13 +707,13 @@ std::string ReTV::makeAuthenticatedUrl(std::string url)
 	// No http header found, directly add our authentication values
 	if (iPos == std::string::npos)
 	{
-		return m_updateRepoUsername + ":" + m_updateRepoUsername + "@" + url;
+		return m_updateRepoUsername + ":" + m_updateRepoPassword + "@" + url;
 	}
 	else{
 
 		std::string authUrl  = url.substr(0, iPos + 3); // Makes http(s)://
 
-		authUrl				+= m_updateRepoUsername + ":" + m_updateRepoUsername + "@";
+		authUrl				+= m_updateRepoUsername + ":" + m_updateRepoPassword + "@";
 		authUrl				+= url.substr(iPos + 3);
 
 		return authUrl;

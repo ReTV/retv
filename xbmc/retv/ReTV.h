@@ -24,6 +24,7 @@ struct ReTVPlatformInfo
 	std::string m_manufacturer;
 	std::string m_brand;
 	std::string m_model;
+	std::string m_product;
 	std::string m_deviceName;
 	std::string m_macAddress;
 	std::string m_versionCore;
@@ -74,6 +75,7 @@ public:
 
     std::string callAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
     std::string callMediaAPI(const char* endPoint, const char* postVars, int customTimeout=-1);
+	bool callDownloadAPI(const char* fileId, const char* filePath);
     std::string getLinkByToken(const char* token);
     std::string getBaseUrl();
 
@@ -139,6 +141,7 @@ private:
 
 	std::string m_apiUrl;
 	std::string m_mediaUrl;
+	std::string m_downloadUrl;
 
     std::string api_username = "retvAPIConsumer";
     std::string api_password = "R$t^16";
@@ -154,6 +157,9 @@ private:
 	
 	const std::string m_mediaUrlLive = "http://files.retv.in/";
 	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/";
+
+	const std::string m_downloadUrlLive = "https://api.retv.in/index.php/download/";
+	const std::string m_downloadUrlStaging = "http://staging.retv.in/api.retv.in/index.php/download/";
 
     const std::string rpc_url = "http://localhost:4000/api";
 
