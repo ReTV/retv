@@ -565,7 +565,7 @@ bool CAddonInstallJob::DoWork()
 		{
 			// ReTV Addon
 			// Make proper url
-			path = ReTV::makeAuthenticatedUrl(m_addon->Path());
+			path = g_retv.makeReTVAddonUrl(m_addon->Path()); 
 		}
 		else
 			path = m_addon->Path();

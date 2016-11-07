@@ -94,10 +94,18 @@ void ReTV::Initialize()
 	// Read the platform Info
 	readPlatformInfo();
 
+
 #if defined(TARGET_ANDROID)
 #ifdef RETV_ANDROID_LOCK
+	
+	std::string manufacturer(m_platformInfo.m_manufacturer);
+	StringUtils::ToLower(manufacturer);
+
+	std::string manufacturerToLockTo(RETV_ANDROID_LOCK);
+	StringUtils::ToLower(manufacturerToLockTo);
+
 	// Quit if not running on ReTV
-	if(m_platformInfo.m_manufacturer!=std::string(RETV_ANDROID_LOCK)){
+	if (manufacturer != manufacturerToLockTo){
 		CLog::Log(LOGNOTICE, "ReTV: Incorrect Manufacturer - %s. Exiting!", m_platformInfo.m_manufacturer.c_str());
 		CApplicationMessenger::GetInstance().PostMsg(TMSG_QUIT);
 	}
@@ -728,4 +736,32 @@ std::string ReTV::makeAuthenticatedUrl(std::string url)
 
 		return authUrl;
 	}
+}
+
+std::string ReTV::makeReTVAddonUrl(std::string url)
+{
+	// 1st make an authenticated URL
+	std::string addonUrl = makeAuthenticatedUrl(url);
+
+	// 2nd, find $ in url and replace with auth token
+	size_t iPos = addonUrl.find("$");
+
+	if (iPos == std::string::npos){
+
+		// We didn't find the Symbol. Maybe not required
+		// Return the url as it is
+		return addonUrl;
+	}
+	else{
+
+		std::string authAddonUrl = addonUrl.substr(0, iPos); // Gets the URL till $
+
+		authAddonUrl += m_authToken;
+
+		authAddonUrl += addonUrl.substr(iPos + 1);
+
+		return authAddonUrl;
+	}
+
+	return addonUrl;
 }

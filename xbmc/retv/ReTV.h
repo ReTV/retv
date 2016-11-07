@@ -47,6 +47,7 @@ public:
 	static const std::string Author;
 
 	static std::string makeAuthenticatedUrl(std::string url);
+	std::string makeReTVAddonUrl(std::string url);
 
 	static int torrentProgress;
 

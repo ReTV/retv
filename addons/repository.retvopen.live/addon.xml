@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.retvopen.live" name="ReTV Open Repo - Live" version="1.0.0" provider-name="Billion Plus Computing Pvt. Ltd.">
+        <requires>
+            <import addon="repository.retvopen.live" version="1.0.0"/>
+        </requires>
+    <extension point="xbmc.addon.repository" name="ReTV Open Repository - Live">
+		<info compressed="false">https://api.retv.in/repo/open/addons.xml</info>
+		<checksum>https://api.retv.in/repo/open/addons.xml.md5</checksum>
+		<datadir zip="true">https://api.retv.in/repo/open/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>ReTV Open Repository - Live</summary>
+		<description>Download and install addons.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
