@@ -38,10 +38,149 @@
     <global>
         <keyboard>
             <escape>PreviousMenu</escape>
-            <backspace>back</backspace>
+            <backspace>Back</backspace>
             <menu>OSD</menu>
+            <left>Left</left>
+            <right>Right</right>
+            <up>Up</up>
+            <down>Down</down>
+            <return>Select</return>
+            <enter>Select</enter>
+            <pageup>PageUp</pageup>
+            <pagedown>PageDown</pagedown>
+            <p>Play</p>
+            <q>Queue</q>
+            <f>FastForward</f>
+            <r>Rewind</r>
+            <y>SwitchPlayer</y>
+            <left mod="ctrl">analogseekback</left>
+            <right mod="ctrl">analogseekforward</right>
+            <return mod="longpress">ContextMenu</return>
+            <enter mod="longpress">ContextMenu</enter>
+            <browser_back>Back</browser_back>
+            <browser_back mod="longpress">ActivateWindow(Home)</browser_back>
+            <key id='65446'>Back</key>
+            <m>Menu</m>
+            <n mod="ctrl">ActivateWindow(PlayerControls)</n>
+            <s>ActivateWindow(shutdownmenu)</s>
+            <i>Info</i>
+            <c>ContextMenu</c>
+            <c mod="longpress">Menu</c>
+            <space>Pause</space>
+            <x>Stop</x>
+            <period>SkipNext</period>
+            <comma>SkipPrevious</comma>
+            <tab>FullScreen</tab>
+            <printscreen>Screenshot</printscreen>
+            <s mod="ctrl">Screenshot</s>
+            <minus>VolumeDown</minus>
+            <plus>VolumeUp</plus>
+            <equals>VolumeUp</equals>
+            <zero>Number0</zero>
+            <one>Number1</one>
+            <two>Number2</two>
+            <three>Number3</three>
+            <four>Number4</four>
+            <five>Number5</five>
+            <six>Number6</six>
+            <seven>Number7</seven>
+            <eight>Number8</eight>
+            <nine>Number9</nine>
+            <numpadminus>VolumeDown</numpadminus>
+            <numpadplus>VolumeUp</numpadplus>
+            <numpadzero>Number0</numpadzero>
+            <numpadone>Number1</numpadone>
+            <numpadtwo>Number2</numpadtwo>
+            <numpadthree>Number3</numpadthree>
+            <numpadfour>Number4</numpadfour>
+            <numpadfive>Number5</numpadfive>
+            <numpadsix>Number6</numpadsix>
+            <numpadseven>Number7</numpadseven>
+            <numpadeight>Number8</numpadeight>
+            <numpadnine>Number9</numpadnine>
+            <backslash>ToggleFullScreen</backslash>
+            <home>FirstPage</home>
+            <end>LastPage</end>
+            <power>ActivateWindow(shutdownmenu)</power>
+            <sleep>ActivateWindow(shutdownmenu)</sleep>
+            <!-- PVR windows -->
+            <e>ActivateWindow(TVGuide)</e>
+            <h>ActivateWindow(TVChannels)</h>
+            <j>ActivateWindow(RadioChannels)</j>
+            <k>ActivateWindow(TVRecordings)</k>
+            <b>ActivateWindow(TVTimers)</b>
+            <!-- PVR -->
+            <red>ActivateWindow(TVChannels)</red>
+            <green>ActivateWindow(MyVideos)</green>
+            <yellow>ActivateWindow(MyMusic)</yellow>
+            <blue>ActivateWindow(MyPictures)</blue>
+            <!-- Multimedia keyboard keys -->
+            <browser_back>Back</browser_back>
+            <browser_forward/>
+            <browser_refresh/>
+            <browser_stop/>
+            <browser_search/>
+            <browser_favorites>ActivateWindow(Favourites)</browser_favorites>
+            <favorites>ActivateWindow(Favourites)</favorites>
+            <config>ActivateWindow(Settings)</config>
+            <browser_home>ActivateWindow(Home)</browser_home>
+            <homepage>ActivateWindow(Home)</homepage>
+            <volume_mute>Mute</volume_mute>
+            <volume_down>VolumeDown</volume_down>
+            <volume_up>VolumeUp</volume_up>
+            <next_track>SkipNext</next_track>
+            <prev_track>SkipPrevious</prev_track>
+            <stop>Stop</stop>
+            <play_pause>PlayPause</play_pause>
+            <fastforward>FastForward</fastforward>
+            <rewind>Rewind</rewind>
+            <record/>
+            <launch_mail></launch_mail>
+            <launch_media_select>ActivateWindow(MyMusic)</launch_media_select>
+            <launch_app1_pc_icon>ActivateWindow(MyPrograms)</launch_app1_pc_icon>
+            <launch_app2_pc_icon>ActivateWindow(MyPrograms)</launch_app2_pc_icon>
+            <launch_file_browser/>
+            <launch_media_center/>
+            <!-- ****************************************************** -->
+            <!-- MS Media Center keyboard shortcuts sent by MCE remotes -->
+            <!-- See http://msdn.microsoft.com/en-us/library/bb189249.aspx -->
+            <p mod="ctrl,shift">Play</p>        <!-- Play -->
+            <s mod="ctrl,shift">Stop</s>        <!-- Stop -->
+            <p mod="ctrl">Pause</p>             <!-- Pause -->
+            <f mod="ctrl,shift">FastForward</f> <!-- Fwd -->
+            <b mod="ctrl,shift">Rewind</b>      <!-- Rew -->
+            <f mod="ctrl">SkipNext</f>          <!-- Skip -->
+            <b mod="ctrl">SkipPrevious</b>      <!-- Replay -->
+            <d mod="ctrl">Info</d>              <!-- MCE Details -->
+            <r mod="ctrl">Record</r>            <!-- Record -->
+            <f4 mod="alt">PreviousMenu</f4>     <!-- Exit -->
+            <f10>VolumeUp</f10>                 <!-- MCE Vol up -->
+            <f9>VolumeDown</f9>                 <!-- MCE Vol down -->
+            <f8>Mute</f8>                       <!-- MCE mute -->
+            <g mod="ctrl">ActivateWindow(TVGuide)</g>  <!-- MCE Guide -->
+            <m mod="ctrl">ActivateWindow(music)</m>    <!-- MCE My music -->
+            <i mod="ctrl">ActivateWindow(pictures)</i> <!-- MCE My pictures -->
+            <e mod="ctrl">ActivateWindow(video)</e>    <!-- MCE videos -->
+            <m mod="ctrl,shift">PlayerControl(ShowVideoMenu)</m>         <!-- MCE DVD menu -->
+            <o mod="ctrl">ActivateWindow(TVRecordings)</o>  <!-- MCE Recorded TV -->
+            <t mod="ctrl">ActivateWindow(TVChannels)</t>  <!-- MCE Live TV  -->
+            <t mod="ctrl,shift">ActivateWindow(TVChannels)</t>  <!-- MCE My TV -->
+            <a mod="ctrl">ActivateWindow(RadioChannels)</a>  <!-- MCE My Radio -->
+            <!-- MCE keypresses without an obvious use in Kodi -->
+            <u mod="ctrl">Notification(MCEKeypress, DVD subtitle, 3)</u>
+            <a mod="ctrl,shift">Notification(MCEKeypress, DVD audio, 3)</a>
+            <k mod="ctrl,shift">ReloadKeymaps</k>
+            <d mod="ctrl,shift">ToggleDebug</d>
+            <r mod="ctrl,shift">ToggleDirtyRegionVisualization</r>
         </keyboard>
     </global>
+    <virtualkeyboard>
+      <keyboard>
+        <menu>SetFocus(300,0)</menu>
+        <backspace>SendClick(8)</backspace>
+        <backspace mod="longpress">Back</backspace>
+      </keyboard>>
+    </virtualkeyboard>
     <Window13000>
       <keyboard>
           <a>SendClick(5001)</a>
@@ -988,3 +1127,4 @@
       </keyboard>
   </Window13020>
 </keymap>
+

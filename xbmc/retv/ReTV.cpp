@@ -346,7 +346,7 @@ bool ReTV::initRPC(){
     std::stringstream rpc_payload;
     std::string content;
     XFILE::CCurlFile http;
-	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode <<"\", \""<< m_authToken <<"\", "<< (int)m_loginTime <<", " << api_type << ReTV::m_updateRepoUsername << ReTV::m_updateRepoPassword << "], \"method\": \"initAPI\"}";
+	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode << "\", \"" << m_authToken << "\", " << (int)m_loginTime << ", " << api_type << ", \"" << ReTV::m_updateRepoUsername << "\", \"" << ReTV::m_updateRepoPassword << "\" ], \"method\": \"initAPI\"}";
     return http.Post(rpc_url, rpc_payload.str(), content, true);
 }
 #endif
