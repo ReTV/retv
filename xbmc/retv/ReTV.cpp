@@ -40,8 +40,8 @@ ReTV g_retv;
 
 const std::string ReTV::Author = "Billion Plus Computing Pvt. Ltd.";
 
-std::string ReTV::m_updateRepoUsername = "retv";
-std::string ReTV::m_updateRepoPassword = "dsd234SGFD823hd234";
+std::string ReTV::m_updateRepoUsername = "";
+std::string ReTV::m_updateRepoPassword = "";
 
 int ReTV::torrentProgress = 0;
 
@@ -145,7 +145,7 @@ std::string ReTV::registerDevice(const char* mobileNumber)
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+	//CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Activate).c_str());
 	if (!http.Post(makeApiURL(m_api_Activate), postData, content, true)){
@@ -153,7 +153,7 @@ std::string ReTV::registerDevice(const char* mobileNumber)
 		return "{\"errorcode\": 0 } ";
 	}
 
-	CLog::Log(LOGNOTICE, "ReTV: Activation response : %s", content.c_str());
+	//CLog::Log(LOGNOTICE, "ReTV: Activation response : %s", content.c_str());
 
 	return content.c_str();
 }
@@ -178,7 +178,7 @@ std::string ReTV::validateNumber(const char* authCode)
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+	//CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
 
 	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Validate).c_str());
 	if (!http.Post(makeApiURL(m_api_Validate), postData, content, true)){
@@ -186,7 +186,7 @@ std::string ReTV::validateNumber(const char* authCode)
 		return "{\"errorcode\": 0 } ";
 	}
 
-	CLog::Log(LOGNOTICE, "ReTV: Validation response : %s", content.c_str());
+	//CLog::Log(LOGNOTICE, "ReTV: Validation response : %s", content.c_str());
 
 	// We need to parse this and create our Registration file
 	// Parse the response
@@ -216,14 +216,14 @@ std::string ReTV::login(const char* mobileNumber)
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
-	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
+	//CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
+	//CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
 	if (!http.Post(makeApiURL(m_api_Login), postData, content, true)){
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't login");
 		return "{\"message\":\"\",\"errorcode\":0,\"data\":\"\"}";
 	}
 
-	CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content.c_str());
+	//CLog::Log(LOGNOTICE, "ReTV: Login Response : %s",content.c_str());
 
 
 	return parseLoginResponse(content);
@@ -261,11 +261,11 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 	CVariant account = data["account"];
 	CVariant accountData = account[m_deviceCode];
 
-	CLog::Log(LOGNOTICE, "Types : %d - %d - %d", accountData.type(), account.type(), data["account"].type());
+	//CLog::Log(LOGNOTICE, "Types : %d - %d - %d", accountData.type(), account.type(), data["account"].type());
 
 
-	CLog::Log(LOGNOTICE, "Device Code: %d", account.isMember(m_deviceCode));
-	CLog::Log(LOGNOTICE, "Plan Name: %d", accountData.isMember("planname"));
+	//CLog::Log(LOGNOTICE, "Device Code: %d", account.isMember(m_deviceCode));
+	//CLog::Log(LOGNOTICE, "Plan Name: %d", accountData.isMember("planname"));
 
 
 	m_expiryTime = loginResponse["expiry"].asInteger();
@@ -381,7 +381,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int custom
 
 	std::string content;
 
-	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
+	//CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(endPoint).c_str());
 	if (!http.Post(makeApiURL(endPoint), postData, content, true, customTimeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
@@ -389,7 +389,7 @@ std::string ReTV::callAPI(const char* endPoint, const char* postVars, int custom
         strstream << "{\"message\":\"\",\"errorcode\":" << http.responseCode << ",\"data\":\"\"}";
         return strstream.str();
     }
-    CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
+    //CLog::Log(LOGNOTICE, "Response Code: %d", http.responseCode);
 
 	return content;
 }
@@ -423,7 +423,7 @@ std::string ReTV::callMediaAPI(const char* endPoint, const char* postVars, int c
 
     std::string content;
 
-    CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
+    //CLog::Log(LOGNOTICE, "URL : %s", makeMediaApiURL(endPoint).c_str());
 	if (!http.Post(makeMediaApiURL(endPoint), postData, content, true, customTimeout)){
         CLog::Log(LOGNOTICE, "ReTV: Couldn't make API Request");
         std::stringstream strstream;
@@ -450,7 +450,7 @@ bool ReTV::callDownloadAPI(const char* fileId, const char* filePath)
 	
 	std::string downloadUrl = makeAuthenticatedUrl(m_downloadUrl) + "file/get/" + m_authToken + "/" + fileId;
 
-	CLog::Log(LOGNOTICE, "Download URL : %s", downloadUrl.c_str());
+	//CLog::Log(LOGNOTICE, "Download URL : %s", downloadUrl.c_str());
 
 	
 	if (!http.Download(downloadUrl, filePath)){
@@ -646,7 +646,7 @@ void ReTV::readPlatformInfo()
 
 	m_deviceCode = m_platformInfo.m_macAddress;
 
-	CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode.c_str()); 
+	//CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode.c_str()); 
 
 	/*std::vector<CNetworkInterface*>::iterator it;
 
