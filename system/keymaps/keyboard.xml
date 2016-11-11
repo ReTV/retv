@@ -176,7 +176,7 @@
     </global>
     <virtualkeyboard>
       <keyboard>
-        <menu>SetFocus(300,0)</menu>
+        <menu>SendClick(300)</menu>
         <backspace>SendClick(8)</backspace>
         <backspace mod="longpress">Back</backspace>
       </keyboard>>
