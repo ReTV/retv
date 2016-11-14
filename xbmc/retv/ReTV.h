@@ -22,6 +22,7 @@ struct ReTVPlatformInfo
 	std::string m_os;
 	std::string m_osVersion;
 	std::string m_manufacturer;
+	std::string m_channel;
 	std::string m_brand;
 	std::string m_model;
 	std::string m_product;

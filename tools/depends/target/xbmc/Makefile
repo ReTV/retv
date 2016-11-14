@@ -25,6 +25,13 @@ endif
 
 endif
 
+ifeq ($(channel),)
+$(info No Channel defined)
+else
+$(info App Channel - $(channel) )
+export CXXFLAGS+=-DAPP_CHANNEL="\"$(channel)"\"
+endif
+
 ifeq ($(Configuration),Release)
 DEBUG = --enable-debug=no
 endif
