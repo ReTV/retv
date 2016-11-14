@@ -134,6 +134,18 @@
 		18B7C97C1294380A009E7A26 /* GUIWindowAddonBrowser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B7C97A12943809009E7A26 /* GUIWindowAddonBrowser.cpp */; };
 		18B7C9831294385F009E7A26 /* XMLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B7C9811294385F009E7A26 /* XMLUtils.cpp */; };
 		18C1D22D13033F6A00CFFE59 /* GLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C1D22B13033F6A00CFFE59 /* GLUtils.cpp */; };
+		18E1B5EA1DD77EBE00CF9C48 /* ReTV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5E81DD77EBE00CF9C48 /* ReTV.cpp */; };
+		18E1B5EB1DD77EBE00CF9C48 /* ReTV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5E81DD77EBE00CF9C48 /* ReTV.cpp */; };
+		18E1B5EC1DD77EBE00CF9C48 /* ReTV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5E81DD77EBE00CF9C48 /* ReTV.cpp */; };
+		18E1B5F21DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5EE1DD7809F00CF9C48 /* ModuleRetv.cpp */; };
+		18E1B5F31DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5EE1DD7809F00CF9C48 /* ModuleRetv.cpp */; };
+		18E1B5F41DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5EE1DD7809F00CF9C48 /* ModuleRetv.cpp */; };
+		18E1B5F51DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F01DD7809F00CF9C48 /* SubscriptionInfo.cpp */; };
+		18E1B5F61DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F01DD7809F00CF9C48 /* SubscriptionInfo.cpp */; };
+		18E1B5F71DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F01DD7809F00CF9C48 /* SubscriptionInfo.cpp */; };
+		18E1B5F91DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F81DD780B200CF9C48 /* AddonModuleRetv.cpp */; };
+		18E1B5FA1DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F81DD780B200CF9C48 /* AddonModuleRetv.cpp */; };
+		18E1B5FB1DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1B5F81DD780B200CF9C48 /* AddonModuleRetv.cpp */; };
 		18E7CACB1578C26D001D4554 /* CDDARipJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E7CAC91578C26D001D4554 /* CDDARipJob.cpp */; };
 		18ECC96213CF178D00A9ED6C /* StreamUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18ECC96013CF178D00A9ED6C /* StreamUtils.cpp */; };
 		1D638128161E211E003603ED /* PeripheralImon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D638126161E211E003603ED /* PeripheralImon.cpp */; };
@@ -2499,6 +2511,13 @@
 		18B7C9E7129447B9009E7A26 /* MathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtils.h; sourceTree = "<group>"; };
 		18C1D22B13033F6A00CFFE59 /* GLUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUtils.cpp; sourceTree = "<group>"; };
 		18C1D22C13033F6A00CFFE59 /* GLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLUtils.h; sourceTree = "<group>"; };
+		18E1B5E81DD77EBE00CF9C48 /* ReTV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReTV.cpp; path = retv/ReTV.cpp; sourceTree = "<group>"; };
+		18E1B5E91DD77EBE00CF9C48 /* ReTV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReTV.h; path = retv/ReTV.h; sourceTree = "<group>"; };
+		18E1B5EE1DD7809F00CF9C48 /* ModuleRetv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModuleRetv.cpp; sourceTree = "<group>"; };
+		18E1B5EF1DD7809F00CF9C48 /* ModuleRetv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleRetv.h; sourceTree = "<group>"; };
+		18E1B5F01DD7809F00CF9C48 /* SubscriptionInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubscriptionInfo.cpp; sourceTree = "<group>"; };
+		18E1B5F11DD7809F00CF9C48 /* SubscriptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionInfo.h; sourceTree = "<group>"; };
+		18E1B5F81DD780B200CF9C48 /* AddonModuleRetv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddonModuleRetv.cpp; sourceTree = "<group>"; };
 		18E7CAC91578C26D001D4554 /* CDDARipJob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDDARipJob.cpp; sourceTree = "<group>"; };
 		18E7CACA1578C26D001D4554 /* CDDARipJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDDARipJob.h; sourceTree = "<group>"; };
 		18ECC96013CF178D00A9ED6C /* StreamUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamUtils.cpp; sourceTree = "<group>"; };
@@ -5329,6 +5348,15 @@
 			path = playlists;
 			sourceTree = "<group>";
 		};
+		18E1B5ED1DD77EC400CF9C48 /* retv */ = {
+			isa = PBXGroup;
+			children = (
+				18E1B5E81DD77EBE00CF9C48 /* ReTV.cpp */,
+				18E1B5E91DD77EBE00CF9C48 /* ReTV.h */,
+			);
+			name = retv;
+			sourceTree = "<group>";
+		};
 		19C28FBDFE9D53C911CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -6786,6 +6814,7 @@
 		DF1ACFD015FCE50700E10810 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				18E1B5F81DD780B200CF9C48 /* AddonModuleRetv.cpp */,
 				DF1ACFD115FCE50700E10810 /* AddonModuleXbmc.cpp */,
 				DF1ACFD515FCE50700E10810 /* AddonModuleXbmcaddon.cpp */,
 				DF1ACFD915FCE50700E10810 /* AddonModuleXbmcgui.cpp */,
@@ -6824,6 +6853,10 @@
 		DF1AD17B15FCE77900E10810 /* legacy */ = {
 			isa = PBXGroup;
 			children = (
+				18E1B5EE1DD7809F00CF9C48 /* ModuleRetv.cpp */,
+				18E1B5EF1DD7809F00CF9C48 /* ModuleRetv.h */,
+				18E1B5F01DD7809F00CF9C48 /* SubscriptionInfo.cpp */,
+				18E1B5F11DD7809F00CF9C48 /* SubscriptionInfo.h */,
 				395C29C81A98A11B00EBC7AD /* wsgi */,
 				DF1AD17C15FCE77900E10810 /* Addon.cpp */,
 				DF1AD17D15FCE77900E10810 /* Addon.h */,
@@ -7342,6 +7375,7 @@
 				4313769112D63F9E00680C15 /* programs */,
 				C8482871156CFCD8005A996F /* pvr */,
 				43FAC8BF12D63B7400F67914 /* rendering */,
+				18E1B5ED1DD77EC400CF9C48 /* retv */,
 				E38E1DF60D25F9FD00618676 /* screensavers */,
 				E38E1E000D25F9FD00618676 /* settings */,
 				43FAC84E12D62CAE00F67914 /* storage */,
@@ -9255,6 +9289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E1B5F41DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */,
+				18E1B5FB1DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */,
+				18E1B5EC1DD77EBE00CF9C48 /* ReTV.cpp in Sources */,
+				18E1B5F71DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9522,6 +9560,7 @@
 				E38E22520D25F9FE00618676 /* rawread.cpp in Sources */,
 				E38E22530D25F9FE00618676 /* rdwrfn.cpp in Sources */,
 				E38E22540D25F9FE00618676 /* recvol.cpp in Sources */,
+				18E1B5F21DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */,
 				7C8E02191BA35D0B0072E8B2 /* AddonBuiltins.cpp in Sources */,
 				E38E22550D25F9FE00618676 /* resource.cpp in Sources */,
 				E38E22560D25F9FE00618676 /* rijndael.cpp in Sources */,
@@ -9866,6 +9905,7 @@
 				F56579AF13060D1E0085ED7F /* RenderCapture.cpp in Sources */,
 				7C84A59E12FA3C1600CD1714 /* SourcesDirectory.cpp in Sources */,
 				F57A1D1E1329B15300498CC7 /* AutoPool.mm in Sources */,
+				18E1B5EA1DD77EBE00CF9C48 /* ReTV.cpp in Sources */,
 				F5B13C8D1334056B0045076D /* DarwinUtils.mm in Sources */,
 				7C99B6A4133D342100FC2B16 /* CircularCache.cpp in Sources */,
 				7C99B7951340723F00FC2B16 /* GUIDialogPlayEject.cpp in Sources */,
@@ -9995,6 +10035,7 @@
 				C84828CC156CFCD8005A996F /* GUIDialogPVRGroupManager.cpp in Sources */,
 				DF54F8031B6580C8000FCBA4 /* ContextMenuAddon.cpp in Sources */,
 				C84828CD156CFCD8005A996F /* GUIDialogPVRGuideInfo.cpp in Sources */,
+				18E1B5F91DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */,
 				C84828CE156CFCD8005A996F /* GUIDialogPVRGuideOSD.cpp in Sources */,
 				C84828CF156CFCD8005A996F /* GUIDialogPVRGuideSearch.cpp in Sources */,
 				C84828D0156CFCD8005A996F /* GUIDialogPVRRecordingInfo.cpp in Sources */,
@@ -10197,6 +10238,7 @@
 				7C14099E183224B8009F9411 /* SettingSection.cpp in Sources */,
 				7C1409A1183224B8009F9411 /* SettingsManager.cpp in Sources */,
 				7C1409A4183224B8009F9411 /* SettingUpdate.cpp in Sources */,
+				18E1B5F51DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */,
 				DF0ABB73183A94A30018445D /* Utf8Utils.cpp in Sources */,
 				7CEE587D1B5A3FFB007C2B5A /* AudioDSPSettings.cpp in Sources */,
 				7C1409A9184015C9009F9411 /* InfoExpression.cpp in Sources */,
@@ -10495,6 +10537,7 @@
 				E49911E5174E5D3700741B6D /* DVDInputStreamPVRManager.cpp in Sources */,
 				E49911E6174E5D3700741B6D /* DVDInputStreamRTMP.cpp in Sources */,
 				E49911E8174E5D3700741B6D /* DVDStateSerializer.cpp in Sources */,
+				18E1B5EB1DD77EBE00CF9C48 /* ReTV.cpp in Sources */,
 				E49911E9174E5D3E00741B6D /* DVDSubtitleParserSSA.cpp in Sources */,
 				E49911EA174E5D3E00741B6D /* DVDSubtitlesLibass.cpp in Sources */,
 				E49911EB174E5D3E00741B6D /* DVDSubtitleParserMicroDVD.cpp in Sources */,
@@ -10519,6 +10562,7 @@
 				E49911FD174E5D4500741B6D /* DVDOverlayRenderer.cpp in Sources */,
 				DF29BCF21B5D911800904347 /* EventLog.cpp in Sources */,
 				E49911FF174E5D4500741B6D /* DVDPlayer.cpp in Sources */,
+				18E1B5F31DD7809F00CF9C48 /* ModuleRetv.cpp in Sources */,
 				E4991200174E5D4500741B6D /* DVDPlayerAudio.cpp in Sources */,
 				E4991201174E5D4500741B6D /* DVDPlayerSubtitle.cpp in Sources */,
 				E4991202174E5D4500741B6D /* DVDPlayerTeletext.cpp in Sources */,
@@ -10748,6 +10792,7 @@
 				E49912F3174E5DAD00741B6D /* GUIFont.cpp in Sources */,
 				E49912F4174E5DAD00741B6D /* GUIFontManager.cpp in Sources */,
 				E49912F5174E5DAD00741B6D /* GUIFontTTF.cpp in Sources */,
+				18E1B5FA1DD780B200CF9C48 /* AddonModuleRetv.cpp in Sources */,
 				E49912F6174E5DAD00741B6D /* GUIFontTTFDX.cpp in Sources */,
 				E49912F7174E5DAD00741B6D /* GUIFontTTFGL.cpp in Sources */,
 				E49912F8174E5DAD00741B6D /* GUIImage.cpp in Sources */,
@@ -11307,6 +11352,7 @@
 				7CCDA0F7192753E30074CF51 /* PltCtrlPoint.cpp in Sources */,
 				7CCDA100192753E30074CF51 /* PltCtrlPointTask.cpp in Sources */,
 				7CCDA109192753E30074CF51 /* PltDatagramStream.cpp in Sources */,
+				18E1B5F61DD7809F00CF9C48 /* SubscriptionInfo.cpp in Sources */,
 				7CCDA112192753E30074CF51 /* PltDeviceData.cpp in Sources */,
 				DFEA4B501B5271EB00562321 /* ActiveAEDSP.cpp in Sources */,
 				7CCDA11B192753E30074CF51 /* PltDeviceHost.cpp in Sources */,
@@ -11867,6 +11913,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/xbmc/osx/Info.plist";
 				PRODUCT_NAME = ReTV;
 				SDKROOT = macosx;
+				XBMC_GCC_PREPROCESSOR_DEFINITIONS_COMMON = "TARGET_POSIX TARGET_DARWIN _LINUX _REENTRANT _FILE_DEFINED _FILE_OFFSET_BITS=64 _LARGEFILE64_SOURCE __STDC_CONSTANT_MACROS HAVE_CONFIG_H HAS_SPC_CODEC NPT_CONFIG_ENABLE_LOGGING PLT_HTTP_DEFAULT_USER_AGENT=\"\\\"UPnP/1.0 DLNADOC/1.50 ReTV\\\"\" PLT_HTTP_DEFAULT_SERVER=\"\\\"UPnP/1.0 DLNADOC/1.50 ReTV\\\"\" APP_CHANNEL=\"\\\"retv\\\"\"";
 			};
 			name = Debug;
 		};
@@ -11882,6 +11929,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/xbmc/osx/Info.plist";
 				PRODUCT_NAME = ReTV;
 				SDKROOT = macosx;
+				XBMC_GCC_PREPROCESSOR_DEFINITIONS_COMMON = "TARGET_POSIX TARGET_DARWIN _LINUX _REENTRANT _FILE_DEFINED _FILE_OFFSET_BITS=64 _LARGEFILE64_SOURCE __STDC_CONSTANT_MACROS HAVE_CONFIG_H HAS_SPC_CODEC NPT_CONFIG_ENABLE_LOGGING PLT_HTTP_DEFAULT_USER_AGENT=\"\\\"UPnP/1.0 DLNADOC/1.50 ReTV\\\"\" PLT_HTTP_DEFAULT_SERVER=\"\\\"UPnP/1.0 DLNADOC/1.50 ReTV\\\"\" APP_CHANNEL=\"\\\"retv\\\"\"";
 				ZERO_LINK = NO;
 			};
 			name = Release;

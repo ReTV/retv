@@ -638,6 +638,22 @@ void ReTV::readPlatformInfo()
 	if (list.size() > 0){
 
 		m_platformInfo.m_macAddress = list[0]->GetMacAddress();
+      
+        if(m_platformInfo.m_macAddress == "00:00:00:00:00:00")
+        {
+          // Found Loop back interface
+          // Check if theres another interface
+          // Use that mac address
+          // If there isn't, log it and say that there is not interface
+          if (list.size() > 1){
+            m_platformInfo.m_macAddress = list[1]->GetMacAddress();
+          }
+          else{
+            CLog::Log(LOGERROR, "No MAC Address found!!!");
+          }
+          
+        }
+      
 		StringUtils::ToUpper(m_platformInfo.m_macAddress);
 	}
 	else{
@@ -646,16 +662,17 @@ void ReTV::readPlatformInfo()
 
 	m_deviceCode = m_platformInfo.m_macAddress;
 
-	//CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode.c_str()); 
+	/*CLog::Log(LOGNOTICE, "Device Code : %s", m_deviceCode.c_str());
 
-	/*std::vector<CNetworkInterface*>::iterator it;
+	std::vector<CNetworkInterface*>::iterator it;
 
 	int i = 0;
 
 	for (it = list.begin(); it < list.end(); it++, i++) {
 		
 		CNetworkInterface* a = *it;
-		CLog::Log(LOGNOTICE, "Attached Networks : %d - %s", i, a->GetName());
+		CLog::Log(LOGNOTICE, "Attached Networks : %d - %s", i, a->GetName().c_str());
+        CLog::Log(LOGNOTICE, "Attached Networks : %d - %s", i, a->GetMacAddress().c_str());
 	}*/
 
 }
