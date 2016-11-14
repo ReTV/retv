@@ -33,7 +33,7 @@
 #endif
 
 #ifndef APP_CHANNEL
-#define APP_CHANNEL "regular"
+#define APP_CHANNEL "retv"
 #endif
 
 using namespace XBMCAddon::retv;
