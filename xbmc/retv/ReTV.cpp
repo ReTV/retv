@@ -32,6 +32,10 @@
 #include "android/jni/Build.h"
 #endif
 
+#ifndef APP_CHANNEL
+#define APP_CHANNEL "regular"
+#endif
+
 using namespace XBMCAddon::retv;
 using namespace XFILE;
 using namespace KODI::MESSAGING;
@@ -564,6 +568,11 @@ void ReTV::readPlatformInfo()
 	
 	m_platformInfo.m_osVersion = g_sysinfo.GetOsVersion();
 
+	std::string appChannel(APP_CHANNEL);
+	StringUtils::ToLower(appChannel);
+
+	m_platformInfo.m_channel = appChannel;
+
 	m_platformInfo.m_manufacturer = g_sysinfo.GetManufacturerName();
 
 	m_platformInfo.m_model = g_sysinfo.GetModelName();
@@ -702,6 +711,7 @@ std::string ReTV::getDeviceActivationJSON()
 	activationJSON += ", \"bitness\":\""		+ ss.str() + "\"";
 	activationJSON += ", \"os\":\""				+ m_platformInfo.m_os + "\"";
 	activationJSON += ", \"os_version\":\""		+ m_platformInfo.m_osVersion + "\"";
+	activationJSON += ", \"channel\":\""		+ m_platformInfo.m_channel + "\"";
 	activationJSON += ", \"manufacturer\":\""	+ m_platformInfo.m_manufacturer + "\"";
 	activationJSON += ", \"product\":\""		+ m_platformInfo.m_product + "\"";
 	activationJSON += ", \"brand\":\""			+ m_platformInfo.m_brand + "\"";
