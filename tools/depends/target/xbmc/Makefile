@@ -13,9 +13,16 @@ export CFLAGS+=-O3
 CONFIGURE = cp -f $(CONFIG_SUB) $(CONFIG_GUESS) build-aux/ ;\
   ./configure --prefix=$(PREFIX) $(DEBUG)
 
+# tvOS build?
+ifeq ($(platform),tvos)
+$(info Platform - tvOS )
+export CXXFLAGS+=-DPF_TVOS
+endif
+
 ifeq ($(OS),android)
 CONFIGURE += --enable-codec=amcodec --enable-breakpad --disable-libcec
 
+# Locking to a Manufacturer
 ifeq ($(lock),)
 $(info No Lock defined)
 else
@@ -23,8 +30,21 @@ $(info Locking to manufacturer - $(lock) )
 export CXXFLAGS+=-DRETV_ANDROID_LOCK="\"$(lock)"\"
 endif
 
+# Android TV build
+ifeq ($(platform),androidtv)
+$(info Platform - Android TV )
+export CXXFLAGS+=-DPF_ANDROID_TV
 endif
 
+# Generic Android Box build
+ifeq ($(platform),androidbox)
+$(info Platform - Android Box )
+export CXXFLAGS+=-DPF_ANDROID_BOX
+endif
+
+endif
+
+# Acquisition Channel
 ifeq ($(channel),)
 $(info No Channel defined)
 else

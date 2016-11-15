@@ -12,7 +12,7 @@
 #include "GUIInfoManager.h"
 
 
-enum ReTVPlatform { ReTVDevice = 1, Android = 2, iOS  = 3, Windows = 4, OSX = 5, Linux = 6, FreeBSD = 7, Others = 8 };
+enum ReTVPlatform { ReTVDevice = 1, Android = 2, iOS  = 3, Windows = 4, OSX = 5, Linux = 6, FreeBSD = 7, AndroidTV = 8, AndroidBox = 9, tvOS = 10, Others = 11 };
 
 struct ReTVPlatformInfo
 {

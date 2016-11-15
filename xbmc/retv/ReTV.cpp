@@ -589,15 +589,26 @@ void ReTV::readPlatformInfo()
 #if defined(TARGET_FREEBSD)
 	m_platformInfo.m_platformId = ReTVPlatform::FreeBSD;
 #elif defined(TARGET_DARWIN_IOS)
+
+#ifdef PF_TVOS
+	m_platformInfo.m_platformId = ReTVPlatform::tvOS;
+#else
 	m_platformInfo.m_platformId = ReTVPlatform::iOS;
+#endif
+
 #elif defined(TARGET_DARWIN_OSX)
 	m_platformInfo.m_platformId = ReTVPlatform::OSX;
 #elif defined (TARGET_ANDROID)
 	if (m_platformInfo.m_manufacturer == c_retvManufacturer)
 		m_platformInfo.m_platformId = ReTVPlatform::ReTVDevice;
 	else
+#ifdef PF_ANDROID_TV
+		m_platformInfo.m_platformId = ReTVPlatform::AndroidTV;
+#elif PF_ANDROID_BOX
+		m_platformInfo.m_platformId = ReTVPlatform::AndroidBox;
+#else
 		m_platformInfo.m_platformId = ReTVPlatform::Android;
-
+#endif
 	m_platformInfo.m_brand = CJNIBuild::BRAND.c_str();
 	m_platformInfo.m_product = CJNIBuild::PRODUCT.c_str();
 #elif defined(TARGET_LINUX)
