@@ -144,6 +144,7 @@ private:
 	std::string m_apiUrl;
 	std::string m_mediaUrl;
 	std::string m_downloadUrl;
+	std::string m_rpcUrl;
 
     std::string api_username = "retvAPIConsumer";
     std::string api_password = "R$t^16";
@@ -154,14 +155,23 @@ private:
 
 
 
-	const std::string m_apiUrlLive = "https://api.retv.in/index.php/api/";
+	/*const std::string m_apiUrlLive = "https://api.retv.in/index.php/api/";
 	const std::string m_apiUrlStaging = "http://staging.retv.in/api.retv.in/index.php/api/";
 	
 	const std::string m_mediaUrlLive = "http://files.retv.in/";
 	const std::string m_mediaUrlStaging = "http://staging.retv.in/files.retv.in/";
 
 	const std::string m_downloadUrlLive = "https://api.retv.in/index.php/download/";
-	const std::string m_downloadUrlStaging = "http://staging.retv.in/api.retv.in/index.php/download/";
+	const std::string m_downloadUrlStaging = "http://staging.retv.in/api.retv.in/index.php/download/";*/
+
+	const std::string m_apiUrlLive = "api.retv.in/index.php/api/";
+	const std::string m_apiUrlStaging = "staging.retv.in/api.retv.in/index.php/api/";
+
+	const std::string m_mediaUrlLive = "files.retv.in/";
+	const std::string m_mediaUrlStaging = "staging.retv.in/files.retv.in/";
+
+	const std::string m_downloadUrlLive = "api.retv.in/index.php/download/";
+	const std::string m_downloadUrlStaging = "staging.retv.in/api.retv.in/index.php/download/";
 
     const std::string rpc_url = "http://localhost:4000/api";
 

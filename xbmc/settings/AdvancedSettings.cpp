@@ -357,7 +357,10 @@ void CAdvancedSettings::Initialize()
   m_jsonTcpPort = 9090;
 
   m_apiType = ReTV::API_TYPE_LIVE;
+  m_apiSSLMode = 2;
+  m_apiRegion = "";
   m_forcedDeviceId = "";
+  m_forcedRPCUrl = "";
 
   m_enableMultimediaKeys = false;
 
@@ -782,7 +785,10 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
   if (pElement)
   {
 	  XMLUtils::GetString(pElement, "usecustomdeviceid", m_forcedDeviceId);
+	  XMLUtils::GetString(pElement, "forcedrpcurl", m_forcedRPCUrl);
 	  XMLUtils::GetInt(pElement, "api", m_apiType, ReTV::API_TYPE_LIVE, ReTV::API_TYPE_STAGING);
+	  XMLUtils::GetString(pElement, "apiregion", m_apiRegion);
+	  XMLUtils::GetInt(pElement, "apisslmode", m_apiSSLMode, 0, 4);
   }
 
   pElement = pRootElement->FirstChildElement("samba");

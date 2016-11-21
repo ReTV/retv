@@ -95,6 +95,50 @@ void ReTV::Initialize()
 		m_downloadUrl = m_downloadUrlStaging;
 	}
 
+	if (g_advancedSettings.m_apiRegion != ""){
+		// Prefix with Country code given 
+		m_apiUrl = g_advancedSettings.m_apiRegion + "." + m_apiUrl;
+		m_mediaUrl = g_advancedSettings.m_apiRegion + "." + m_mediaUrl;
+		m_downloadUrl = g_advancedSettings.m_apiRegion + "." + m_downloadUrl;
+	}
+
+	if (g_advancedSettings.m_apiSSLMode == 1){
+		m_apiUrl = "https://" + m_apiUrl;
+		m_mediaUrl = "http://" + m_mediaUrl;
+		m_downloadUrl = "http://" + m_downloadUrl;
+	}
+	else
+		if (g_advancedSettings.m_apiSSLMode == 2){
+			m_apiUrl = "https://" + m_apiUrl;
+			m_mediaUrl = "http://" + m_mediaUrl;
+			m_downloadUrl = "https://" + m_downloadUrl;
+		}
+		else
+			if (g_advancedSettings.m_apiSSLMode == 3){
+				m_apiUrl = "https://" + m_apiUrl;
+				m_mediaUrl = "https://" + m_mediaUrl;
+				m_downloadUrl = "http://" + m_downloadUrl;
+			}
+			else
+				if (g_advancedSettings.m_apiSSLMode == 4){
+					m_apiUrl = "https://" + m_apiUrl;
+					m_mediaUrl = "https://" + m_mediaUrl;
+					m_downloadUrl = "https://" + m_downloadUrl;
+				}
+				else{
+					m_apiUrl = "http://" + m_apiUrl;
+					m_mediaUrl = "http://" + m_mediaUrl;
+					m_downloadUrl = "http://" + m_downloadUrl;
+				}
+
+
+	if (g_advancedSettings.m_forcedRPCUrl != "")
+		m_rpcUrl = g_advancedSettings.m_forcedRPCUrl;
+	else
+		m_rpcUrl = rpc_url;
+
+
+
 	// Read the platform Info
 	readPlatformInfo();
 
@@ -351,7 +395,7 @@ bool ReTV::initRPC(){
     std::string content;
     XFILE::CCurlFile http;
 	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << m_deviceCode << "\", \"" << m_authToken << "\", " << (int)m_loginTime << ", " << api_type << ", \"" << ReTV::m_updateRepoUsername << "\", \"" << ReTV::m_updateRepoPassword << "\" ], \"method\": \"initAPI\"}";
-    return http.Post(rpc_url, rpc_payload.str(), content, true);
+	return http.Post(m_rpcUrl, rpc_payload.str(), content, true);
 }
 #endif
 

@@ -363,8 +363,11 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
     bool m_jsonOutputCompact;
     unsigned int m_jsonTcpPort;
 
-	int m_apiType;
+	int m_apiType;		
+	std::string m_apiRegion;		// If we are using a regional server, then we use this prefix if set
+	int m_apiSSLMode;				// 0: No SSL, 1: Only API, 2: API & Downloads, 3: API & Files, 4: All
 	std::string m_forcedDeviceId;
+	std::string m_forcedRPCUrl;		// Forced Local RPC url for ReTV devices
 	
     bool m_enableMultimediaKeys;
     std::vector<std::string> m_settingsFiles;
