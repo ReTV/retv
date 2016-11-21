@@ -536,11 +536,7 @@ bool ReTV::isLoggedIn()
 
 std::string ReTV::getLinkByToken(const char* token)
 {
-    std::string url;
-    if (api_type == API_TYPE_LIVE)
-        url = m_mediaUrlLive;
-    else
-        url = m_mediaUrlStaging;
+	std::string url(m_mediaUrl);
 
     url.replace(6, 1, "/" + api_username + ":" + api_password + "@");
     return url + "stream/?token=" + token;
@@ -548,9 +544,7 @@ std::string ReTV::getLinkByToken(const char* token)
 
 std::string ReTV::getBaseUrl()
 {
-    if (api_type == API_TYPE_LIVE)
-        return m_apiUrlLive;
-    return m_apiUrlStaging;
+	return m_apiUrl;
 }
 
 SubscriptionInfo* ReTV::getSubscriptionInfo()
