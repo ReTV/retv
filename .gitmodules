@@ -34,3 +34,15 @@
 	path = addons/script.retv.autocompletion
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.retv.autocompletion.git
     branch = master
+[submodule "addons/plugin.retv.spuul"]
+	path = addons/plugin.retv.spuul
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.spuul.git
+	branch = master
+[submodule "addons/plugin.retv.erosnow"]
+	path = addons/plugin.retv.erosnow
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.erosnow.git
+	branch = master
+[submodule "addons/plugin.retv.hotstar"]
+	path = addons/plugin.retv.hotstar
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.hotstar.git
+	branch = master
