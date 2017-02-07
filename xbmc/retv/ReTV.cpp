@@ -303,7 +303,7 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 	CLog::Log(LOGNOTICE, "Success code is proper");
 
 	m_authToken = loginResponse["authtoken"].asString();
-	loginResponse["authtoken"].clear();	// Don't send this back to python
+	//loginResponse["authtoken"].clear();	// Don't send this back to python
 
 	CVariant data = loginResponse["data"];
 	CVariant account = data["account"];
