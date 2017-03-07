@@ -278,6 +278,12 @@ std::string ReTV::login(const char* mobileNumber)
 	
 }
 
+void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
+	this->m_authToken = authtoken;
+	this->m_expiryTime = expiry;
+}
+
+
 std::string ReTV::parseLoginResponse(std::string loginResponseString)
 {
 	// Parse the response

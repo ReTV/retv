@@ -80,6 +80,7 @@ public:
 	bool callDownloadAPI(const char* fileId, const char* filePath);
     std::string getLinkByToken(const char* token);
     std::string getBaseUrl();
+	void initAPI(std::string authtoken, unsigned int expiry);
 
     void Cleanup();
 
