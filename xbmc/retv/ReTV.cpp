@@ -278,9 +278,11 @@ std::string ReTV::login(const char* mobileNumber)
 	
 }
 
-void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
+void ReTV::initAPI(std::string authtoken, unsigned int expiry, std::string repoUsername, std::string repoPassword) {
 	this->m_authToken = authtoken;
 	this->m_expiryTime = expiry;
+	ReTV::m_updateRepoUsername = repoUsername;
+	ReTV::m_updateRepoPassword = repoPassword;
 }
 
 
@@ -334,12 +336,12 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 
 	if (loginResponse.isMember("us")){
 		ReTV::m_updateRepoUsername = loginResponse["us"].asString();
-		loginResponse["us"].clear(); // Don't send this back to python
+		// loginResponse["us"].clear(); // Don't send this back to python
 	}
 
 	if (loginResponse.isMember("up")){
 		ReTV::m_updateRepoPassword = loginResponse["up"].asString();
-		loginResponse["up"].clear(); // Don't send this back to python
+		// loginResponse["up"].clear(); // Don't send this back to python
 	}
 
 
@@ -501,7 +503,6 @@ bool ReTV::callDownloadAPI(const char* fileId, const char* filePath)
 	if (!http.IsInternet())
 		return false;
 
-	
 	std::string downloadUrl = makeAuthenticatedUrl(m_downloadUrl) + "file/get/" + m_authToken + "/" + fileId;
 
 	//CLog::Log(LOGNOTICE, "Download URL : %s", downloadUrl.c_str());
