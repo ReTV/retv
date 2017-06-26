@@ -666,13 +666,13 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 		return false;
 	  }
 	  
-  }else if( m_androidAppOpenMode == 2){
+  }/*else if( m_androidAppOpenMode == 2){
 	  
 	   // Send event to our ReTV Service
 	   CJNIURI uri = CJNIURI::parse(m_contentResolver+"/"+package);
 	   getContentResolver().query(uri, NULL, NULL, NULL, NULL).close();
 	  
-  }
+  }*/
    
   return true;
 }
