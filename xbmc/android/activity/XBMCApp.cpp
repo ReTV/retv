@@ -593,7 +593,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
   }
   
 
-  if( m_androidAppOpenMode == 0){
+  if( g_advancedSettings.m_androidAppOpenMode == 0){
   
 	  newIntent.setPackage(package);
 	  startActivity(newIntent);
@@ -635,7 +635,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	  }
       
       
-  }else if( m_androidAppOpenMode == 1){
+  }else if( g_advancedSettings.m_androidAppOpenMode == 1){
 	  
 	  // Send message to JSON RPC server
 	  
