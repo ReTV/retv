@@ -754,9 +754,10 @@ std::string ReTV::getLoginJSON()
 	loginJSON += "  \"mobile\": \"" + m_mobileNumber + "\"";
 	loginJSON += ", \"devicecode\":\"" + m_deviceCode + "\"";
 
-	/*loginJSON += ", \"core_sw_ver\":\"" + m_platformInfo.m_versionCore + "\"";
+	loginJSON += ", \"core_sw_ver\":\"" + m_platformInfo.m_versionCore + "\"";
 	loginJSON += ", \"script_sw_ver\":\"" + m_platformInfo.m_versionScript + "\"";
-	loginJSON += ", \"skin_sw_ver\":\"" + m_platformInfo.m_versionSkin + "\"";*/
+	loginJSON += ", \"skin_sw_ver\":\"" + m_platformInfo.m_versionSkin + "\"";
+	loginJSON += ", \"device_name\":\""	+ m_platformInfo.m_deviceName + "\"";
 
 	loginJSON += "}";
 

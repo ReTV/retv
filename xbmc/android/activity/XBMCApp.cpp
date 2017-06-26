@@ -79,12 +79,16 @@
 #include "android/jni/KeyEvent.h"
 #include "AndroidKey.h"
 
+#include "filesystem/CurlFile.h"
+#include "dialogs/GUIDialogKaiToast.h"
+
 #include "CompileInfo.h"
 
 #define GIGABYTES       1073741824
 
 using namespace std;
 using namespace KODI::MESSAGING;
+using namespace XFILE;
 
 template<class T, void(T::*fn)()>
 void* thread_run(void* obj)
@@ -567,6 +571,8 @@ bool CXBMCApp::HasLaunchIntent(const string &package)
 // Note intent, dataType, dataURI all default to ""
 bool CXBMCApp::StartActivity(const string &package, const string &intent, const string &dataType, const string &dataURI)
 {
+	//CGUIDialogKaiToast::QueueNotification("ReTV Android", "Starting App : "+package);
+	
   CJNIIntent newIntent = intent.empty() ?
     GetPackageManager().getLaunchIntentForPackage(package) :
     CJNIIntent(intent);
@@ -585,16 +591,89 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 
     newIntent.setDataAndType(jniURI, dataType); 
   }
+  
 
-  newIntent.setPackage(package);
-  startActivity(newIntent);
-  if (xbmc_jnienv()->ExceptionCheck())
-  {
-    CLog::Log(LOGERROR, "CXBMCApp::StartActivity - ExceptionOccurred launching %s", package.c_str());
-    xbmc_jnienv()->ExceptionClear();
-    return false;
+  if( m_androidAppOpenMode == 0){
+  
+	  newIntent.setPackage(package);
+	  startActivity(newIntent);
+	  if (xbmc_jnienv()->ExceptionCheck())
+	  {
+		CLog::Log(LOGERROR, "CXBMCApp::StartActivity - ExceptionOccurred launching %s", package.c_str());
+		xbmc_jnienv()->ExceptionClear();
+		return false;
+	  }
+      
+      // Send notification to ReTV service
+      // Send message to JSON RPC server
+	  
+	  std::string methodParams = "{";
+	  methodParams += "\"pkg\": \""		+ package + "\"";
+	  methodParams += "\"intent\": \""		+ intent + "\"";
+	  methodParams += "\"dataType\": \""		+ dataType + "\"";
+	  methodParams += "\"dataUri\": \""		+ dataURI + "\"";
+	  methodParams += "}";
+	  
+	  std::string postData = "{";
+	  postData += "  \"method\": \"openedApp\"";
+	  postData += ", \"params\": \""		+ methodParams + "\"";
+	  postData += ", \"jsonrpc\":\"2.0\"";
+	  postData += "}";
+	  
+	  std::string url = "http://localhost:4000/api/";
+	  
+	  //headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+	  XFILE::CCurlFile http;
+	  std::string content;
+	  
+      http.SetRequestHeader("Accept", "text/plain");
+	  http.SetRequestHeader("Content-Type", "application/json");
+	  
+	  if (!http.Post(url, postData, content)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
+		return false;
+	  }
+      
+      
+  }else if( m_androidAppOpenMode == 1){
+	  
+	  // Send message to JSON RPC server
+	  
+	  std::string methodParams = "{";
+	  methodParams += "\"pkg\": \""		+ package + "\"";
+	  methodParams += "\"intent\": \""		+ intent + "\"";
+	  methodParams += "\"dataType\": \""		+ dataType + "\"";
+	  methodParams += "\"dataUri\": \""		+ dataURI + "\"";
+	  methodParams += "}";
+	  
+	  std::string postData = "{";
+	  postData += "  \"method\": \"openApp\"";
+	  postData += ", \"params\": \""		+ methodParams + "\"";
+	  postData += ", \"jsonrpc\":\"2.0\"";
+	  postData += "}";
+	  
+	  std::string url = "http://localhost:4000/api/";
+	  
+	  //headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+	  XFILE::CCurlFile http;
+	  std::string content;
+	  
+      http.SetRequestHeader("Accept", "text/plain");
+	  http.SetRequestHeader("Content-Type", "application/json");
+	  
+	  if (!http.Post(url, postData, content)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
+		return false;
+	  }
+	  
+  }else if( m_androidAppOpenMode == 2){
+	  
+	   // Send event to our ReTV Service
+	   CJNIURI uri = CJNIURI::parse(m_contentResolver+"/"+package);
+	   getContentResolver().query(uri, null, null, null, null).close();
+	  
   }
-
+   
   return true;
 }
 

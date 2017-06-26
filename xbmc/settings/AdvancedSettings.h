@@ -406,6 +406,9 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
 
     std::string m_userAgent;
 
+	int m_androidAppOpenMode;				// 0: Standard Kodi, 1: Open thru service, 2: Open thru Content Provider
+	std::string m_contentResolver;			// Content resolver URL for Android Service
+
   private:
     std::string m_musicExtensions;
     void setExtraLogLevel(const std::vector<CVariant> &components);

@@ -361,6 +361,8 @@ void CAdvancedSettings::Initialize()
   m_apiRegion = "";
   m_forcedDeviceId = "";
   m_forcedRPCUrl = "";
+  m_androidAppOpenMode = 0;
+  m_contentResolver = "";
 
   m_enableMultimediaKeys = false;
 
@@ -789,6 +791,9 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
 	  XMLUtils::GetInt(pElement, "api", m_apiType, ReTV::API_TYPE_LIVE, ReTV::API_TYPE_STAGING);
 	  XMLUtils::GetString(pElement, "apiregion", m_apiRegion);
 	  XMLUtils::GetInt(pElement, "apisslmode", m_apiSSLMode, 0, 4);
+
+	  XMLUtils::GetInt(pElement, "androidappmode", m_androidAppOpenMode, 0, 2);
+	  XMLUtils::GetString(pElement, "contentresolver", m_contentResolver);
   }
 
   pElement = pRootElement->FirstChildElement("samba");
