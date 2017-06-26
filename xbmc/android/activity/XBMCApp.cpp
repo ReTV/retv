@@ -670,7 +670,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	  
 	   // Send event to our ReTV Service
 	   CJNIURI uri = CJNIURI::parse(m_contentResolver+"/"+package);
-	   getContentResolver().query(uri, null, null, null, null).close();
+	   getContentResolver().query(uri, NULL, NULL, NULL, NULL).close();
 	  
   }
    
