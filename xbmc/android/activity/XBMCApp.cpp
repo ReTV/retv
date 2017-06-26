@@ -630,7 +630,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	  http.SetRequestHeader("Content-Type", "application/json");
 	  
 	  if (!http.Post(url, postData, content)){
-		CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
+		//CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
 		return false;
 	  }
       
@@ -662,7 +662,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	  http.SetRequestHeader("Content-Type", "application/json");
 	  
 	  if (!http.Post(url, postData, content)){
-		CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
+		//CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
 		return false;
 	  }
 	  
