@@ -46,3 +46,10 @@
 	path = addons/plugin.retv.hotstar
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.hotstar.git
 	branch = master
+[submodule "addons/plugin.retv.ditto"]
+	path = addons/plugin.retv.ditto
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.ditto.git
+	branch = master
+[submodule "addons/plugin.retv.yupptv"]
+	path = addons/plugin.retv.yupptv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.yupptv.git
