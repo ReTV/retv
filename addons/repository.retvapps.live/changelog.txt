@@ -1,2 +1,5 @@
+[B]Version 1.0.2[/B]
+- Ditto TV Dependency added
+
 [B]Version 1.0[/B]
 - Initial version
