@@ -18,19 +18,19 @@ msgstr ""
 
 msgctxt "Addon Summary"
 msgid "Plugin for YouTube"
-msgstr ""
+msgstr "Plugin pre YouTube"
 
 msgctxt "Addon Description"
 msgid "YouTube is a one of the biggest video-sharing websites of the world."
-msgstr ""
+msgstr "YouTube je jednou z najväčších webstránok na zdieľanie videa na svete"
 
 msgctxt "#30000"
 msgid "General"
-msgstr "Hlavní"
+msgstr "Hlavné"
 
 msgctxt "#30001"
 msgid "Username"
-msgstr "Jméno"
+msgstr "Meno"
 
 msgctxt "#30002"
 msgid "Password"
@@ -38,7 +38,7 @@ msgstr "Heslo"
 
 msgctxt "#30009"
 msgid "Always ask for the video quality"
-msgstr "Vždy se zeptat na kvalitu"
+msgstr "Vždy sa spýtať na kvalitu videa"
 
 msgctxt "#30010"
 msgid "Video Quality"
@@ -78,39 +78,39 @@ msgstr ""
 
 msgctxt "#30020"
 msgid "Allow 3D"
-msgstr "Povolit 3D"
+msgstr "Povoliť 3D"
 
 msgctxt "#30021"
 msgid "Show Fanart"
-msgstr "Zobrazit fanart"
+msgstr "Zobraziť fanart"
 
 msgctxt "#30022"
 msgid "Items per page"
-msgstr "Položek na stránku"
+msgstr "Položiek na stránku"
 
 msgctxt "#30023"
 msgid "Search History Size"
-msgstr "Velikost historie vyhledávání"
+msgstr "Veľkosť histórie vyhľadávania"
 
 msgctxt "#30024"
 msgid "Cache Size (MB)"
-msgstr "Velikost cache(MB)"
+msgstr "Veľikosť cache(MB)"
 
 msgctxt "#30025"
 msgid "Enable setup-wizard"
-msgstr "Povolit průvodce nastavením"
+msgstr "Povoliť sprievodcu nastavením"
 
 msgctxt "#30026"
 msgid "Override View"
-msgstr "Vynutit zobrazení"
+msgstr "Vynútiť zobrazenie"
 
 msgctxt "#30027"
 msgid "View: Default"
-msgstr "Zobrazit: Výchozí"
+msgstr "Zobrazit: Štandardné"
 
 msgctxt "#30028"
 msgid "View: Episodes"
-msgstr "Zobrazit: Epizody"
+msgstr "Zobrazit: Epizódy"
 
 msgctxt "#30029"
 msgid "View: Movies"
@@ -118,7 +118,7 @@ msgstr "Zobrazit: Filmy"
 
 msgctxt "#30030"
 msgid "Execute setup-wizard?"
-msgstr "Spustit průvodce nastavením?"
+msgstr "Spustit sprievodcu nastavením?"
 
 msgctxt "#30031"
 msgid "Advanced"
@@ -126,7 +126,7 @@ msgstr "Pokročilé"
 
 msgctxt "#30032"
 msgid "View: TV Shows"
-msgstr "Zobrazit: TV Show"
+msgstr "Zobraziť: TV Show"
 
 msgctxt "#30033"
 msgid "View: Songs"
@@ -134,15 +134,15 @@ msgstr "Zobrazit: Skladby"
 
 msgctxt "#30034"
 msgid "View: Artists"
-msgstr "Zobrazit: Umělci"
+msgstr "Zobrazit: Umelci"
 
 msgctxt "#30035"
 msgid "View: Albums"
-msgstr "Zobrazit: Alba"
+msgstr "Zobrazit: Albumy"
 
 msgctxt "#30036"
 msgid "Support alternative player"
-msgstr "Podpora alternativního přehrávače"
+msgstr "Podpora alternatívneho prehrávača"
 
 msgctxt "#30037"
 msgid "Custom Watch Later Playlist ID"
@@ -154,87 +154,87 @@ msgstr ""
 
 msgctxt "#30100"
 msgid "Favorites"
-msgstr "Oblíbené"
+msgstr "Obľúbené"
 
 msgctxt "#30101"
 msgid "Add to addon favs"
-msgstr "Přidat do oblíbených"
+msgstr "Pridať do obľúbených"
 
 msgctxt "#30102"
 msgid "Search"
-msgstr "Hledat"
+msgstr "Hľadať"
 
 msgctxt "#30103"
 msgid "Library"
-msgstr "Knihovna"
+msgstr "Knižnica"
 
 msgctxt "#30104"
 msgid "Highlights"
-msgstr "Zvýraznění"
+msgstr "Zvýraznené"
 
 msgctxt "#30105"
 msgid "Archive"
-msgstr "Archiv"
+msgstr "Archív"
 
 msgctxt "#30106"
 msgid "Next Page (%d)"
-msgstr "Další strana (%d)"
+msgstr "Ďalša strana (%d)"
 
 msgctxt "#30107"
 msgid "Watch Later"
-msgstr "Sledovat později"
+msgstr "Sledovať neskôr"
 
 msgctxt "#30108"
 msgid "Remove"
-msgstr "Odstranit"
+msgstr "Odstrániť"
 
 msgctxt "#30109"
 msgid "Latest Videos"
-msgstr "Poslední videa"
+msgstr "Posledné videá"
 
 msgctxt "#30110"
 msgid "New Search"
-msgstr "Nové hledání"
+msgstr "Nové vyhľadávanie"
 
 msgctxt "#30111"
 msgid "Sign In"
-msgstr "Přihlásit"
+msgstr "Prihlásiť"
 
 msgctxt "#30112"
 msgid "Sign Out"
-msgstr "Odhlásit"
+msgstr "Odhlásiť"
 
 msgctxt "#30113"
 msgid "Rename"
-msgstr "Přejmenovat"
+msgstr "Premenovať"
 
 msgctxt "#30114"
 msgid "Confirm delete"
-msgstr "Potvrdit smazání"
+msgstr "Potvrdiť zmazanie"
 
 msgctxt "#30115"
 msgid "Confirm remove"
-msgstr "Potvrdit přesunutí"
+msgstr "Potvrdit presunutie"
 
 msgctxt "#30116"
 msgid "Delete \"%s\"?"
-msgstr "Smazat \"%s\"?"
+msgstr "Zmazať \"%s\"?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "Přesunout \"%s\"?"
+msgstr "Presunúť \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
-msgstr "Smazat"
+msgstr "Zmazať"
 
 msgctxt "#30119"
 msgid "Please wait..."
-msgstr "Prosím čekejte..."
+msgstr "Prosím čakajte..."
 
 msgctxt "#30120"
 msgid "Clear"
-msgstr "Vyčistit"
+msgstr "Vyčistiť"
 
 #YouTube
 #empty strings from id 30121 to 30199
@@ -272,91 +272,91 @@ msgstr "Kanály"
 
 msgctxt "#30501"
 msgid "Playlists"
-msgstr "Seznamy"
+msgstr "Zoznamy"
 
 msgctxt "#30502"
 msgid "Go to %s"
-msgstr "Jít na %s"
+msgstr "Ísť na %s"
 
 msgctxt "#30503"
 msgid "Show channel fanart"
-msgstr "Zobrazit fanart kanálu"
+msgstr "Zobraziť fanart kanálu"
 
 msgctxt "#30504"
 msgid "Subscriptions"
-msgstr "Odběry"
+msgstr "Odbery"
 
 msgctxt "#30505"
 msgid "Unsubscribe"
-msgstr "Odhlásit odběr"
+msgstr "Odhlásiť odber"
 
 msgctxt "#30506"
 msgid "Subscribe"
-msgstr "Přihlásit k odběru"
+msgstr "Přihlásiť k odberu"
 
 msgctxt "#30507"
 msgid "My Channel"
-msgstr "Můj kanál"
+msgstr "Môj kanál"
 
 msgctxt "#30508"
 msgid "Liked Videos"
-msgstr "Videa, která se líbí"
+msgstr "Videá, ktoré sa mi páčia"
 
 msgctxt "#30509"
 msgid "History"
-msgstr "Historie"
+msgstr "História"
 
 msgctxt "#30510"
 msgid "My Subscriptions"
-msgstr "Mé odběry"
+msgstr "Moje odbery"
 
 msgctxt "#30511"
 msgid "Queue video"
-msgstr "Přidat video do fronty"
+msgstr "Pridať video do fronty"
 
 msgctxt "#30512"
 msgid "Browse Channels"
-msgstr "Procházet kanály"
+msgstr "Prechádzať kanály"
 
 msgctxt "#30513"
 msgid "Popular right now"
-msgstr "Populární videa"
+msgstr "Populárne videá"
 
 msgctxt "#30514"
 msgid "Related Videos"
-msgstr "Související videa"
+msgstr "Súvisiace videá"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "Automaticky odstranit ze 'Shlédnout později'"
+msgstr "Automaticky odstraniť zo 'Sledovať neskôr'"
 
 msgctxt "#30516"
 msgid "Folders"
-msgstr "Složky"
+msgstr "Zložky"
 
 msgctxt "#30517"
 msgid "Subscribe to %s"
-msgstr "Odebírat od %s"
+msgstr "Odoberať od %s"
 
 msgctxt "#30518"
 msgid "Go to '%s'"
-msgstr "Jít na '%s'"
+msgstr "Ísť na '%s'"
 
 msgctxt "#30519"
 msgid "and enter the following code:"
-msgstr "a zadejte následující kód:"
+msgstr "a zadajte nasledujúcí kód:"
 
 msgctxt "#30520"
 msgid "Add to..."
-msgstr "Přidat do..."
+msgstr "Pridať do..."
 
 msgctxt "#30521"
 msgid "Select playlist"
-msgstr "Vyberte seznam"
+msgstr "Vyberte zoznam"
 
 msgctxt "#30522"
 msgid "New playlist..."
-msgstr "Nový seznam..."
+msgstr "Nový zoznam..."
 
 msgctxt "#30523"
 msgid "Language"
@@ -368,35 +368,35 @@ msgstr "Vyberte jazyk"
 
 msgctxt "#30525"
 msgid "Select region"
-msgstr "Vyberte region"
+msgstr "Vyberte región"
 
 msgctxt "#30526"
 msgid "Adjust"
-msgstr "Přizpůsobit"
+msgstr "Prispôsobiť"
 
 msgctxt "#30527"
 msgid "Language and region?"
-msgstr "Vybrat jazyk a region?"
+msgstr "Jazyk a región?"
 
 msgctxt "#30528"
 msgid "Rate..."
-msgstr "Ohodnotit..."
+msgstr "Hodnotiť..."
 
 msgctxt "#30529"
 msgid "I like this"
-msgstr "Líbí se mi to"
+msgstr "Páči sa mi to"
 
 msgctxt "#30530"
 msgid "I dislike this"
-msgstr "Nelíbí se mi to"
+msgstr "Nepáčí sa mi to"
 
 msgctxt "#30531"
 msgid "Play all"
-msgstr "Přehrát vše"
+msgstr "Prehrať všetko"
 
 msgctxt "#30532"
 msgid "Default"
-msgstr "Výchozí"
+msgstr "Štandardný"
 
 msgctxt "#30533"
 msgid "Reverse"
@@ -404,75 +404,75 @@ msgstr "Naopak"
 
 msgctxt "#30534"
 msgid "Shuffle"
-msgstr "Náhodně"
+msgstr "Náhodne"
 
 msgctxt "#30535"
 msgid "Select the order of the playlist"
-msgstr "Vyberte pořadí seznamu"
+msgstr "Vyberte poradie zoznamu"
 
 msgctxt "#30536"
 msgid "Updating Playlist..."
-msgstr "Obnovuji seznam..."
+msgstr "Obnovujem zoznam..."
 
 msgctxt "#30537"
 msgid "Play from here"
-msgstr "Přehrát odtud"
+msgstr "Prehrať odtiaľto"
 
 msgctxt "#30538"
 msgid "Disliked Videos"
-msgstr "Videa, která se nelíbí"
+msgstr "Videa, ktoré sa mi nepáčia"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "Živě"
+msgstr "Naživo"
 
 msgctxt "#30540"
 msgid "Play with..."
-msgstr "Přehrát pomocí..."
+msgstr "Prehrať pomocou..."
 
 msgctxt "#30541"
 msgid "Show channel name in description"
-msgstr "Zobrazit název kanálu v popisku"
+msgstr "Zobraziť názov kanálu v popise"
 
 msgctxt "#30542"
 msgid "rtmpe streams are not supported"
-msgstr "rtmpe stream není podporován"
+msgstr "rtmpe stream nieje podporovaný"
 
 msgctxt "#30543"
 msgid "Refresh"
-msgstr "Obnovit"
+msgstr "Obnoviť"
 
 msgctxt "#30544"
 msgid "More Links from the description"
-msgstr "Více odkazů z popisku"
+msgstr "Viac odkazov z popisu"
 
 msgctxt "#30545"
 msgid "No further links found."
-msgstr "Žádné další odkazy nenalezeny"
+msgstr "Ďalšie odkazy nenájdené"
 
 msgctxt "#30546"
 msgid "Please log in twice!"
-msgstr "Prosím přihlaste se dvakrát!"
+msgstr "Prosím prihláste se dvakrát!"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
-msgstr "Je zapotřebí povolit dvě aplikace pro správnou funkci doplňku."
+msgstr "Je potrebné povoliť dve aplikácie pre správnu funkcionalitu doplnku."
 
 msgctxt "#30548"
 msgid "More..."
-msgstr "Více..."
+msgstr "Viac..."
 
 msgctxt "#30549"
 msgid "No videos streams found"
-msgstr "Žádné streamy nenalezeny"
+msgstr "Žiadne streamy nenájdené"
 
 msgctxt "#30550"
 msgid "Region"
-msgstr "Region"
+msgstr "Región"
 
 msgctxt "#30551"
 msgid "Recommendations"
-msgstr ""
+msgstr "Odporúčania"
 
 msgctxt "#30552"
 msgid "Maintenance"

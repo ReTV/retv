@@ -7,42 +7,52 @@ msgstr ""
 "Project-Id-Version: XBMC-Addons\n"
 "Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
 "POT-Creation-Date: 2015-09-21 11:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE\n"
+"PO-Revision-Date: 2016-05-22 14:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: teemue\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# Updated by bubuleur.
 
 msgctxt "Addon Summary"
 msgid "Plugin for YouTube"
-msgstr ""
+msgstr "YouTube-lisäosa"
 
 msgctxt "Addon Description"
 msgid "YouTube is a one of the biggest video-sharing websites of the world."
-msgstr ""
+msgstr "YouTube on yksi suurimmista videonjakosivustoista maailmassa."
 
 msgctxt "#30000"
 msgid "General"
-msgstr "Hlavní"
+msgstr "Yleistä"
 
 msgctxt "#30001"
 msgid "Username"
-msgstr "Jméno"
+msgstr "Käyttäjänimi"
 
 msgctxt "#30002"
 msgid "Password"
-msgstr "Heslo"
+msgstr "Salasana"
+
+msgctxt "#30007"
+msgid "Use MPEG-DASH"
+msgstr "MPEG-DASH käytössä"
+
+msgctxt "#30008"
+msgid "Configure inputstream.adaptive"
+msgstr "Muokkaa inputstream.adaptive-asetuksia"
 
 msgctxt "#30009"
 msgid "Always ask for the video quality"
-msgstr "Vždy se zeptat na kvalitu"
+msgstr "Kysy aina videon laatu"
 
 msgctxt "#30010"
 msgid "Video Quality"
-msgstr "Kvalita videa"
+msgstr "Videon laatu"
 
 msgctxt "#30011"
 msgid "480p"
@@ -58,11 +68,11 @@ msgstr "1080p (HD)"
 
 msgctxt "#30014"
 msgid "2160p (4k)"
-msgstr "2160p (4k)"
+msgstr "2160p (4K)"
 
 msgctxt "#30015"
 msgid "4320p (8k)"
-msgstr "4320p (8k)"
+msgstr "4320p (8K)"
 
 msgctxt "#30016"
 msgid "240p"
@@ -74,514 +84,516 @@ msgstr "360p"
 
 msgctxt "#30018"
 msgid "1080p Live / 720p (HD)"
-msgstr ""
+msgstr "1080p Live / 720p (HD)"
 
 msgctxt "#30020"
 msgid "Allow 3D"
-msgstr "Povolit 3D"
+msgstr "3D käytössä"
 
 msgctxt "#30021"
 msgid "Show Fanart"
-msgstr "Zobrazit fanart"
+msgstr "Näytä fanitaide"
 
 msgctxt "#30022"
 msgid "Items per page"
-msgstr "Položek na stránku"
+msgstr "Kohteita sivulla"
 
 msgctxt "#30023"
 msgid "Search History Size"
-msgstr "Velikost historie vyhledávání"
+msgstr "Hakuhistorian koko"
 
 msgctxt "#30024"
 msgid "Cache Size (MB)"
-msgstr "Velikost cache(MB)"
+msgstr "Välimuistin koko (Mt)"
 
 msgctxt "#30025"
 msgid "Enable setup-wizard"
-msgstr "Povolit průvodce nastavením"
+msgstr "Tee asetukset opastetusti"
 
 msgctxt "#30026"
 msgid "Override View"
-msgstr "Vynutit zobrazení"
+msgstr "Pakota näkymä"
 
 msgctxt "#30027"
 msgid "View: Default"
-msgstr "Zobrazit: Výchozí"
+msgstr "Näkymä: Oletus"
 
 msgctxt "#30028"
 msgid "View: Episodes"
-msgstr "Zobrazit: Epizody"
+msgstr "Näkymä: Jaksot"
 
 msgctxt "#30029"
 msgid "View: Movies"
-msgstr "Zobrazit: Filmy"
+msgstr "View: Movies"
 
 msgctxt "#30030"
 msgid "Execute setup-wizard?"
-msgstr "Spustit průvodce nastavením?"
+msgstr "Haluatko tehdä asetukset opastetusti?"
 
 msgctxt "#30031"
 msgid "Advanced"
-msgstr "Pokročilé"
+msgstr "Lisäasetukset"
 
 msgctxt "#30032"
 msgid "View: TV Shows"
-msgstr "Zobrazit: TV Show"
+msgstr "Näkymä: TV-sarjat"
 
 msgctxt "#30033"
 msgid "View: Songs"
-msgstr "Zobrazit: Skladby"
+msgstr "Näkymä Kappaleet"
 
 msgctxt "#30034"
 msgid "View: Artists"
-msgstr "Zobrazit: Umělci"
+msgstr "Näkymä: Artistit"
 
 msgctxt "#30035"
 msgid "View: Albums"
-msgstr "Zobrazit: Alba"
+msgstr "Näkymä: Albumit"
 
 msgctxt "#30036"
 msgid "Support alternative player"
-msgstr "Podpora alternativního přehrávače"
+msgstr "Tue vaihtoehtoista soitinta"
 
 msgctxt "#30037"
 msgid "Custom Watch Later Playlist ID"
-msgstr ""
+msgstr "Valinnainen Katso myöhemmin-listan ID"
 
 msgctxt "#30038"
 msgid "Custom History Playlist ID"
-msgstr ""
+msgstr "Valinnainen historialistan ID"
 
 msgctxt "#30100"
 msgid "Favorites"
-msgstr "Oblíbené"
+msgstr "Suosikit"
 
 msgctxt "#30101"
 msgid "Add to addon favs"
-msgstr "Přidat do oblíbených"
+msgstr "Lisää lisäosan suosikkeihin"
 
 msgctxt "#30102"
 msgid "Search"
-msgstr "Hledat"
+msgstr "Etsi"
 
 msgctxt "#30103"
 msgid "Library"
-msgstr "Knihovna"
+msgstr "Kirjasto"
 
 msgctxt "#30104"
 msgid "Highlights"
-msgstr "Zvýraznění"
+msgstr "Esittelyssä"
 
 msgctxt "#30105"
 msgid "Archive"
-msgstr "Archiv"
+msgstr "Arkisto"
 
 msgctxt "#30106"
 msgid "Next Page (%d)"
-msgstr "Další strana (%d)"
+msgstr "Seuraava sivu (%d)"
 
 msgctxt "#30107"
 msgid "Watch Later"
-msgstr "Sledovat později"
+msgstr "Katso myöhemmin"
 
 msgctxt "#30108"
 msgid "Remove"
-msgstr "Odstranit"
+msgstr "Poista"
 
 msgctxt "#30109"
 msgid "Latest Videos"
-msgstr "Poslední videa"
+msgstr "Uusimmat videot"
 
 msgctxt "#30110"
 msgid "New Search"
-msgstr "Nové hledání"
+msgstr "Uusi haku"
 
 msgctxt "#30111"
 msgid "Sign In"
-msgstr "Přihlásit"
+msgstr "Kirjaudu sisään"
 
 msgctxt "#30112"
 msgid "Sign Out"
-msgstr "Odhlásit"
+msgstr "Kirjaudu ulos"
 
 msgctxt "#30113"
 msgid "Rename"
-msgstr "Přejmenovat"
+msgstr "Nimeä uudelleen"
 
 msgctxt "#30114"
 msgid "Confirm delete"
-msgstr "Potvrdit smazání"
+msgstr "Varmista poisto"
 
 msgctxt "#30115"
 msgid "Confirm remove"
-msgstr "Potvrdit přesunutí"
+msgstr "Varmista poisto"
 
 msgctxt "#30116"
-msgid "Delete \"%s\"?"
-msgstr "Smazat \"%s\"?"
+msgid "Delete "%s"?"
+msgstr "Poistetaanko \"%s\"?"
 
 msgctxt "#30117"
-msgid "Remove \"%s\"?"
-msgstr "Přesunout \"%s\"?"
+msgid "Remove "%s"?"
+msgstr "Poistetaanko \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
-msgstr "Smazat"
+msgstr "Poista"
 
 msgctxt "#30119"
 msgid "Please wait..."
-msgstr "Prosím čekejte..."
+msgstr "Odota..."
 
 msgctxt "#30120"
 msgid "Clear"
-msgstr "Vyčistit"
-
-#YouTube
-#empty strings from id 30121 to 30199
+msgstr "Tyhjennä"
 
 msgctxt "#30200"
 msgid "API Key"
-msgstr ""
+msgstr "API"
 
 msgctxt "#30201"
 msgid "API Key"
-msgstr ""
+msgstr "API key"
 
 msgctxt "#30202"
 msgid "API Id"
-msgstr ""
+msgstr "API Id"
 
 msgctxt "#30203"
 msgid "API Secret"
-msgstr ""
+msgstr "API secret"
 
 msgctxt "#30204"
 msgid "Enable Personal API Keys"
-msgstr ""
+msgstr "Käytä henkilökohtaisia API-avaimia"
 
 msgctxt "#30205"
 msgid "Use preset API key set"
-msgstr ""
-
-#YouTube
-#empty strings from id 30206 to 30499
+msgstr "Käytä esiasetettua API-avainyhdistelmää"
 
 msgctxt "#30500"
 msgid "Channels"
-msgstr "Kanály"
+msgstr "Kanavat"
 
 msgctxt "#30501"
 msgid "Playlists"
-msgstr "Seznamy"
+msgstr "Soittolistat"
 
 msgctxt "#30502"
 msgid "Go to %s"
-msgstr "Jít na %s"
+msgstr "Mene kohteeseen %s"
 
 msgctxt "#30503"
 msgid "Show channel fanart"
-msgstr "Zobrazit fanart kanálu"
+msgstr "Näytä kanavan fanitaide"
 
 msgctxt "#30504"
 msgid "Subscriptions"
-msgstr "Odběry"
+msgstr "Tilaukset"
 
 msgctxt "#30505"
 msgid "Unsubscribe"
-msgstr "Odhlásit odběr"
+msgstr "Peruuta tilaus"
 
 msgctxt "#30506"
 msgid "Subscribe"
-msgstr "Přihlásit k odběru"
+msgstr "Tilaa"
 
 msgctxt "#30507"
 msgid "My Channel"
-msgstr "Můj kanál"
+msgstr "Oma kanava"
 
 msgctxt "#30508"
 msgid "Liked Videos"
-msgstr "Videa, která se líbí"
+msgstr "Tykätyt videot"
 
 msgctxt "#30509"
 msgid "History"
-msgstr "Historie"
+msgstr "Historia"
 
 msgctxt "#30510"
 msgid "My Subscriptions"
-msgstr "Mé odběry"
+msgstr "Tilaukset"
 
 msgctxt "#30511"
 msgid "Queue video"
-msgstr "Přidat video do fronty"
+msgstr "Lisää video toistojonoon"
 
 msgctxt "#30512"
 msgid "Browse Channels"
-msgstr "Procházet kanály"
+msgstr "Selaa kanavia"
 
 msgctxt "#30513"
 msgid "Popular right now"
-msgstr "Populární videa"
+msgstr "Nousussa"
 
 msgctxt "#30514"
 msgid "Related Videos"
-msgstr "Související videa"
+msgstr "Tähän liittyvät videot"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "Automaticky odstranit ze 'Shlédnout později'"
+msgstr "Poista automaattisesti Katso myöhemmin-listalta"
 
 msgctxt "#30516"
 msgid "Folders"
-msgstr "Složky"
+msgstr "Kansiot"
 
 msgctxt "#30517"
 msgid "Subscribe to %s"
-msgstr "Odebírat od %s"
+msgstr "Tilaa %s"
 
 msgctxt "#30518"
 msgid "Go to '%s'"
-msgstr "Jít na '%s'"
+msgstr "Mene kohteeseen '%s'"
 
 msgctxt "#30519"
 msgid "and enter the following code:"
-msgstr "a zadejte následující kód:"
+msgstr "ja syötä koodi:"
 
 msgctxt "#30520"
 msgid "Add to..."
-msgstr "Přidat do..."
+msgstr "Lisää soittolistaan..."
 
 msgctxt "#30521"
 msgid "Select playlist"
-msgstr "Vyberte seznam"
+msgstr "Valitse soittolista"
 
 msgctxt "#30522"
 msgid "New playlist..."
-msgstr "Nový seznam..."
+msgstr "Uusi soittolista..."
 
 msgctxt "#30523"
 msgid "Language"
-msgstr "Jazyk"
+msgstr "Kieli"
 
 msgctxt "#30524"
 msgid "Select language"
-msgstr "Vyberte jazyk"
+msgstr "Valitse kieli"
 
 msgctxt "#30525"
 msgid "Select region"
-msgstr "Vyberte region"
+msgstr "Valitse alue"
 
 msgctxt "#30526"
 msgid "Adjust"
-msgstr "Přizpůsobit"
+msgstr "Aseta"
 
 msgctxt "#30527"
 msgid "Language and region?"
-msgstr "Vybrat jazyk a region?"
+msgstr "Kieli ja alue?"
 
 msgctxt "#30528"
 msgid "Rate..."
-msgstr "Ohodnotit..."
+msgstr "Arvioi..."
 
 msgctxt "#30529"
 msgid "I like this"
-msgstr "Líbí se mi to"
+msgstr "Tykkään tästä"
 
 msgctxt "#30530"
 msgid "I dislike this"
-msgstr "Nelíbí se mi to"
+msgstr "En tykkää tästä"
 
 msgctxt "#30531"
 msgid "Play all"
-msgstr "Přehrát vše"
+msgstr "Toista kaikki"
 
 msgctxt "#30532"
 msgid "Default"
-msgstr "Výchozí"
+msgstr "Oletus"
 
 msgctxt "#30533"
 msgid "Reverse"
-msgstr "Naopak"
+msgstr "Käänteinen"
 
 msgctxt "#30534"
 msgid "Shuffle"
-msgstr "Náhodně"
+msgstr "Sekoitettu"
 
 msgctxt "#30535"
 msgid "Select the order of the playlist"
-msgstr "Vyberte pořadí seznamu"
+msgstr "Valitse soittolistan järjestys"
 
 msgctxt "#30536"
 msgid "Updating Playlist..."
-msgstr "Obnovuji seznam..."
+msgstr "Päivitetään soittolistaa..."
 
 msgctxt "#30537"
 msgid "Play from here"
-msgstr "Přehrát odtud"
+msgstr "Toista tästä"
 
 msgctxt "#30538"
 msgid "Disliked Videos"
-msgstr "Videa, která se nelíbí"
+msgstr "Ei-tykätyt videot"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "Živě"
+msgstr "Live"
 
 msgctxt "#30540"
 msgid "Play with..."
-msgstr "Přehrát pomocí..."
+msgstr "Toista..."
 
 msgctxt "#30541"
 msgid "Show channel name in description"
-msgstr "Zobrazit název kanálu v popisku"
+msgstr "Näytä kanavan nimi kuvauksessa"
 
 msgctxt "#30542"
 msgid "rtmpe streams are not supported"
-msgstr "rtmpe stream není podporován"
+msgstr "rtmpe-lähteet eivät ole tuettuja"
 
 msgctxt "#30543"
 msgid "Refresh"
-msgstr "Obnovit"
+msgstr "Päivitä"
 
 msgctxt "#30544"
 msgid "More Links from the description"
-msgstr "Více odkazů z popisku"
+msgstr "Poimi linkit kuvauksesta"
 
 msgctxt "#30545"
 msgid "No further links found."
-msgstr "Žádné další odkazy nenalezeny"
+msgstr "Linkkejä ei löytynyt."
 
 msgctxt "#30546"
 msgid "Please log in twice!"
-msgstr "Prosím přihlaste se dvakrát!"
+msgstr "Kirjaudu sisään kahdesti!"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
-msgstr "Je zapotřebí povolit dvě aplikace pro správnou funkci doplňku."
+msgstr "Toimiakseen YouTube-lisäosa vaatii ottamaan käyttöön kaksi sovellusta."
 
 msgctxt "#30548"
 msgid "More..."
-msgstr "Více..."
+msgstr "Lisää..."
 
 msgctxt "#30549"
 msgid "No videos streams found"
-msgstr "Žádné streamy nenalezeny"
+msgstr "Videolähteitä ei löytynyt"
 
 msgctxt "#30550"
 msgid "Region"
-msgstr "Region"
+msgstr "Alue"
 
 msgctxt "#30551"
 msgid "Recommendations"
-msgstr ""
+msgstr "Suositukset"
 
 msgctxt "#30552"
 msgid "Maintenance"
-msgstr ""
+msgstr "Ylläpito"
 
 msgctxt "#30553"
 msgid "Delete function cache database"
-msgstr ""
+msgstr "Poista toimintojen välimuistitietokanta"
 
 msgctxt "#30554"
 msgid "Delete search history database"
-msgstr ""
+msgstr "Poista hakuhistoriatietokanta"
 
 msgctxt "#30555"
 msgid "Clear function cache"
-msgstr ""
+msgstr "Tyhjennä toimintovälimuisti"
 
 msgctxt "#30556"
 msgid "Clear search history"
-msgstr ""
+msgstr "Tyhjennä hakuhistoria"
 
 msgctxt "#30557"
 msgid "function cache"
-msgstr ""
+msgstr "toimintovälimuisti"
 
 msgctxt "#30558"
 msgid "search history"
-msgstr ""
+msgstr "hakuhistoria"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
-msgstr ""
+msgstr "Poista settings.xml"
 
 msgctxt "#30560"
 msgid "Subtitle language(s) to download"
-msgstr ""
+msgstr "Ladattavat tekstityskiele(t)"
 
 msgctxt "#30561"
 msgid "None"
-msgstr ""
+msgstr "Ei mitään"
 
 msgctxt "#30562"
 msgid "All"
-msgstr ""
+msgstr "Kaikki"
 
 msgctxt "#30563"
 msgid "Setting"
-msgstr ""
+msgstr "Asetus"
 
 msgctxt "#30564"
 msgid "Setting, English"
-msgstr ""
+msgstr "Asetus, Englanti"
 
 msgctxt "#30565"
 msgid "English"
-msgstr ""
+msgstr "Englanti"
 
 msgctxt "#30566"
 msgid "Prompt"
-msgstr ""
+msgstr "Kysy"
 
 msgctxt "#30567"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Katso myöhemmin"
 
 msgctxt "#30568"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Poista Katso myöhemmin-listalta"
 
 msgctxt "#30569"
 msgid "Are you sure you want to remove '%s' as your Watch Later list?"
-msgstr ""
+msgstr "Haluatko varmasti poistaa kohteen '%s' Katso myöhemmin-listalta?"
 
 msgctxt "#30570"
 msgid "Are you sure you want to replace your current Watch Later list with '%s'?"
-msgstr ""
+msgstr "Haluatko varmasti korvata nykyisen Katso myöhemmin-listan listalla '%s'?"
 
 msgctxt "#30571"
 msgid "Set as History"
-msgstr ""
+msgstr "Lisää Historiaan"
 
 msgctxt "#30572"
 msgid "Remove as History"
-msgstr ""
+msgstr "Poista katseluhistoriasta"
 
 msgctxt "#30573"
 msgid "Are you sure you want to remove '%s' as your History list?"
-msgstr ""
+msgstr "Haluatko varmasti poistaa kohteen '%s' katseluhistoriasta?"
 
 msgctxt "#30574"
 msgid "Are you sure you want to replace your current History list with '%s'?"
-msgstr ""
+msgstr "Haluatko varmasti korvata nykyisen katseluhistorialistan listalla '%s'?"
 
 msgctxt "#30575"
 msgid "Succeeded"
-msgstr ""
+msgstr "Onnistui"
 
 msgctxt "#30576"
 msgid "Failed"
-msgstr ""
+msgstr "Epäonnistui"
 
 msgctxt "#30577"
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 msgctxt "#30578"
 msgid "Force SSL Certificate verification"
-msgstr ""
+msgstr "Pakota SSL-varmistus"
 
 msgctxt "#30579"
 msgid "MPEG-DASH is enabled in the YouTube settings, however inputstream.adaptive appears to be disabled. Would you like to enable inputstream.adaptive now?"
-msgstr ""
+msgstr "MPEG-DASH on käytössä asetuksissa, mutta inputstream.adaptive näyttää olevan poissa käytöstä. Otetaanko inputstream.adaptive käyttöön?"
+
+msgctxt "#30580"
+msgid "Reset access manager"
+msgstr "Nollaa access manager"
+
+msgctxt "#30581"
+msgid "Are you sure you want to reset access manager?"
+msgstr "Haluatko varmasti nollata access managerin?"
