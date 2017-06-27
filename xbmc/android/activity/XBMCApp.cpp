@@ -620,7 +620,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	  postData += ", \"jsonrpc\":\"2.0\"";
 	  postData += "}";
 	  
-	  std::string url = "http://127.0.0.1:4000/api/";
+	  std::string url = "http://127.0.0.1:4000/api";
 	  
 	  //headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 	  XFILE::CCurlFile http;
