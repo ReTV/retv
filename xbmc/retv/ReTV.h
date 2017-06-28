@@ -165,16 +165,16 @@ private:
 	const std::string m_downloadUrlLive = "https://api.retv.in/index.php/download/";
 	const std::string m_downloadUrlStaging = "http://staging.retv.in/api.retv.in/index.php/download/";*/
 
-	const std::string m_apiUrlLive = "api.retv.in/index.php/api/";
-	const std::string m_apiUrlStaging = "staging.retv.in/api.retv.in/index.php/api/";
+	std::string m_apiUrlLive = "api.retv.in/index.php/api/";
+	std::string m_apiUrlStaging = "staging.retv.in/api.retv.in/index.php/api/";
 
-	const std::string m_mediaUrlLive = "files.retv.in/";
-	const std::string m_mediaUrlStaging = "staging.retv.in/files.retv.in/";
+	std::string m_mediaUrlLive = "files.retv.in/";
+	std::string m_mediaUrlStaging = "staging.retv.in/files.retv.in/";
 
-	const std::string m_downloadUrlLive = "api.retv.in/index.php/download/";
-	const std::string m_downloadUrlStaging = "staging.retv.in/api.retv.in/index.php/download/";
+	std::string m_downloadUrlLive = "api.retv.in/index.php/download/";
+	std::string m_downloadUrlStaging = "staging.retv.in/api.retv.in/index.php/download/";
 
-    const std::string rpc_url = "http://localhost:4000/api";
+    std::string rpc_url = "http://localhost:4000/api";
 
 	// API end points
 	const std::string m_api_Login = "user/login";
@@ -195,6 +195,7 @@ private:
 
 #if defined(TARGET_ANDROID)
     bool initRPC();
+    bool callRPC(std::string method, std::string params);
 #endif
 };
 
