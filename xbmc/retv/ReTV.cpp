@@ -411,7 +411,7 @@ bool ReTV::callRPC(std::string method, std::string params)
     std::string content;
     XFILE::CCurlFile http;
     
-	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [" << params << " ], \"method\": \"" << method << \"}";
+	rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [" << params << " ], \"method\": \"" << method << "\"}";
     
 	return http.Post(m_rpcUrl, rpc_payload.str(), content, true);
 }
