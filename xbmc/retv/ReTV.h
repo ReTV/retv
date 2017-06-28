@@ -95,6 +95,10 @@ public:
 
 	float getFFData();
 
+#if defined(TARGET_ANDROID)
+    bool callRPC(std::string method, std::string params);
+#endif
+
 private:
 	// private construction, and no assignments; use the provided singleton methods
 	//ReTV();
@@ -195,7 +199,6 @@ private:
 
 #if defined(TARGET_ANDROID)
     bool initRPC();
-    bool callRPC(std::string method, std::string params);
 #endif
 };
 
