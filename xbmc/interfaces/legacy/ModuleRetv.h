@@ -27,11 +27,25 @@ namespace XBMCAddon
     const int REQUEST_TIMEOUT = 10;
     String test(const String& url);
 
+	/**
+	* version() -- Gets ReTV api/system version
+	*/
+	int version();
 
 	/**
 	* isRegistered() -- Checks whether we are registered with ReTV
 	*/
 	bool isRegistered();
+
+	/**
+	* isSecure() -- Checks whether system is secure, is being accessed from allowed network
+	*/
+	bool isSecure();
+
+	/**
+	* secureCheck() -- Forces a secure check
+	*/
+	bool secureCheck();
 
 	/**
 	* registerDevice(mobileNumber) -- Calls the Registration API for ReTV

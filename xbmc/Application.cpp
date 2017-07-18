@@ -3282,6 +3282,13 @@ PlayBackRet CApplication::PlayStack(const CFileItem& item, bool bRestart)
 
 PlayBackRet CApplication::PlayFile(const CFileItem& item, bool bRestart)
 {
+#ifdef SECURE_BUILD
+	if (!g_retv.isSecure) {
+		CLog::Log(LOGNOTICE, "Cannot play. ReTV not secure");
+		return PLAYBACK_FAIL;
+	}
+#endif
+
   // Ensure the MIME type has been retrieved for http:// and shout:// streams
   if (item.GetMimeType().empty())
     const_cast<CFileItem&>(item).FillInMimeType();

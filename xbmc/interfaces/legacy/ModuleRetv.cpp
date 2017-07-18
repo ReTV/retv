@@ -24,12 +24,25 @@ namespace XBMCAddon
 		return url;
     }
 
+	int version()
+	{
+		return ReTV::RETV_VERSION;
+	}
 
 	bool isRegistered()
 	{
 		return g_retv.isActivated();
 	}
 
+	bool isSecure()
+	{
+		return ReTV::isSecure;
+	}
+	
+	void secureCheck()
+	{
+		g_retv.secureCheck();
+	}
 
 	String registerDevice(const char* mobileNumber)
 	{

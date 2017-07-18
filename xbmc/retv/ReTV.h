@@ -51,6 +51,10 @@ public:
 	std::string makeReTVAddonUrl(std::string url);
 
 	static int torrentProgress;
+	
+	static bool isSecure;
+
+	static const int RETV_VERSION = 2;
 
 	static const int API_TYPE_LIVE = 0;
 	static const int API_TYPE_STAGING = 1;
@@ -82,9 +86,12 @@ public:
     std::string getBaseUrl();
 	void initAPI(std::string authtoken, unsigned int expiry);
 
+	void secureCheck();
+
     void Cleanup();
 
     std::string makeApiURL(std::string api);
+	std::string makeApiURL_V2(std::string api);
     std::string makeMediaApiURL(std::string api);
 
 	XBMCAddon::retv::SubscriptionInfo* getSubscriptionInfo();
@@ -147,6 +154,7 @@ private:
 	static std::string m_updateRepoPassword;
 
 	std::string m_apiUrl;
+	std::string m_apiUrl_V2;
 	std::string m_mediaUrl;
 	std::string m_downloadUrl;
 	std::string m_rpcUrl;
@@ -171,6 +179,9 @@ private:
 
 	std::string m_apiUrlLive = "api.retv.in/index.php/api/";
 	std::string m_apiUrlStaging = "staging.retv.in/api.retv.in/index.php/api/";
+	
+	std::string m_apiUrlLive_V2 = "api.retv.in/index.php/v2/";
+	std::string m_apiUrlStaging_V2 = "staging.retv.in/api.retv.in/index.php/v2/";
 
 	std::string m_mediaUrlLive = "files.retv.in/";
 	std::string m_mediaUrlStaging = "staging.retv.in/files.retv.in/";
@@ -186,7 +197,11 @@ private:
 	const std::string m_api_Activate = "activation/sendcode";
 	const std::string m_api_Validate = "activation/validatecode";
 
+	const std::string m_api_Secure = "user/secure";
+
 	std::string parseLoginResponse(std::string loginResponseString);
+
+	bool parseSecureResponse(std::string secureResponseString);
 
 	int parseValidationResponse(std::string validationResponse);
 
@@ -195,6 +210,7 @@ private:
 	void readSubscriptionInfo();
 
 	std::string getLoginJSON();
+	std::string getSecureCheckJSON();
 	std::string getDeviceActivationJSON();
 
 #if defined(TARGET_ANDROID)

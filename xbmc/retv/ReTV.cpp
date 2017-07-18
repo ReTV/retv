@@ -49,6 +49,11 @@ std::string ReTV::m_updateRepoPassword = "";
 
 int ReTV::torrentProgress = 0;
 
+#ifdef SECURE_BUILD
+bool ReTV::isSecure = true;
+#else
+bool ReTV::isSecure = false;
+#endif
 
 ReTV::ReTV()
 {
@@ -70,6 +75,11 @@ std::string ReTV::makeApiURL(std::string api)
 	return m_apiUrl + api;
 }
 
+std::string ReTV::makeApiURL_V2(std::string api)
+{
+	return m_apiUrl_V2 + api;
+}
+
 std::string ReTV::makeMediaApiURL(std::string api)
 {
     return m_mediaUrl + api;
@@ -85,12 +95,14 @@ void ReTV::Initialize()
 
 	if (api_type == API_TYPE_LIVE){
 		m_apiUrl = m_apiUrlLive;
+		m_apiUrl_V2 = m_apiUrlLive_V2;
 		m_mediaUrl = m_mediaUrlLive;
 		m_downloadUrl = m_downloadUrlLive;
 	}
 	// Staging
 	else{
 		m_apiUrl = m_apiUrlStaging;
+		m_apiUrl_V2 = m_apiUrlStaging_V2;
 		m_mediaUrl = m_mediaUrlStaging;
 		m_downloadUrl = m_downloadUrlStaging;
 	}
@@ -281,6 +293,40 @@ std::string ReTV::login(const char* mobileNumber)
 void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
 	this->m_authToken = authtoken;
 	this->m_expiryTime = expiry;
+
+	this->secureCheck();
+}
+
+void ReTV::secureCheck()
+{
+#ifndef SECURE_BUILD
+	CLog::Log(LOGNOTICE, "Secure check not required");
+	ReTV::isSecure = true;
+#else
+	CLog::Log(LOGNOTICE, "Checking Secure");
+
+
+	XFILE::CCurlFile http;
+
+	if (!http.IsInternet())
+		return;
+
+	http.SetRequestHeader("Authorization", m_headerAuthorization);
+	http.SetRequestHeader("Content-Type", m_headerContentType);
+
+	std::string postData = getSecureCheckJSON();
+
+	std::string content;
+
+	//CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
+	//CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
+	if (!http.Post(makeApiURL(m_api_Secure), postData, content, true)) {
+		CLog::Log(LOGNOTICE, "ReTV: Couldn't get Security setting");
+		return;
+	}
+
+	ReTV::isSecure = parseSecureResponse(content);
+#endif
 }
 
 
@@ -356,6 +402,57 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 	return CJSONVariantWriter::Write(loginResponse,true);
 }
 
+
+bool ReTV::parseSecureResponse(std::string secureResponseString)
+{
+	// Parse the response
+	CVariant secureResponse = CJSONVariantParser::Parse((const unsigned char *)secureResponseString.c_str(), secureResponseString.size());
+
+	if (!secureResponse.isObject()) {
+		CLog::Log(LOGNOTICE, "Couldn't parse response");
+		return false;
+	}
+
+	if (!secureResponse.isMember("successcode")) {
+		CLog::Log(LOGNOTICE, "Success code not found");
+		return false;
+	}
+
+	int successCode = secureResponse["successcode"].asInteger();
+
+	if (successCode != 100) {
+		CLog::Log(LOGNOTICE, "Success code not proper");
+		return false;
+	}
+
+	CLog::Log(LOGNOTICE, "Success code is proper");
+
+	if (!secureResponse.isMember("data")) {
+		CLog::Log(LOGNOTICE, "Data not found");
+		return false;
+	}
+
+	CVariant data = secureResponse["data"];
+
+	if (!data.isObject()) {
+		CLog::Log(LOGNOTICE, "Data not proper");
+		return false;
+	}
+
+	if (!data.isMember("secure")) {
+		CLog::Log(LOGNOTICE, "Secure data not found");
+		return false;
+	}
+
+	bool isSecure = data["secure"].asBoolean();
+
+	if(isSecure)
+		CLog::Log(LOGNOTICE, "Application Secure");
+	else
+		CLog::Log(LOGNOTICE, "Application Not Secure");
+
+	return isSecure;
+}
 
 int ReTV::parseValidationResponse(std::string validationResponseString)
 {
@@ -775,6 +872,20 @@ std::string ReTV::getLoginJSON()
 	loginJSON += "}";
 
 	return 	loginJSON;
+	;
+}
+
+/*Gets the Login JSON as string*/
+std::string ReTV::getSecureCheckJSON()
+{
+	std::string sCheckJSON = "{";
+
+	sCheckJSON += "  \"authtoken\": \"" + m_authToken + "\"";
+	sCheckJSON += ", \"devicecode\":\"" + m_deviceCode + "\"";
+
+	sCheckJSON += "}";
+
+	return 	sCheckJSON;
 	;
 }
 

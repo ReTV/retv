@@ -637,6 +637,8 @@ CDVDPlayer::~CDVDPlayer()
 
 bool CDVDPlayer::OpenFile(const CFileItem& file, const CPlayerOptions &options)
 {
+	// TODO: Add Lock check here
+
     CLog::Log(LOGNOTICE, "DVDPlayer: Opening: %s", CURL::GetRedacted(file.GetPath()).c_str());
 
     // if playing a file close it first
@@ -3330,6 +3332,8 @@ void CDVDPlayer::ToFFRW(int iSpeed)
 
 bool CDVDPlayer::OpenStream(CCurrentStream& current, int iStream, int source, bool reset)
 {
+	// TODO: Add Check here
+
   CDemuxStream* stream = NULL;
   CDVDStreamInfo hint;
 
