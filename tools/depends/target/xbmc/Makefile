@@ -66,6 +66,7 @@ endif
 
 CONFIGURE += $(CONFIG_EXTRA)
 
+all: DEBUG=--enable-debug=no
 all: $(SOURCE)/lib$(APP_NAME).so
 
 release: DEBUG=--enable-debug=no
