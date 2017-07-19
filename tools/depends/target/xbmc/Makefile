@@ -52,6 +52,14 @@ $(info App Channel - $(channel) )
 export CXXFLAGS+=-DAPP_CHANNEL="\"$(channel)"\"
 endif
 
+# Secure APK
+ifeq ($(secure),)
+$(info Open Build)
+else
+$(info Secure Build for ISPs - $(secure) )
+export CXXFLAGS+=-DSECURE_BUILD
+endif
+
 ifeq ($(Configuration),Release)
 DEBUG = --enable-debug=no
 endif
