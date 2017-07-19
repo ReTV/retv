@@ -157,7 +157,8 @@ void ReTV::Initialize()
 
 #if defined(TARGET_ANDROID)
 #ifdef RETV_ANDROID_LOCK
-	
+	CLog::Log(LOGNOTICE, "ReTV Locked Build");
+    
 	std::string manufacturer(m_platformInfo.m_manufacturer);
 	StringUtils::ToLower(manufacturer);
 
@@ -171,6 +172,14 @@ void ReTV::Initialize()
 	}
 #endif
 #endif
+
+              
+#if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
+	CLog::Log(LOGNOTICE, "ReTV Secure Build");
+#else
+    CLog::Log(LOGNOTICE, "ReTV Open Build");
+#endif
+
 
 	m_initialized = true;
 
@@ -762,8 +771,10 @@ void ReTV::readPlatformInfo()
 	else
 #ifdef PF_ANDROID_TV
 		m_platformInfo.m_platformId = ReTVPlatform::AndroidTV;
+        CLog::Log(LOGNOTICE, "ReTV Android TV");
 #elif PF_ANDROID_BOX
 		m_platformInfo.m_platformId = ReTVPlatform::AndroidBox;
+        CLog::Log(LOGNOTICE, "ReTV Android Box Build");
 #else
 		m_platformInfo.m_platformId = ReTVPlatform::Android;
 #endif
