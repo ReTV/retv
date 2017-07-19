@@ -335,6 +335,8 @@ bool ReTV::secureCheck()
 	}
 
 	ReTV::isSecure = parseSecureResponse(content);
+    
+    return ReTV::isSecure;
 #else
 	CLog::Log(LOGNOTICE, "Secure check not required");
     return true;

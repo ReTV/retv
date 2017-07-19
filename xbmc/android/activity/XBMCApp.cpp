@@ -579,7 +579,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 	if (!g_retv.isSecure) {
         
         // Can only open Android settings or Android TV settings
-        if(package!="com.android.tv.settings" || package!="com.android.settings"){
+        if(package != "com.android.tv.settings" && package != "com.android.settings"){
             CLog::Log(LOGNOTICE, "Cannot open App. ReTV not secure");
             return false;
         }
@@ -616,41 +616,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
 		xbmc_jnienv()->ExceptionClear();
 		return false;
 	  }
-      
-      // Send notification to ReTV service
-      // Send message to JSON RPC server
-	  /*std::stringstream rpc_payload;
-      
-      rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << package << "\", \"" << intent << "\", " << dataType << "\", \"" << dataURI << "\" ], \"method\": \"openedApp\"}";
-      */
-      
-	  /*std::string methodParams = "{";
-	  methodParams += "\"pkg\": \""		+ package + "\"";
-	  methodParams += "\"intent\": \""		+ intent + "\"";
-	  methodParams += "\"dataType\": \""		+ dataType + "\"";
-	  methodParams += "\"dataUri\": \""		+ dataURI + "\"";
-	  methodParams += "}";
-	  
-	  std::string postData = "{";
-	  postData += "  \"method\": \"openedApp\"";
-	  postData += ", \"params\": \""		+ methodParams + "\"";
-	  postData += ", \"jsonrpc\":\"2.0\"";
-	  postData += "}";*/
-	  
-	  /*std::string url = "http://127.0.0.1:4000/api";
-	  
-	  //headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-	  XFILE::CCurlFile http;
-	  std::string content;
-	  
-      http.SetRequestHeader("Accept", "text/plain");
-	  http.SetRequestHeader("Content-Type", "application/json");
-	  
-	  if (!http.Post(url, rpc_payload.str(), content, true)){
-		//CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
-		return false;
-	  }*/
-      
+
 #if defined(TARGET_ANDROID)
       std::string methodParams = "";
 	  methodParams += "\""		+ package + "\"";
@@ -663,21 +629,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
       return true;
       
   }else if( g_advancedSettings.m_androidAppOpenMode == 1){
-	  
-	  // Send message to JSON RPC server
-	  
-	  /*std::string methodParams = "{";
-	  methodParams += "\"pkg\": \""		+ package + "\"";
-	  methodParams += "\"intent\": \""		+ intent + "\"";
-	  methodParams += "\"dataType\": \""		+ dataType + "\"";
-	  methodParams += "\"dataUri\": \""		+ dataURI + "\"";
-	  methodParams += "}";
-	  
-	  std::string postData = "{";
-	  postData += "  \"method\": \"openApp\"";
-	  postData += ", \"params\": \""		+ methodParams + "\"";
-	  postData += ", \"jsonrpc\":\"2.0\"";
-	  postData += "}";*/
+
 #if defined(TARGET_ANDROID)
       std::string methodParams = "";
 	  methodParams += "\""		+ package + "\"";
@@ -688,26 +640,7 @@ bool CXBMCApp::StartActivity(const string &package, const string &intent, const 
       g_retv.callRPC("openedApp", methodParams);
     
       return true;
-    
-      /*std::stringstream rpc_payload;
-      
-      rpc_payload << "{\"jsonrpc\": \"2.0\", \"params\": [\"" << package << "\", \"" << intent << "\", " << dataType << "\", \"" << dataURI << "\" ], \"method\": \"openedApp\"}";
-      
-	  std::string url = "http://localhost:4000/api";
-	  
-	  //headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-	  XFILE::CCurlFile http;
-	  std::string content;
-	  
-      http.SetRequestHeader("Accept", "text/plain");
-	  http.SetRequestHeader("Content-Type", "application/json");
-	  
-	  if (!http.Post(url, rpc_payload.str(), content, true)){
-		//CLog::Log(LOGNOTICE, "ReTV: Couldnt call RPC Api for "+package);
-		return false;
-	  }*/
-      
-	  
+
   }/*else if( m_androidAppOpenMode == 2){
 	  
 	   // Send event to our ReTV Service
