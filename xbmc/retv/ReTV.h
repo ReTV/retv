@@ -86,7 +86,7 @@ public:
     std::string getBaseUrl();
 	void initAPI(std::string authtoken, unsigned int expiry);
 
-	void secureCheck();
+	bool secureCheck();
 
     void Cleanup();
 

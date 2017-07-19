@@ -43,11 +43,6 @@ namespace XBMCAddon
 	bool isSecure();
 
 	/**
-	* secureCheck() -- Forces a secure check
-	*/
-	bool secureCheck();
-
-	/**
 	* registerDevice(mobileNumber) -- Calls the Registration API for ReTV
 	*
 	* mobileNumber    : string - 10 digit mobile numer\n

@@ -3286,7 +3286,8 @@ PlayBackRet CApplication::PlayFile(const CFileItem& item, bool bRestart)
 #if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
 	if (!g_retv.isSecure) {
 		CLog::Log(LOGNOTICE, "Cannot play. ReTV not secure");
-		return PLAYBACK_FAIL;
+        OnPlayBackStopped();
+		return PLAYBACK_CANCELED;
 	}
 #endif
 

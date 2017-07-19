@@ -36,13 +36,7 @@ namespace XBMCAddon
 
 	bool isSecure()
 	{
-		return ReTV::isSecure;
-	}
-	
-	bool secureCheck()
-	{
-		g_retv.secureCheck();
-        return true;
+		return g_retv.secureCheck();
 	}
 
 	String registerDevice(const char* mobileNumber)

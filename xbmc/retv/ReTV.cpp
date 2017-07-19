@@ -297,16 +297,19 @@ void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
 	this->secureCheck();
 }
 
-void ReTV::secureCheck()
+bool ReTV::secureCheck()
 {
 #if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
 	CLog::Log(LOGNOTICE, "Checking Secure");
-
+    
+    // Do not make api call if already secure
+    if(ReTV::isSecure)
+        return true;
 
 	XFILE::CCurlFile http;
 
 	if (!http.IsInternet())
-		return;
+		return false;
 
 	http.SetRequestHeader("Authorization", m_headerAuthorization);
 	http.SetRequestHeader("Content-Type", m_headerContentType);
@@ -319,13 +322,13 @@ void ReTV::secureCheck()
 	//CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
 	if (!http.Post(makeApiURL(m_api_Secure), postData, content, true)) {
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't get Security setting");
-		return;
+		return false;
 	}
 
 	ReTV::isSecure = parseSecureResponse(content);
 #else
 	CLog::Log(LOGNOTICE, "Secure check not required");
-	ReTV::isSecure = true;
+    return true;
 #endif
 
 }
