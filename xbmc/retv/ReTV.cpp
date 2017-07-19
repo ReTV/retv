@@ -329,7 +329,7 @@ bool ReTV::secureCheck()
 
 	//CLog::Log(LOGNOTICE, "Post Data : %s",postData.c_str());
 	//CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_Login).c_str());
-	if (!http.Post(makeApiURL(m_api_Secure), postData, content, true)) {
+	if (!http.Post(makeApiURL_V2(m_api_Secure), postData, content, true)) {
 		CLog::Log(LOGNOTICE, "ReTV: Couldn't get Security setting");
 		return false;
 	}

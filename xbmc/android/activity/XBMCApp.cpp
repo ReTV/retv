@@ -572,6 +572,8 @@ bool CXBMCApp::HasLaunchIntent(const string &package)
 // Note intent, dataType, dataURI all default to ""
 bool CXBMCApp::StartActivity(const string &package, const string &intent, const string &dataType, const string &dataURI)
 {
+    CLog::Log(LOGNOTICE, "CXBMCApp::StartActivity - Opening %s", package.c_str());
+    
 	//CGUIDialogKaiToast::QueueNotification("ReTV Android", "Starting App : "+package);
 #if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
 	if (!g_retv.isSecure) {
