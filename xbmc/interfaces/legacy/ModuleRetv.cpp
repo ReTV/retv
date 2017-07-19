@@ -18,6 +18,7 @@
 #include "filesystem/File.h"
 #endif
 
+using namespace XFILE;
 
 namespace XBMCAddon
 {
@@ -147,7 +148,7 @@ namespace XBMCAddon
         std::string path = "";
 #if defined(TARGET_ANDROID)
         
-        if (!CXBMCApp::GetExternalStorage(path, "downloads") || path.empty() || !CDirectory::Exists(path))
+        if (!CXBMCApp::GetExternalStorage(path, "downloads") || path.empty() || !CFile::Exists(path))
         {
           path = "";
         }
