@@ -133,8 +133,8 @@ namespace XBMCAddon
 	{
 		ReTV::torrentProgress = percent;
 	}
-	void initAPI(std::string authtoken, unsigned int expiry){
-		return g_retv.initAPI(authtoken, expiry);
+	void initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password){
+		return g_retv.initAPI(authtoken, expiry, username, password);
 	}
   }
 }

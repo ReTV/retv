@@ -68,7 +68,7 @@ namespace XBMCAddon
 	bool callDownloadAPI(const char* fileId, const char* filePath);
     String getLinkByToken(const char* token);
     String getBaseUrl();
-	void initAPI(std::string authtoken, unsigned int expiry);
+	void initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password);
 
     int getSubscriptionEndTime();
 	

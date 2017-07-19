@@ -299,10 +299,12 @@ std::string ReTV::login(const char* mobileNumber)
 	
 }
 
-void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
+void ReTV::initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password) {
 	this->m_authToken = authtoken;
 	this->m_expiryTime = expiry;
-
+    this->m_updateRepoUsername = username;
+    this->m_updateRepoPassword = password;
+    
 	this->secureCheck();
 }
 
