@@ -397,12 +397,12 @@ std::string ReTV::parseLoginResponse(std::string loginResponseString)
 
 	if (loginResponse.isMember("us")){
 		ReTV::m_updateRepoUsername = loginResponse["us"].asString();
-		loginResponse["us"].clear(); // Don't send this back to python
+		//loginResponse["us"].clear(); // Don't send this back to python
 	}
 
 	if (loginResponse.isMember("up")){
 		ReTV::m_updateRepoPassword = loginResponse["up"].asString();
-		loginResponse["up"].clear(); // Don't send this back to python
+		//loginResponse["up"].clear(); // Don't send this back to python
 	}
 
 
