@@ -83,5 +83,7 @@ namespace XBMCAddon
 	int getPlatform();
 
 	void setTorrentProgress(int percent);
+    
+    String getDownloadDir();
   }
 }

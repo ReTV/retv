@@ -13,6 +13,11 @@
 #include "SubscriptionInfo.h"
 #include "utils/SystemInfo.h"
 
+#if defined(TARGET_ANDROID)
+#include "android/activity/XBMCApp.h"
+#include "filesystem/File.h"
+#endif
+
 
 namespace XBMCAddon
 {
@@ -136,5 +141,18 @@ namespace XBMCAddon
 	void initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password){
 		return g_retv.initAPI(authtoken, expiry, username, password);
 	}
+    
+    String getDownloadDir()
+    {
+        std::string path = "";
+#if defined(TARGET_ANDROID)
+        
+        if (!CXBMCApp::GetExternalStorage(path, "downloads") || path.empty() || !CDirectory::Exists(path))
+        {
+          path = "";
+        }
+#endif
+        return path;
+    }
   }
 }
