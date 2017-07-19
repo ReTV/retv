@@ -573,7 +573,7 @@ bool CXBMCApp::HasLaunchIntent(const string &package)
 bool CXBMCApp::StartActivity(const string &package, const string &intent, const string &dataType, const string &dataURI)
 {
 	//CGUIDialogKaiToast::QueueNotification("ReTV Android", "Starting App : "+package);
-#ifdef SECURE_BUILD
+#if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
 	if (!g_retv.isSecure) {
 		CLog::Log(LOGNOTICE, "Cannot open App. ReTV not secure");
 		return false;

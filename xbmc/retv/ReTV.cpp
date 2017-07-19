@@ -49,10 +49,10 @@ std::string ReTV::m_updateRepoPassword = "";
 
 int ReTV::torrentProgress = 0;
 
-#ifdef SECURE_BUILD
-bool ReTV::isSecure = true;
+#if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
+bool ReTV::isSecure = false; 
 #else
-bool ReTV::isSecure = false;
+bool ReTV::isSecure = true;
 #endif
 
 ReTV::ReTV()
@@ -299,10 +299,7 @@ void ReTV::initAPI(std::string authtoken, unsigned int expiry) {
 
 void ReTV::secureCheck()
 {
-#ifndef SECURE_BUILD
-	CLog::Log(LOGNOTICE, "Secure check not required");
-	ReTV::isSecure = true;
-#else
+#if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
 	CLog::Log(LOGNOTICE, "Checking Secure");
 
 
@@ -326,7 +323,11 @@ void ReTV::secureCheck()
 	}
 
 	ReTV::isSecure = parseSecureResponse(content);
+#else
+	CLog::Log(LOGNOTICE, "Secure check not required");
+	ReTV::isSecure = true;
 #endif
+
 }
 
 
