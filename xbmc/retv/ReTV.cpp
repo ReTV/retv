@@ -829,24 +829,35 @@ void ReTV::readPlatformInfo()
 	std::vector<CNetworkInterface*> list = g_application.getNetwork().GetInterfaceList();
 
 	if (list.size() > 0){
+        
+        CLog::Log(LOGNOTICE, "Found %d Network addressses", list.size());
+        
+		std::string macAddress = "";
 
-		m_platformInfo.m_macAddress = list[0]->GetMacAddress();
-      
-        if(m_platformInfo.m_macAddress == "00:00:00:00:00:00")
-        {
-          // Found Loop back interface
-          // Check if theres another interface
-          // Use that mac address
-          // If there isn't, log it and say that there is not interface
-          if (list.size() > 1){
-            m_platformInfo.m_macAddress = list[1]->GetMacAddress();
-          }
-          else{
-            CLog::Log(LOGERROR, "No MAC Address found!!!");
-          }
-          
-        }
-      
+		for (int i = 0; i < list.size(); i = i + 1) {
+
+			macAddress = list[i]->GetMacAddress();
+
+			CLog::Log(LOGNOTICE, "Mac Address %d - %s", i, macAddress);
+
+			if (macAddress != "00:00:00:00:00:00")
+				break;
+		}
+
+		if (macAddress == "" || macAddress == "00:00:00:00:00:00") {
+
+			macAddress = g_application.getNetwork().GetFirstConnectedInterface()->GetMacAddress();
+
+			CLog::Log(LOGNOTICE, "All Mac Address are null. Getting first connected - %s", macAddress);
+		}
+
+		if (macAddress == "" || macAddress == "00:00:00:00:00:00") {
+
+			CLog::Log(LOGNOTICE, "All Mac address are null");
+		}
+
+		m_platformInfo.m_macAddress = macAddress;
+       
 		StringUtils::ToUpper(m_platformInfo.m_macAddress);
 	}
 	else{
