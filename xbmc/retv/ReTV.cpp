@@ -838,7 +838,7 @@ void ReTV::readPlatformInfo()
 
 			macAddress = list[i]->GetMacAddress();
 
-			CLog::Log(LOGNOTICE, "Mac Address %d - %s", i, macAddress);
+			CLog::Log(LOGNOTICE, "Mac Address %d - %s", i, macAddress.c_str());
 
 			if (macAddress != "00:00:00:00:00:00")
 				break;
@@ -848,7 +848,7 @@ void ReTV::readPlatformInfo()
 
 			macAddress = g_application.getNetwork().GetFirstConnectedInterface()->GetMacAddress();
 
-			CLog::Log(LOGNOTICE, "All Mac Address are null. Getting first connected - %s", macAddress);
+			CLog::Log(LOGNOTICE, "All Mac Address are null. Getting first connected - %s", macAddress.c_str());
 		}
 
 		if (macAddress == "" || macAddress == "00:00:00:00:00:00") {
