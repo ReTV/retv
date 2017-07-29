@@ -881,6 +881,19 @@ void ReTV::readPlatformInfo()
 
 }
 
+void ReTV::setFallbackDeviceCode(std::string fallbackCode)
+{
+	// Use this code only if we havent found a proper mac address
+	if (m_deviceCode == "" || m_deviceCode == "00:00:00:00:00:00") {
+
+		// Use the provided code
+		m_deviceCode = fallbackCode;
+		m_platformInfo.m_macAddress = fallbackCode;
+
+		CLog::Log(LOGNOTICE, "Using Fallback Code : %s",fallbackCode.c_str());
+	}
+}
+
 int ReTV::getPlatform()
 {
 	return m_platformInfo.m_platformId;

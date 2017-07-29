@@ -85,6 +85,7 @@ public:
     std::string getLinkByToken(const char* token);
     std::string getBaseUrl();
 	void initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password);
+	void setFallbackDeviceCode(std::string fallbackCode);
 
 	bool secureCheck();
 

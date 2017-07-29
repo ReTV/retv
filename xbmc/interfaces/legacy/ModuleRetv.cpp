@@ -155,5 +155,10 @@ namespace XBMCAddon
 #endif
         return path;
     }
+
+	void setFallbackDeviceCode(std::string fallbackCode)
+	{
+		g_retv.setFallbackDeviceCode(fallbackCode);
+	}
   }
 }

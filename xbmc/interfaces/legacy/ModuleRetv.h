@@ -85,5 +85,7 @@ namespace XBMCAddon
 	void setTorrentProgress(int percent);
     
     String getDownloadDir();
+
+	void setFallbackDeviceCode(std::string fallbackCode);
   }
 }

@@ -671,7 +671,7 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
     XMLUtils::GetBoolean(pElement, "dxvaallowhqscaling", m_DXVAAllowHqScaling);
 
 	// Timeout for the Video to buffer before it starts playing
-	XMLUtils::GetUInt(pElement, "initialvideobuffertimeout", m_FFMpegWaitTimeout, 10000, UINT_MAX);
+	XMLUtils::GetUInt(pElement, "initialvideobuffertimeout", m_FFMpegWaitTimeout, 30000, UINT_MAX);
 
     //0 = disable fps detect, 1 = only detect on timestamps with uniform spacing, 2 detect on all timestamps
     XMLUtils::GetInt(pElement, "fpsdetect", m_videoFpsDetect, 0, 2);
