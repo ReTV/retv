@@ -28,6 +28,11 @@
 #include "CompileInfo.h"
 
 #include "android/activity/JNIMainActivity.h"
+#include "retv/ReTV.h"
+#include "utils/log.h"
+
+// Cache a Global Reference to a the Utilities class
+jclass ReTV::jniUtilsClass;
 
 // copied from new android_native_app_glue.c
 static void process_input(struct android_app* app, struct android_poll_source* source) {
@@ -93,6 +98,8 @@ extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
   std::string frameListener = "org/bnplus/" + appName + "/XBMCOnFrameAvailableListener";
   std::string settingsObserver = "org/bnplus/" + appName + "/XBMCSettingsContentObserver";
   std::string audioFocusChangeListener = "org/bnplus/" + appName + "/XBMCOnAudioFocusChangeListener";
+  std::string utilsClass = "org/bnplus/" + appName + "/Utils";
+
 
   jclass cMain = env->FindClass(mainClass.c_str());
   if(cMain)
@@ -112,8 +119,14 @@ extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
     env->RegisterNatives(cMain, &mCallNative, 1);
   }
 
+  jclass cUtils = env->FindClass(utilsClass.c_str());
+  if(cUtils){
+    ReTV::jniUtilsClass = reinterpret_cast<jclass>(env->NewGlobalRef(cUtils));
+  }
+
   jclass cBroadcastReceiver = env->FindClass(bcReceiver.c_str());
   if(cBroadcastReceiver)
+
   {
     JNINativeMethod mOnReceive =  {
       "_onReceive",

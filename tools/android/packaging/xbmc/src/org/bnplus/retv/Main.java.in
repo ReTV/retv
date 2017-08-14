@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import org.bnplus.@APP_NAME_LC@.XBMCVideoView;
+import org.bnplus.@APP_NAME_LC@.Utils;
 
 public class Main extends NativeActivity
 {
@@ -29,6 +30,7 @@ public class Main extends NativeActivity
   public Main()
   {
     super();
+    Utils.sContext = this;
   }
 
   public Surface getVideoViewSurface()

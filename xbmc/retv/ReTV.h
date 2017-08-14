@@ -11,6 +11,11 @@
 #include "interfaces/legacy/SubscriptionInfo.h"
 #include "GUIInfoManager.h"
 
+#if defined (TARGET_ANDROID)
+#include "jni.h"
+
+#endif
+
 
 enum ReTVPlatform { ReTVDevice = 1, Android = 2, iOS  = 3, Windows = 4, OSX = 5, Linux = 6, FreeBSD = 7, AndroidTV = 8, AndroidBox = 9, tvOS = 10, Others = 11 };
 
@@ -46,6 +51,10 @@ public:
 	~ReTV();
 
 	static const std::string Author;
+
+#if defined(TARGET_ANDROID)
+	static jclass jniUtilsClass;
+#endif
 
 	static std::string makeAuthenticatedUrl(std::string url);
 	std::string makeReTVAddonUrl(std::string url);
@@ -216,6 +225,7 @@ private:
 
 #if defined(TARGET_ANDROID)
     bool initRPC();
+    std::string getAndroidDeviceID();
 #endif
 };
 

@@ -30,6 +30,10 @@
 #if defined(TARGET_ANDROID)
 #include "android/activity/AndroidFeatures.h"
 #include "android/jni/Build.h"
+#include "jni.h"
+#include "android/jni/jutils/jutils-details.hpp"
+
+using namespace jni;
 #endif
 
 #ifndef APP_CHANNEL
@@ -530,6 +534,40 @@ bool ReTV::callRPC(std::string method, std::string params)
 	return http.Post(m_rpcUrl, rpc_payload.str(), content, true);
 }
 
+std::string ReTV::getAndroidDeviceID(){
+
+    CLog::Log(LOGNOTICE, "In get Android Device ID");
+
+    JNIEnv *env = xbmc_jnienv();
+
+	//CLog::Log(LOGNOTICE, "Got JNI Env");
+    jclass retvMain = ReTV::jniUtilsClass;
+    //jclass environ = env->FindClass("android/os/Environment");
+  
+    if(env->ExceptionCheck()){
+  	    //CLog::Log(LOGNOTICE,"Couldn't find class!");
+        return "00:00:00:00:00:00";
+    }
+
+    //CLog::Log(LOGNOTICE, "Got class");
+    jmethodID getUID = env->GetStaticMethodID(retvMain, "GetDeviceUUID", "()Ljava/lang/String;");
+
+    //CLog::Log(LOGNOTICE, "Got Method");
+    if(getUID == 0 )
+        return "00:00:00:00:00:00";
+
+    jobject result = env->CallStaticObjectMethod(retvMain, getUID);
+
+    //CLog::Log(LOGNOTICE, "Called Method. Got result"); 
+    //   const char* str = env->GetStringUTFChars((jstring) result, JNI_FALSE);
+
+    //   return str;
+
+	return jcast<std::string>((jstring)result);
+    //   return "xx:Xx:Xx:Xx:xx:Xx";
+    //return jcast<std::string>(call_static_method<jhstring>("org/bnplus/retv/Utils","GetDeviceUUID","()Ljava/lang/String"));
+}
+
 #endif
 
 std::string ReTV::callAPI(const char* endPoint, const char* postVars, int customTimeout)
@@ -838,7 +876,7 @@ void ReTV::readPlatformInfo()
 
 			macAddress = list[i]->GetMacAddress();
 
-			CLog::Log(LOGNOTICE, "Mac Address %d - %s", i, macAddress.c_str());
+			//CLog::Log(LOGNOTICE, "Mac Address %d - %s", i, macAddress.c_str());
 
 			if (macAddress != "00:00:00:00:00:00")
 				break;
@@ -848,12 +886,17 @@ void ReTV::readPlatformInfo()
 
 			macAddress = g_application.getNetwork().GetFirstConnectedInterface()->GetMacAddress();
 
-			CLog::Log(LOGNOTICE, "All Mac Address are null. Getting first connected - %s", macAddress.c_str());
+			CLog::Log(LOGNOTICE, "All Mac Address are null. Try first connected - %s", macAddress.c_str());
 		}
 
 		if (macAddress == "" || macAddress == "00:00:00:00:00:00") {
 
 			CLog::Log(LOGNOTICE, "All Mac address are null");
+
+#if defined (TARGET_ANDROID)
+			macAddress = getAndroidDeviceID();
+			CLog::Log(LOGNOTICE, "Getting Android Device ID - %s", macAddress.c_str());
+#endif
 		}
 
 		m_platformInfo.m_macAddress = macAddress;
