@@ -62,14 +62,17 @@ class LibraryManager():
 
     def check_update(self):
         need_update=False
-        for libname in get_libname(self.platform):
-            if libname!='liblibtorrent.so':
-                self.libpath = os.path.join(self.dest_path, libname)
-                self.sizepath=os.path.join(self.root, self.platform['system'], self.platform['version'], libname+'.size.txt')
-                size=str(os.path.getsize(self.libpath))
-                size_old=open( self.sizepath, "r" ).read()
-                if size_old!=size:
-                    need_update=True
+        try:
+            for libname in get_libname(self.platform):
+                if libname!='liblibtorrent.so':
+                    self.libpath = os.path.join(self.dest_path, libname)
+                    self.sizepath=os.path.join(self.root, self.platform['system'], self.platform['version'], libname+'.size.txt')
+                    size=str(os.path.getsize(self.libpath))
+                    size_old=open( self.sizepath, "r" ).read()
+                    if size_old!=size:
+                        need_update=True
+        except:
+            pass
         return need_update
 
     def update(self):

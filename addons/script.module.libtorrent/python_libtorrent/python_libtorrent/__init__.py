@@ -33,6 +33,8 @@ __version__ = __settings__.getAddonInfo('version')
 __plugin__ = __settings__.getAddonInfo('name') + " v." + __version__
 __language__ = __settings__.getLocalizedString
 __root__ = os.path.dirname(os.path.dirname(__file__))
+__android_deep_path__ = "/data/data/org.bnplus.retv/lib/"
+
 
 libtorrent=None
 platform = get_platform()
@@ -114,25 +116,33 @@ try:
         import imp
         from ctypes import CDLL
         try:
-            dll_path=os.path.join(dest_path, 'liblibtorrent.so')
-            log('CDLL path = ' + dll_path)
-            liblibtorrent=CDLL(dll_path)
+            dll_path = os.path.join(__android_deep_path__, 'liblibtorrent.so')
+            log('NEW CDLL path = ' + dll_path)
+            liblibtorrent = CDLL(dll_path)
             log('CDLL = ' + str(liblibtorrent))
+            dest_path = __android_deep_path__
+            pass
         except:
-            # If no permission in dest_path we need to go deeper!
             try:
-                dest_path=lm.android_workaround(new_dest_path='/data/data/org.bnplus.retv/lib/')
                 dll_path=os.path.join(dest_path, 'liblibtorrent.so')
-                log('NEW CDLL path = ' + dll_path)
+                log('CDLL path = ' + dll_path)
                 liblibtorrent=CDLL(dll_path)
                 log('CDLL = ' + str(liblibtorrent))
             except:
-                # http://i3.kym-cdn.com/photos/images/original/000/531/557/a88.jpg
-                dest_path=lm.android_workaround(new_dest_path=xbmc.translatePath('special://xbmc'))
-                dll_path=os.path.join(dest_path, 'liblibtorrent.so')
-                log('NEW CDLL path = ' + dll_path)
-                liblibtorrent=CDLL(dll_path)
-                log('CDLL = ' + str(liblibtorrent))
+                # If no permission in dest_path we need to go deeper!
+                try:
+                    dest_path=lm.android_workaround(new_dest_path=__android_deep_path__)
+                    dll_path=os.path.join(dest_path, 'liblibtorrent.so')
+                    log('NEW CDLL path = ' + dll_path)
+                    liblibtorrent=CDLL(dll_path)
+                    log('CDLL = ' + str(liblibtorrent))
+                except:
+                    # http://i3.kym-cdn.com/photos/images/original/000/531/557/a88.jpg
+                    dest_path=lm.android_workaround(new_dest_path=xbmc.translatePath('special://xbmc'))
+                    dll_path=os.path.join(dest_path, 'liblibtorrent.so')
+                    log('NEW CDLL path = ' + dll_path)
+                    liblibtorrent=CDLL(dll_path)
+                    log('CDLL = ' + str(liblibtorrent))
         liblibtorrent=CDLL(dll_path)
         log('CDLL = ' + str(liblibtorrent))
         path_list = [dest_path]
