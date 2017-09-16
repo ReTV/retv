@@ -2407,6 +2407,7 @@ OUTPUT_FILES="Makefile \
     tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCSettingsContentObserver.java \
     tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnAudioFocusChangeListener.java \
     tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCVideoView.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Utils.java \
     tools/android/packaging/xbmc/activity_main.xml \
     tools/android/packaging/xbmc/strings.xml \
     addons/xbmc.addon/addon.xml"

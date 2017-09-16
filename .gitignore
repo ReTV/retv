@@ -848,3 +848,4 @@ xbmc/main/posix/Makefile
 /addons/visualization.milkdrop/*
 /addons/visualization.vortex/*
 /addons/visualization.waveform/*
+project/VS2010Express/XBMC for Windows.VC.db
