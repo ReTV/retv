@@ -3,8 +3,8 @@
   <global>
     <touch>
       <tap>LeftClick</tap>
-      <longpress>RightClick</longpress>
-      <tap pointers="2">RightClick</tap>
+      <longpress>OSD</longpress>
+      <tap pointers="2">Green</tap>
       <pan>PanGesture</pan>
       <swipe direction="left">SwipeLeft</swipe>
       <swipe direction="left" pointers="2">Back</swipe>
