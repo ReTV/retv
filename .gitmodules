@@ -53,3 +53,7 @@
 [submodule "addons/plugin.retv.yupptv"]
 	path = addons/plugin.retv.yupptv
 	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.yupptv.git
+[submodule "addons/retv.search.tpb"]
+	path = addons/retv.search.tpb
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/retv.search.tpb.git
+	branch = master
