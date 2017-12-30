@@ -81,6 +81,8 @@ namespace XBMCAddon
 	bool hasInternet();
 
 	int getPlatform();
+    std::vector<String> getPlatformInfo();
+    String getMacAddress();    
 
 	void setTorrentProgress(int percent);
     

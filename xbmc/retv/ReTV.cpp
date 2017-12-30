@@ -942,6 +942,11 @@ int ReTV::getPlatform()
 	return m_platformInfo.m_platformId;
 }
 
+ReTVPlatformInfo ReTV::getPlatformInfo()
+{
+    return m_platformInfo;
+}
+
 /*Gets the Login JSON as string*/
 std::string ReTV::getLoginJSON()
 {

@@ -85,7 +85,8 @@ public:
 	std::string validateNumber(const char* authCode);
 
 	int getPlatform();
-
+    ReTVPlatformInfo getPlatformInfo();
+    
 	std::string login(const char* mobileNumber);
 
     std::string callAPI(const char* endPoint, const char* postVars, int customTimeout=-1);

@@ -12,6 +12,8 @@
 #include "utils/log.h"
 #include "SubscriptionInfo.h"
 #include "utils/SystemInfo.h"
+#include <sstream>
+#include <string.h>
 
 #if defined(TARGET_ANDROID)
 #include "android/activity/XBMCApp.h"
@@ -160,5 +162,60 @@ namespace XBMCAddon
 	{
 		g_retv.setFallbackDeviceCode(fallbackCode);
 	}
+    
+    String getMacAddress(){
+        return g_retv.getPlatformInfo().m_macAddress;
+    }
+    
+    std::vector<String> getPlatformInfo(){
+        
+        std::vector<String> infoToSend;
+        
+        ReTVPlatformInfo info = g_retv.getPlatformInfo();
+        
+        /*
+        ReTVPlatform m_platformId;
+        std::string m_arch;
+        int m_bitness;
+        std::string m_os;
+        std::string m_osVersion;
+        std::string m_manufacturer;
+        std::string m_channel;
+        std::string m_brand;
+        std::string m_model;
+        std::string m_product;
+        std::string m_deviceName;
+        std::string m_macAddress;
+        std::string m_versionCore;
+        std::string m_versionScript;
+        std::string m_versionSkin;
+        */
+        std::stringstream id;
+        id << info.m_platformId;
+        infoToSend.push_back(id.str());
+        
+        infoToSend.push_back(info.m_arch);
+        
+        std::stringstream bit;
+        bit << info.m_bitness;
+        infoToSend.push_back(bit.str());
+        
+        infoToSend.push_back(info.m_arch);
+        infoToSend.push_back(info.m_os);
+        infoToSend.push_back(info.m_osVersion);
+        infoToSend.push_back(info.m_manufacturer);
+        infoToSend.push_back(info.m_channel);
+        infoToSend.push_back(info.m_brand);
+        infoToSend.push_back(info.m_model);
+        infoToSend.push_back(info.m_product);
+        infoToSend.push_back(info.m_deviceName);
+        infoToSend.push_back(info.m_macAddress);
+        infoToSend.push_back(info.m_versionCore);
+        infoToSend.push_back(info.m_versionScript);
+        infoToSend.push_back(info.m_versionSkin);
+        
+        return infoToSend;
+    }
+    
   }
 }
