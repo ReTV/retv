@@ -101,6 +101,8 @@
 #include "cores/VideoPlayer/VideoRenderers/BaseRenderer.h"
 #include "interfaces/info/InfoExpression.h"
 
+#include "retv/ReTV.h"
+
 #if defined(TARGET_DARWIN_OSX)
 #include "platform/darwin/osx/smc.h"
 #endif
@@ -508,7 +510,8 @@ const infomap player_labels[] =  {{ "hasmedia",         PLAYER_HAS_MEDIA },     
                                   { "channelpreviewactive", PLAYER_IS_CHANNEL_PREVIEW_ACTIVE},
                                   { "tempoenabled", PLAYER_SUPPORTS_TEMPO},
                                   { "istempo", PLAYER_IS_TEMPO},
-                                  { "playspeed", PLAYER_PLAYSPEED}};
+                                  { "playspeed", PLAYER_PLAYSPEED},
+                                  { "torrentcache",		PLAYER_TORRENT_PROGRESS }};
 
 /// \page modules__General__List_of_gui_access
 /// @{
@@ -6483,6 +6486,10 @@ std::string CGUIInfoManager::GetLabel(int info, int contextWindow, std::string *
   case SYSTEM_BUILD_DATE:
     strLabel = CSysInfo::GetBuildDate();
     break;
+  case PLAYER_TORRENT_PROGRESS:
+    CLog::Log(LOGNOTICE, "Torrent progress value : %d", ReTV::torrentProgress);
+	value = ReTV::torrentProgress;
+    return true;
   case SYSTEM_FREE_MEMORY:
   case SYSTEM_FREE_MEMORY_PERCENT:
   case SYSTEM_USED_MEMORY:

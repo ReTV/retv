@@ -639,12 +639,12 @@ CUPnP::CreateServer(int port /* = 0 */)
                     CSettings::GetInstance().GetInt(CSettings::SETTING_SERVICES_WEBSERVERPORT),
                     "/").ToString();
 
-    device->m_ModelName        = "Kodi";
+    device->m_ModelName        = "ReTV";
     device->m_ModelNumber      = CSysInfo::GetVersion().c_str();
-    device->m_ModelDescription = "Kodi - Media Server";
-    device->m_ModelURL         = "http://kodi.tv/";
-    device->m_Manufacturer     = "XBMC Foundation";
-    device->m_ManufacturerURL  = "http://kodi.tv/";
+    device->m_ModelDescription = "ReTV - Media Server";
+    device->m_ModelURL         = "http://retv.in/";
+    device->m_Manufacturer     = "Billion Plus Computing Pvt. Ltd.";
+    device->m_ManufacturerURL  = "http://retv.tv/";
 
     device->SetDelegate(device);
     return device;
@@ -721,12 +721,12 @@ CUPnP::CreateRenderer(int port /* = 0 */)
         NPT_HttpUrl(m_IP.c_str(),
                     CSettings::GetInstance().GetInt(CSettings::SETTING_SERVICES_WEBSERVERPORT),
                     "/").ToString();
-    device->m_ModelName        = "Kodi";
+    device->m_ModelName        = "ReTV";
     device->m_ModelNumber      = CSysInfo::GetVersion().c_str();
-    device->m_ModelDescription = "Kodi - Media Renderer";
-    device->m_ModelURL         = "http://kodi.tv/";
-    device->m_Manufacturer     = "XBMC Foundation";
-    device->m_ManufacturerURL  = "http://kodi.tv/";
+    device->m_ModelDescription = "ReTV - Media Renderer";
+    device->m_ModelURL         = "http://retv.in/";
+    device->m_Manufacturer     = "Billion Plus Computing Pvt. Ltd.";
+    device->m_ManufacturerURL  = "http://retv.in/";
 
     return device;
 }

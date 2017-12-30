@@ -13,6 +13,7 @@ set(SOURCES AddonCallback.cpp
             Keyboard.cpp
             LanguageHook.cpp
             ListItem.cpp
+            ModuleRetv.cpp
             ModuleXbmc.cpp
             ModuleXbmcgui.cpp
             ModuleXbmcplugin.cpp
@@ -47,6 +48,7 @@ set(HEADERS Addon.h
             LanguageHook.h
             List.h
             ListItem.h
+            ModuleRetv.h
             ModuleXbmc.h
             ModuleXbmcgui.h
             ModuleXbmcplugin.h

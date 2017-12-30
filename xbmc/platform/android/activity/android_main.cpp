@@ -30,7 +30,11 @@
 #include "CompileInfo.h"
 
 #include "platform/android/activity/JNIMainActivity.h"
+#include "retv/ReTV.h"
+#include "utils/log.h"
 
+// Cache a Global Reference to a the Utilities class
+jclass ReTV::jniUtilsClass;
 
 // redirect stdout / stderr to logcat
 // https://codelab.wordpress.com/2014/11/03/how-to-use-standard-output-streams-for-logging-in-android-apps/
@@ -134,13 +138,14 @@ extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
 
   std::string appName = CCompileInfo::GetAppName();
   StringUtils::ToLower(appName);
-  std::string mainClass = "org/xbmc/" + appName + "/Main";
-  std::string bcReceiver = "org/xbmc/" + appName + "/XBMCBroadcastReceiver";
-  std::string frameListener = "org/xbmc/" + appName + "/XBMCOnFrameAvailableListener";
-  std::string settingsObserver = "org/xbmc/" + appName + "/XBMCSettingsContentObserver";
-  std::string audioFocusChangeListener = "org/xbmc/" + appName + "/XBMCOnAudioFocusChangeListener";
-  std::string inputDeviceListener = "org/xbmc/" + appName + "/XBMCInputDeviceListener";
-
+  std::string mainClass = "org/bnplus/" + appName + "/Main";
+  std::string bcReceiver = "org/bnplus/" + appName + "/XBMCBroadcastReceiver";
+  std::string frameListener = "org/bnplus/" + appName + "/XBMCOnFrameAvailableListener";
+  std::string settingsObserver = "org/bnplus/" + appName + "/XBMCSettingsContentObserver";
+  std::string audioFocusChangeListener = "org/bnplus/" + appName + "/XBMCOnAudioFocusChangeListener";
+  std::string inputDeviceListener = "org/bnplus/" + appName + "/XBMCInputDeviceListener";
+  std::string utilsClass = "org/bnplus/" + appName + "/Utils";
+  
   jclass cMain = env->FindClass(mainClass.c_str());
   if(cMain)
   {
@@ -165,7 +170,11 @@ extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
     };
     env->RegisterNatives(cMain, &mCallNative, 1);
   }
-
+  jclass cUtils = env->FindClass(utilsClass.c_str());
+  if(cUtils){
+    ReTV::jniUtilsClass = reinterpret_cast<jclass>(env->NewGlobalRef(cUtils));
+  }
+ 
   jclass cBroadcastReceiver = env->FindClass(bcReceiver.c_str());
   if(cBroadcastReceiver)
   {

@@ -13,10 +13,10 @@ COPYDIRS = system addons media
 GCC_VERSION=$(shell $(CC) -dumpversion)
 ZIP=zip
 
-SIGN_STORE=~/.android/debug.keystore
-SIGN_STOREPASS=android
-SIGN_KEY=androiddebugkey
-SIGN_KEYPASS=
+SIGN_STORE=~/.android/bnp.keystore
+SIGN_STOREPASS=HKsi30md02345
+SIGN_KEY=retvkey
+SIGN_KEYPASS=s4k5xzn8h9nlx6xeq2w0
 
 ifneq ($(strip $(SIGN_KEYPASS)),)
 SIGN_KEYPASS_OPT=-keypass $(SIGN_KEYPASS)
@@ -134,6 +134,8 @@ libs: $(PREFIX)/lib/@APP_NAME_LC@/lib@APP_NAME_LC@.so
 	find $(PREFIX)/lib/@APP_NAME_LC@/addons -name "*.so" -exec cp -fp {} xbmc/obj/local/$(CPU)/ \;
 	find $(PREFIX)/share/@APP_NAME_LC@/addons -name "*.so" -exec cp -fp {} xbmc/obj/local/$(CPU)/ \;
 	find $(PREFIX)/lib/@APP_NAME_LC@/system -name "*.so" -exec cp -fp {} xbmc/obj/local/$(CPU)/ \;
+    cp -fp libtorrent.so xbmc/lib/$(CPU)/
+	cp -fp liblibtorrent.so xbmc/lib/$(CPU)/
 	cd xbmc/obj/local/$(CPU)/; find . -name "*.so" -not -name "lib*.so" | sed "s/\.\///" | xargs -I@ mv @ lib@
 	cp -fp xbmc/obj/local/$(CPU)/*.so xbmc/lib/$(CPU)/
 	$(STRIP) --strip-unneeded xbmc/lib/$(CPU)/*.so

@@ -1,6 +1,6 @@
-APP_NAME Kodi
-COMPANY_NAME XBMC-Foundation
-WEBSITE http://kodi.tv
+APP_NAME ReTV
+COMPANY_NAME Billion-Plus-Computing-Pvt-Ltd
+WEBSITE http://retv.in
 VERSION_MAJOR 17
 VERSION_MINOR 4
 VERSION_TAG RC1

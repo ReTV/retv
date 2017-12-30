@@ -31,6 +31,7 @@
 #include <vector>
 #include <climits>
 #include <cassert>
+#include <sstream>
 
 #ifdef TARGET_POSIX
 #include <errno.h>
@@ -546,6 +547,8 @@ void CCurlFile::SetCommonOptions(CReadState* state)
     g_curlInterface.easy_setopt(h, CURLOPT_POSTFIELDSIZE, m_postdata.length());
     g_curlInterface.easy_setopt(h, CURLOPT_POSTFIELDS, m_postdata.c_str());
   }
+  if (m_acceptGzip)
+    g_curlInterface.easy_setopt(h, CURLOPT_ACCEPT_ENCODING, "gzip, deflate");
 
   // setup Referer header if needed
   if (!m_referer.empty())
@@ -629,9 +632,15 @@ void CCurlFile::SetCommonOptions(CReadState* state)
 
   if (m_connecttimeout == 0)
     m_connecttimeout = g_advancedSettings.m_curlconnecttimeout;
-
+  
+  int timeoutToUse = m_connecttimeout;
+    if (m_customtimeoutonce != -1){
+    timeoutToUse = m_customtimeoutonce;
+    m_customtimeoutonce = -1;
+  }
+ 
   // set our timeouts, we abort connection after m_timeout, and reads after no data for m_timeout seconds
-  g_curlInterface.easy_setopt(h, CURLOPT_CONNECTTIMEOUT, m_connecttimeout);
+  g_curlInterface.easy_setopt(h, CURLOPT_CONNECTTIMEOUT, timeoutToUse);
 
   // We abort in case we transfer less than 1byte/second
   g_curlInterface.easy_setopt(h, CURLOPT_LOW_SPEED_LIMIT, 1);
@@ -871,23 +880,32 @@ void CCurlFile::ParseAndCorrectUrl(CURL &url2)
     m_url = url2.Get();
 }
 
-bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML)
+bool CCurlFile::Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse, int customTimeout)
 {
   m_postdata = strPostData;
   m_postdataset = true;
-  return Service(strURL, strHTML);
+  m_acceptGzip = acceptGzipResponse;
+  return Service(strURL, strHTML, customTimeout);
 }
 
-bool CCurlFile::Get(const std::string& strURL, std::string& strHTML)
+bool CCurlFile::Get(const std::string& strURL, std::string& strHTML, int customTimeout)
 {
   m_postdata = "";
   m_postdataset = false;
-  return Service(strURL, strHTML);
+  return Service(strURL, strHTML, customTimeout);
 }
 
-bool CCurlFile::Service(const std::string& strURL, std::string& strHTML)
+bool CCurlFile::Service(const std::string& strURL, std::string& strHTML, int customTimeout)
 {
   const CURL pathToUrl(strURL);
+  /*std::string options;
+  // Add connection timeout
+  options = "connection-timeout=" + std::to_string(customTimeout);
+  std::stringstream strstream;
+  strstream << "connection-timeout=" << customTimeout;
+  options = strstream.str();
+  pathToUrl.SetProtocolOptions(options);*/
+ 
   if (Open(pathToUrl))
   {
     if (ReadData(strHTML))
@@ -1024,6 +1042,7 @@ bool CCurlFile::Open(const CURL& url)
   m_state->m_bRetry = m_allowRetry;
 
   m_httpresponse = m_state->Connect(m_bufferSize);
+  responseCode = m_httpresponse;
   if (m_httpresponse <= 0 || m_httpresponse >= 400)
   {
     CLog::Log(LOGERROR, "CCurlFile::Open failed with code %li for %s", m_httpresponse, url.GetRedacted().c_str());

@@ -2428,7 +2428,7 @@
         </setting>
         <setting id="lookandfeel.soundskin" type="addon" label="24006" help="36110">
           <level>0</level>
-          <default>resource.uisounds.kodi</default>
+          <default>resource.uisounds.retv</default>
           <constraints>
             <addontype>kodi.resource.uisounds</addontype>
             <allowempty>true</allowempty>
@@ -3038,7 +3038,7 @@
       <group id="1" label="24997">
         <setting id="lookandfeel.skin" type="addon" label="166" help="36103">
           <level>0</level>
-          <default>skin.estuary</default>
+          <default>skin.retv.2</default>
           <constraints>
             <addontype>xbmc.gui.skin</addontype>
           </constraints>

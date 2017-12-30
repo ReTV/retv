@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([kodi], [17.4.0], [http://trac.kodi.tv])
+AC_INIT([retv], [17.4.0], [http://support.retv.in])
 AC_CONFIG_HEADERS([xbmc/config.h])
 AH_TOP([#pragma once])
 m4_include([m4/ax_prog_cc_for_build.m4])
@@ -2072,7 +2072,7 @@ fi
 if test "x$use_upnp" != "xno"; then
   final_message="$final_message\n  UPnP support:\t\tYes"
   USE_UPNP=1
-  UPNP_DEFINES='-DNPT_CONFIG_ENABLE_LOGGING -DPLT_HTTP_DEFAULT_USER_AGENT="\"UPnP/1.0 DLNADOC/1.50 Kodi\"" -DPLT_HTTP_DEFAULT_SERVER="\"UPnP/1.0 DLNADOC/1.50 Kodi\""'
+  UPNP_DEFINES='-DNPT_CONFIG_ENABLE_LOGGING -DPLT_HTTP_DEFAULT_USER_AGENT="\"UPnP/1.0 DLNADOC/1.50 ReTV\"" -DPLT_HTTP_DEFAULT_SERVER="\"UPnP/1.0 DLNADOC/1.50 ReTV\""'
   AC_DEFINE([USE_UPNP], [1], [Define to 1 to enable UPnP support.])
 else
   USE_UPNP=0
@@ -2224,14 +2224,15 @@ OUTPUT_FILES="Makefile \
     project/cmake/KodiConfig.cmake \
     tools/android/packaging/xbmc/AndroidManifest.xml \
     tools/android/packaging/Makefile \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/Splash.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/Main.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCBroadcastReceiver.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCInputDeviceListener.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCOnFrameAvailableListener.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCSettingsContentObserver.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCOnAudioFocusChangeListener.java \
-    tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCVideoView.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Splash.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Main.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCBroadcastReceiver.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCInputDeviceListener.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnFrameAvailableListener.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCSettingsContentObserver.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnAudioFocusChangeListener.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCVideoView.java \
+    tools/android/packaging/xbmc/src/org/bnplus/retv/Utils.java \
     tools/android/packaging/xbmc/activity_main.xml \
     tools/android/packaging/xbmc/strings.xml \
     addons/xbmc.addon/addon.xml"

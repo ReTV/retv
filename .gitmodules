@@ -1,0 +1,59 @@
+[submodule "addons/resource.uisounds.retv"]
+	path = addons/resource.uisounds.retv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/resource.uisounds.retv.git
+	branch = master
+[submodule "addons/retv.search.youtube"]
+	path = addons/retv.search.youtube
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/retv.search.youtube.git
+	branch = master
+[submodule "addons/script.module.searchbase"]
+	path = addons/script.module.searchbase
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.module.searchbase.git
+	branch = master
+[submodule "addons/script.module.youtube.dl"]
+	path = addons/script.module.youtube.dl
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.module.youtube.dl.git
+	branch = master
+[submodule "addons/service.subtitles.retv"]
+	path = addons/service.subtitles.retv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/service.subtitles.retv.git
+	branch = master
+[submodule "addons/screensaver.retv.slideshow"]
+	path = addons/screensaver.retv.slideshow
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/screensaver.retv.slideshow.git
+	branch = master
+[submodule "addons/script.retv"]
+	path = addons/script.retv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.retv.git
+	branch = master
+[submodule "addons/skin.retv.2"]
+	path = addons/skin.retv.2
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/skin.retv.2.git
+	branch = master
+[submodule "addons/script.retv.autocompletion"]
+	path = addons/script.retv.autocompletion
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/script.retv.autocompletion.git
+    branch = master
+[submodule "addons/plugin.retv.spuul"]
+	path = addons/plugin.retv.spuul
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.spuul.git
+	branch = master
+[submodule "addons/plugin.retv.erosnow"]
+	path = addons/plugin.retv.erosnow
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.erosnow.git
+	branch = master
+[submodule "addons/plugin.retv.hotstar"]
+	path = addons/plugin.retv.hotstar
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.hotstar.git
+	branch = master
+[submodule "addons/plugin.retv.ditto"]
+	path = addons/plugin.retv.ditto
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.ditto.git
+	branch = master
+[submodule "addons/plugin.retv.yupptv"]
+	path = addons/plugin.retv.yupptv
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/plugin.retv.yupptv.git
+[submodule "addons/retv.search.tpb"]
+	path = addons/retv.search.tpb
+	url = https://ReTV-Dev@bitbucket.org/retv-kodi/retv.search.tpb.git
+	branch = master

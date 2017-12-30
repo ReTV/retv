@@ -2223,7 +2223,7 @@
   },
   "System.Shutdown": {
     "type": "method",
-    "description": "Shuts the system running Kodi down",
+    "description": "Shuts the system running ReTV down",
     "transport": "Response",
     "permission": "ControlPower",
     "params": [],
@@ -2231,7 +2231,7 @@
   },
   "System.Suspend": {
     "type": "method",
-    "description": "Suspends the system running Kodi",
+    "description": "Suspends the system running ReTV",
     "transport": "Response",
     "permission": "ControlPower",
     "params": [],
@@ -2239,7 +2239,7 @@
   },
   "System.Hibernate": {
     "type": "method",
-    "description": "Puts the system running Kodi into hibernate mode",
+    "description": "Puts the system running ReTV into hibernate mode",
     "transport": "Response",
     "permission": "ControlPower",
     "params": [],
@@ -2247,7 +2247,7 @@
   },
   "System.Reboot": {
     "type": "method",
-    "description": "Reboots the system running Kodi",
+    "description": "Reboots the system running ReTV",
     "transport": "Response",
     "permission": "ControlPower",
     "params": [],
@@ -2415,7 +2415,7 @@
   },
   "XBMC.GetInfoLabels": {
     "type": "method",
-    "description": "Retrieve info labels about Kodi and the system",
+    "description": "Retrieve info labels about ReTV and the system",
     "transport": "Response",
     "permission": "ReadData",
     "params": [
@@ -2429,7 +2429,7 @@
   },
   "XBMC.GetInfoBooleans": {
     "type": "method",
-    "description": "Retrieve info booleans about Kodi and the system",
+    "description": "Retrieve info booleans about ReTV and the system",
     "transport": "Response",
     "permission": "ReadData",
     "params": [

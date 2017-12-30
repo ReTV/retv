@@ -15,6 +15,7 @@ SRCS=	\
 	Keyboard.cpp \
 	LanguageHook.cpp \
 	ListItem.cpp \
+    ModuleRetv.cpp \
 	ModuleXbmc.cpp \
 	ModuleXbmcgui.cpp \
 	ModuleXbmcplugin.cpp \

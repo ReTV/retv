@@ -1,0 +1,14 @@
+package org.bnplus.@APP_NAME_LC@;
+
+import android.content.Context;
+import android.provider.Settings;
+
+public class Utils
+{
+	public static Context sContext;
+
+	public static String GetDeviceUUID()
+	{
+		return Settings.Secure.getString(Utils.sContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+	}
+}

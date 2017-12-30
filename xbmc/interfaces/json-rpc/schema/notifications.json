@@ -274,7 +274,7 @@
   },
   "System.OnQuit": {
     "type": "notification",
-    "description": "Kodi will be closed.",
+    "description": "ReTV will be closed.",
     "params": [
       { "name": "sender", "type": "string", "required": true },
       { "name": "data", "type": "object", "required": true,

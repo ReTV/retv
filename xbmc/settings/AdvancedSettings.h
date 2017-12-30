@@ -189,6 +189,7 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
     bool m_DXVACheckCompatibilityPresent;
     bool m_DXVAForceProcessorRenderer;
     bool m_DXVAAllowHqScaling;
+	unsigned int  m_FFMpegWaitTimeout;
     int  m_videoFpsDetect;
     int  m_videoBusyDialogDelay_ms;
     bool m_mediacodecForceSoftwareRendring;
@@ -236,6 +237,7 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
 
     bool m_playlistAsFolders;
     bool m_detectAsUdf;
+	bool m_showOnlyMediaFiles;	///< \brief Show only media files in FileManager
 
     unsigned int m_fanartRes; ///< \brief the maximal resolution to cache fanart at (assumes 16x9)
     unsigned int m_imageRes;  ///< \brief the maximal resolution to cache images at (assumes 16x9)
@@ -348,6 +350,12 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
     bool m_jsonOutputCompact;
     unsigned int m_jsonTcpPort;
 
+	int m_apiType;		
+	std::string m_apiRegion;		// If we are using a regional server, then we use this prefix if set
+	int m_apiSSLMode;				// 0: No SSL, 1: Only API, 2: API & Downloads, 3: API & Files, 4: All
+	std::string m_forcedDeviceId;
+	std::string m_forcedRPCUrl;		// Forced Local RPC url for ReTV devices
+	
     bool m_enableMultimediaKeys;
     std::vector<std::string> m_settingsFiles;
     void ParseSettingsFile(const std::string &file);
@@ -357,6 +365,9 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
 
     //! \brief Returns a list of music extension for filtering in the GUI
     std::string GetMusicExtensions() const;
+
+	//! \brief Returns a list of all Multimedia playabale extensions for filtering in GUI
+	std::string GetMultimediaExtensions() const;
 
     void SetDebugMode(bool debug);
 
@@ -381,6 +392,9 @@ class CAdvancedSettings : public ISettingCallback, public ISettingsHandler
     bool m_videoAssFixedWorks;
 
     std::string m_userAgent;
+
+	int m_androidAppOpenMode;				// 0: Standard Kodi, 1: Open thru service, 2: Open thru Content Provider
+	std::string m_contentResolver;			// Content resolver URL for Android Service
 
   private:
     std::string m_musicExtensions;

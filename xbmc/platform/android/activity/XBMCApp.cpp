@@ -91,7 +91,7 @@
 
 #include "CompileInfo.h"
 #include "video/videosync/VideoSyncAndroid.h"
-
+#include "retv/ReTV.h"
 #define GIGABYTES       1073741824
 
 using namespace KODI::MESSAGING;
@@ -314,7 +314,7 @@ bool CXBMCApp::EnableWakeLock(bool on)
   {
     std::string appName = CCompileInfo::GetAppName();
     StringUtils::ToLower(appName);
-    std::string className = "org.xbmc." + appName;
+    std::string className = "org.bnplus." + appName;
     // SCREEN_BRIGHT_WAKE_LOCK is marked as deprecated but there is no real alternatives for now
     m_wakeLock = new CJNIWakeLock(CJNIPowerManager(getSystemService("power")).newWakeLock(CJNIPowerManager::SCREEN_BRIGHT_WAKE_LOCK, className.c_str()));
     if (m_wakeLock)
@@ -524,7 +524,7 @@ int CXBMCApp::android_printf(const char *format, ...)
   // For use before CLog is setup by XBMC_Run()
   va_list args;
   va_start(args, format);
-  int result = __android_log_vprint(ANDROID_LOG_VERBOSE, "Kodi", format, args);
+  int result = __android_log_vprint(ANDROID_LOG_VERBOSE, "ReTV", format, args);
   va_end(args);
   return result;
 }
@@ -634,6 +634,20 @@ bool CXBMCApp::HasLaunchIntent(const std::string &package)
 // Note intent, dataType, dataURI all default to ""
 bool CXBMCApp::StartActivity(const std::string &package, const std::string &intent, const std::string &dataType, const std::string &dataURI)
 {
+    CLog::Log(LOGNOTICE, "CXBMCApp::StartActivity - Opening %s", package.c_str());
+    
+	//CGUIDialogKaiToast::QueueNotification("ReTV Android", "Starting App : "+package);
+#if defined(TARGET_ANDROID) && defined(SECURE_BUILD)
+	if (!g_retv.secureCheck()) {
+        
+        // Can only open Android settings or Android TV settings
+        if(package != "com.android.tv.settings" && package != "com.android.settings"){
+            CLog::Log(LOGNOTICE, "Cannot open App. ReTV not secure");
+            return false;
+        }
+	}
+#endif
+
   CJNIIntent newIntent = intent.empty() ?
     GetPackageManager().getLaunchIntentForPackage(package) :
     CJNIIntent(intent);
@@ -652,16 +666,51 @@ bool CXBMCApp::StartActivity(const std::string &package, const std::string &inte
 
     newIntent.setDataAndType(jniURI, dataType);
   }
+  
 
-  newIntent.setPackage(package);
-  startActivity(newIntent);
-  if (xbmc_jnienv()->ExceptionCheck())
-  {
-    CLog::Log(LOGERROR, "CXBMCApp::StartActivity - ExceptionOccurred launching %s", package.c_str());
-    xbmc_jnienv()->ExceptionClear();
-    return false;
-  }
+  if( g_advancedSettings.m_androidAppOpenMode == 0){
+  
+	  newIntent.setPackage(package);
+	  startActivity(newIntent);
+	  if (xbmc_jnienv()->ExceptionCheck())
+	  {
+		CLog::Log(LOGERROR, "CXBMCApp::StartActivity - ExceptionOccurred launching %s", package.c_str());
+		xbmc_jnienv()->ExceptionClear();
+		return false;
+	  }
 
+#if defined(TARGET_ANDROID)
+      std::string methodParams = "";
+	  methodParams += "\""		+ package + "\"";
+	  methodParams += ",\""		+ intent + "\"";
+	  methodParams += ",\""		+ dataType + "\"";
+	  methodParams += ",\""		+ dataURI + "\"";
+      
+      g_retv.callRPC("openedApp", methodParams);
+#endif
+      return true;
+      
+  }else if( g_advancedSettings.m_androidAppOpenMode == 1){
+
+#if defined(TARGET_ANDROID)
+      std::string methodParams = "";
+	  methodParams += "\""		+ package + "\"";
+	  methodParams += ",\""		+ intent + "\"";
+	  methodParams += ",\""		+ dataType + "\"";
+	  methodParams += ",\""		+ dataURI + "\"";
+#endif
+      g_retv.callRPC("openedApp", methodParams);
+    
+      return true;
+
+  }/*else if( m_androidAppOpenMode == 2){
+	  
+	   // Send event to our ReTV Service
+	   CJNIURI uri = CJNIURI::parse(m_contentResolver+"/"+package);
+	   getContentResolver().query(uri, NULL, NULL, NULL, NULL).close();
+	  
+  }*/
+   
   return true;
 }
 
@@ -916,7 +965,7 @@ void CXBMCApp::SetupEnv()
 
   std::string appName = CCompileInfo::GetAppName();
   StringUtils::ToLower(appName);
-  std::string className = "org.xbmc." + appName;
+  std::string className = "org.bnplus." + appName;
 
   std::string xbmcHome = CJNISystem::getProperty("xbmc.home", "");
   if (xbmcHome.empty())

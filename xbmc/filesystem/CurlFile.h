@@ -49,6 +49,7 @@ namespace XFILE
     public:
       CCurlFile();
       virtual ~CCurlFile();
+      int responseCode;
       virtual bool Open(const CURL& url);
       virtual bool OpenForWrite(const CURL& url, bool bOverWrite = false);
       virtual bool ReOpen(const CURL& url);
@@ -67,8 +68,8 @@ namespace XFILE
       virtual std::string GetContentCharset(void)                { return GetServerReportedCharset(); }
       virtual double GetDownloadSpeed();
 
-      bool Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML);
-      bool Get(const std::string& strURL, std::string& strHTML);
+	  bool Post(const std::string& strURL, const std::string& strPostData, std::string& strHTML, bool acceptGzipResponse = false, int customTimeout = -1);
+	  bool Get(const std::string& strURL, std::string& strHTML, int customTimeout= -1);
       bool ReadData(std::string& strHTML);
       bool Download(const std::string& strURL, const std::string& strFileName, LPDWORD pdwSize = NULL);
       bool IsInternet();
@@ -82,6 +83,7 @@ namespace XFILE
       void SetAcceptEncoding(const std::string& encoding)        { m_acceptencoding = encoding; }
       void SetAcceptCharset(const std::string& charset)          { m_acceptCharset = charset; }
       void SetTimeout(int connecttimeout)                        { m_connecttimeout = connecttimeout; }
+	  void SetTimeoutOneTime(int customtimeout)					 { m_customtimeoutonce = customtimeout; }
       void SetLowSpeedTime(int lowspeedtime)                     { m_lowspeedtime = lowspeedtime; }
       void SetPostData(const std::string& postdata)              { m_postdata = postdata; }
       void SetReferer(const std::string& referer)                { m_referer = referer; }
@@ -158,7 +160,7 @@ namespace XFILE
       void SetCommonOptions(CReadState* state);
       void SetRequestHeaders(CReadState* state);
       void SetCorrectHeaders(CReadState* state);
-      bool Service(const std::string& strURL, std::string& strHTML);
+      bool Service(const std::string& strURL, std::string& strHTML, int customTimeout=-1);
 
     protected:
       CReadState*     m_state;
@@ -188,6 +190,7 @@ namespace XFILE
       std::string     m_cipherlist;
       bool            m_ftppasvip;
       int             m_connecttimeout;
+	  int			  m_customtimeoutonce;
       int             m_lowspeedtime;
       bool            m_opened;
       bool            m_forWrite;
@@ -198,6 +201,7 @@ namespace XFILE
       bool            m_skipshout;
       bool            m_postdataset;
       bool            m_allowRetry;
+      bool			  m_acceptGzip;
 
       CRingBuffer     m_buffer;           // our ringhold buffer
       char *          m_overflowBuffer;   // in the rare case we would overflow the above buffer

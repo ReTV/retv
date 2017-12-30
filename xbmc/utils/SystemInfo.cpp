@@ -1181,7 +1181,7 @@ std::string CSysInfo::GetUserAgent()
 #endif
   result += ")";
 
-  if (GetAppName() != "Kodi")
+  if (GetAppName() != "ReTV")
     result += " Kodi_Fork_" + GetAppName() + "/1.0"; // default fork number is '1.0', replace it with actual number if necessary
 
 #ifdef TARGET_LINUX
