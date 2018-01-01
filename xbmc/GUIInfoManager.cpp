@@ -6488,8 +6488,9 @@ std::string CGUIInfoManager::GetLabel(int info, int contextWindow, std::string *
     break;
   case PLAYER_TORRENT_PROGRESS:
     CLog::Log(LOGNOTICE, "Torrent progress value : %d", ReTV::torrentProgress);
-	value = ReTV::torrentProgress;
-    return true;
+    strLabel = StringUtils::Format("%d", ReTV::torrentProgress);
+	//value = ReTV::torrentProgress;
+    break;
   case SYSTEM_FREE_MEMORY:
   case SYSTEM_FREE_MEMORY_PERCENT:
   case SYSTEM_USED_MEMORY:
