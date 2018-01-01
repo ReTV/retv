@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([retv], [17.4.0], [http://support.retv.in])
+AC_INIT([kodi], [17.4.0], [http://support.retv.in])
 AC_CONFIG_HEADERS([xbmc/config.h])
 AH_TOP([#pragma once])
 m4_include([m4/ax_prog_cc_for_build.m4])
