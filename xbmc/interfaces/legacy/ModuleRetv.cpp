@@ -16,7 +16,7 @@
 #include <string.h>
 
 #if defined(TARGET_ANDROID)
-#include "android/activity/XBMCApp.h"
+#include "platform/android/activity/XBMCApp.h"
 #include "filesystem/File.h"
 #endif
 
