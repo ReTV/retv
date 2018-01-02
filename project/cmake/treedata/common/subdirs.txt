@@ -29,6 +29,7 @@ xbmc/playlists                                  playlists
 xbmc/powermanagement                            powermanagement
 xbmc/programs                                   programs
 xbmc/rendering                                  rendering
+xbmc/retv                                       retv
 xbmc/storage                                    storage
 xbmc/threads                                    threads
 xbmc/utils                                      utils
