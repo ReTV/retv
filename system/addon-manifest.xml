@@ -35,6 +35,7 @@
   <addon>plugin.video.topdocos</addon>
   <addon>plugin.video.vice</addon>
   <addon>plugin.video.vimeo</addon>
+  <addon>plugin.video.youtube</addon>
   <addon>resource.uisounds.retv</addon>
   <addon>retv.search.tpb</addon>
   <addon>retv.search.youtube</addon>
