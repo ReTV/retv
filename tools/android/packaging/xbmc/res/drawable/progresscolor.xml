@@ -5,11 +5,12 @@
         <shape>
             <corners android:radius="5dip" />
 
-            <gradient
-                android:angle="270"
-                android:endColor="#0E5A91"
-                android:startColor="#31afe1"
-                />
+            <gradient 
+                android:startColor="#ff404042" 
+                android:endColor="#ffadadad" 
+                android:angle="270.0" 
+                android:centerColor="#ff404042" 
+            />
         </shape>
     </item>
     <item android:id="@android:id/progress">
@@ -17,10 +18,13 @@
             <shape>
                 <corners android:radius="5dip" />
 
-                <gradient
-                    android:angle="270"
-                    android:endColor="#31afe1"
-                    android:startColor="#E5F7FF" />
+                <gradient 
+                    android:startColor="#ff6d9927" 
+                    android:endColor="#ffd7e9b6" 
+                    android:angle="270.0" 
+                    android:centerY="0.8" 
+                    android:centerColor="#ffa0cb5c" 
+                />
             </shape>
         </clip>
     </item>

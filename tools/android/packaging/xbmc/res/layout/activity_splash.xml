@@ -40,7 +40,6 @@
             android:layout_above="@+id/progressBar1"
             android:layout_centerHorizontal="true"
             android:text=""
-            android:textColor="@android:color/white"
             android:textSize="16dp" />
     </RelativeLayout>
 
