@@ -89,7 +89,7 @@ shared:
 	cp -rfp $(PREFIX)/share/@APP_NAME_LC@/* ./assets
 	find `pwd`/assets/ -depth -name ".git" -exec rm -rf {} \;
 	find `pwd`/assets/ -name "*.so" -exec rm {} \;
-	find `pwd`/assets/addons/skin.*/media/* -depth -not -iname "Textures.xbt" -exec rm -rf {} \;
+	#find `pwd`/assets/addons/skin.*/media/* -depth -not -iname "Textures.xbt" -exec rm -rf {} \;
 	cd `pwd`/assets/addons; rm -rf $(EXCLUDED_ADDONS)
 	mkdir -p assets/system/certs
 	cp $(CORE_SOURCE_DIR)/tools/depends/target/openssl/cacert.pem assets/system/certs
