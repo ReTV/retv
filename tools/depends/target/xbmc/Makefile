@@ -12,8 +12,8 @@ export CFLAGS+=-O3
 CONFIGURE = cp -f $(CONFIG_SUB) $(CONFIG_GUESS) build-aux/ ;\
   ./configure --prefix=$(PREFIX) $(DEBUG)
 
-ifeq ($(OS),android)
-CONFIGURE += --disable-libcec
+ifeq ($(platform),retv)
+CONFIGURE += --enable-codec=amcodec
 endif
 
 # tvOS build?
@@ -23,7 +23,7 @@ export CXXFLAGS+=-DPF_TVOS
 endif
 
 ifeq ($(OS),android)
-CONFIGURE += --enable-codec=amcodec --enable-breakpad --disable-libcec
+CONFIGURE += --enable-breakpad --disable-libcec
 
 # Locking to a Manufacturer
 ifeq ($(lock),)
