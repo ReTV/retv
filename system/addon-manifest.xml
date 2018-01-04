@@ -43,8 +43,11 @@
   <addon>script.module.addon.common</addon>
   <addon>script.module.addon.signals</addon>
   <addon>script.module.beautifulsoup4</addon>
+  <addon>script.module.certifi</addon>
+  <addon>script.module.chardet</addon>
   <addon>script.module.elementtree</addon>
   <addon>script.module.html5lib</addon>
+  <addon>script.module.idna</addon>
   <addon>script.module.lamlib</addon>
   <addon>script.module.libtorrent</addon>
   <addon>script.module.parsedom</addon>
@@ -53,6 +56,7 @@
   <addon>script.module.simplejson</addon>
   <addon>script.module.six</addon>
   <addon>script.module.xbmcswift2</addon>
+  <addon>script.module.urllib3</addon>
   <addon>script.module.youtube.dl</addon>
   <addon>script.retv</addon>
   <addon>script.retv.autocompletion</addon>
