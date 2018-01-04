@@ -200,7 +200,6 @@ namespace XBMCAddon
         bit << info.m_bitness;
         infoToSend.push_back(bit.str());
         
-        infoToSend.push_back(info.m_arch);
         infoToSend.push_back(info.m_os);
         infoToSend.push_back(info.m_osVersion);
         infoToSend.push_back(info.m_manufacturer);
