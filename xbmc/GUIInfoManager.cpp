@@ -102,6 +102,8 @@
 #include "cores/VideoPlayer/VideoRenderers/BaseRenderer.h"
 #include "interfaces/info/InfoExpression.h"
 
+#include "retv/ReTV.h"
+
 #if defined(TARGET_DARWIN_OSX)
 #include "platform/darwin/osx/smc.h"
 #endif
@@ -6485,6 +6487,11 @@ std::string CGUIInfoManager::GetLabel(int info, int contextWindow, std::string *
     break;
   case SYSTEM_BUILD_DATE:
     strLabel = CSysInfo::GetBuildDate();
+    break;
+  case PLAYER_TORRENT_PROGRESS:
+    CLog::Log(LOGNOTICE, "Torrent progress value : %d", ReTV::torrentProgress);
+    strLabel = StringUtils::Format("%d", ReTV::torrentProgress);
+	//value = ReTV::torrentProgress;
     break;
   case SYSTEM_FREE_MEMORY:
   case SYSTEM_FREE_MEMORY_PERCENT:

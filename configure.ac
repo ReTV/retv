@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([kodi], [17.5.0], [http://trac.kodi.tv])
+AC_INIT([kodi], [17.5.0], [http://support.retv.in])
 AC_CONFIG_HEADERS([xbmc/config.h])
 AH_TOP([#pragma once])
 m4_include([m4/ax_prog_cc_for_build.m4])
@@ -2078,7 +2078,7 @@ fi
 if test "x$use_upnp" != "xno"; then
   final_message="$final_message\n  UPnP support:\t\tYes"
   USE_UPNP=1
-  UPNP_DEFINES='-DNPT_CONFIG_ENABLE_LOGGING -DPLT_HTTP_DEFAULT_USER_AGENT="\"UPnP/1.0 DLNADOC/1.50 Kodi\"" -DPLT_HTTP_DEFAULT_SERVER="\"UPnP/1.0 DLNADOC/1.50 Kodi\""'
+  UPNP_DEFINES='-DNPT_CONFIG_ENABLE_LOGGING -DPLT_HTTP_DEFAULT_USER_AGENT="\"UPnP/1.0 DLNADOC/1.50 ReTV\"" -DPLT_HTTP_DEFAULT_SERVER="\"UPnP/1.0 DLNADOC/1.50 ReTV\""'
   AC_DEFINE([USE_UPNP], [1], [Define to 1 to enable UPnP support.])
 else
   USE_UPNP=0
@@ -2156,8 +2156,6 @@ fi
 
 OUTPUT_FILES="Makefile \
     Makefile.include \
-    addons/skin.estuary/media/Makefile \
-    addons/skin.estouchy/media/Makefile \
     xbmc/Makefile \
     xbmc/addons/binary/interfaces/Makefile \
     xbmc/cdrip/Makefile \
@@ -2246,6 +2244,7 @@ OUTPUT_FILES="Makefile \
     tools/android/packaging/xbmc/src/XBMCCrashHandler.java \
     tools/android/packaging/xbmc/src/XBMCProjection.java \
     tools/android/packaging/xbmc/src/XBMCMediaSession.java \
+	tools/android/packaging/xbmc/src/org/bnplus/retv/Utils.java \
     tools/android/packaging/xbmc/activity_main.xml \
     tools/android/packaging/xbmc/strings.xml \
     addons/xbmc.addon/addon.xml"

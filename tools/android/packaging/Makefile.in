@@ -19,10 +19,10 @@ COPYDIRS = system addons media
 GCC_VERSION=$(shell $(CC) -dumpversion)
 ZIP=zip
 
-SIGN_STORE=~/.android/@APP_NAME@.keystore
-SIGN_STOREPASS=android
-SIGN_KEY=androiddebugkey
-SIGN_KEYPASS=
+SIGN_STORE=~/.android/bnp.keystore
+SIGN_STOREPASS=HKsi30md02345
+SIGN_KEY=retvkey
+SIGN_KEYPASS=s4k5xzn8h9nlx6xeq2w0
 
 ifneq ($(strip $(SIGN_KEYPASS)),)
 SIGN_KEYPASS_OPT=-keypass $(SIGN_KEYPASS)
@@ -103,7 +103,7 @@ shared:
 	cp -rfp $(DEPENDS_PATH)/share/kodi/* ./assets || true
 	find `pwd`/assets/ -depth -name ".git" -exec rm -rf {} \;
 	find `pwd`/assets/ -name "*.so" -exec rm {} \;
-	find `pwd`/assets/addons/skin.*/media/* -depth -not -iname "Textures.xbt" -exec rm -rf {} \;
+	#find `pwd`/assets/addons/skin.*/media/* -depth -not -iname "Textures.xbt" -exec rm -rf {} \;
 	cd `pwd`/assets/addons; rm -rf $(EXCLUDED_ADDONS)
 	mkdir -p assets/system/certs
 	cp $(CORE_SOURCE_DIR)/tools/depends/target/openssl/cacert.pem assets/system/certs
@@ -154,6 +154,7 @@ libs: $(PREFIX)/lib/@APP_NAME_LC@/lib@APP_NAME_LC@.so
 	find $(PREFIX)/share/kodi/addons -name "*.so" -exec cp -fp {} xbmc/obj/local/$(CPU)/ \; || :
 	cd xbmc/obj/local/$(CPU)/; find . -name "*.so" -not -name "lib*.so" | sed "s/\.\///" | xargs -I@ mv @ lib@
 	cp -fp xbmc/obj/local/$(CPU)/*.so xbmc/lib/$(CPU)/
+	find $(CORE_SOURCE_DIR)/tools/android/packaging/lib -name "*.so" -exec cp -fp {} xbmc/lib/$(CPU)/ \;
 	$(STRIP) --strip-unneeded xbmc/lib/$(CPU)/*.so
 	install -p $(GDBPATH) ./xbmc/lib/$(CPU)/gdbserver
 	echo "set solib-search-path ./obj/local/$(CPU)" > ./xbmc/lib/$(CPU)/gdb.setup

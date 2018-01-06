@@ -13,6 +13,7 @@ set(SOURCES AddonCallback.cpp
             Keyboard.cpp
             LanguageHook.cpp
             ListItem.cpp
+            ModuleRetv.cpp
             ModuleXbmc.cpp
             ModuleXbmcgui.cpp
             ModuleXbmcplugin.cpp
@@ -21,6 +22,7 @@ set(SOURCES AddonCallback.cpp
             Player.cpp
             PlayList.cpp
             String.cpp
+            SubscriptionInfo.cpp
             Window.cpp
             WindowDialog.cpp
             WindowDialogMixin.cpp
@@ -47,6 +49,7 @@ set(HEADERS Addon.h
             LanguageHook.h
             List.h
             ListItem.h
+            ModuleRetv.h
             ModuleXbmc.h
             ModuleXbmcgui.h
             ModuleXbmcplugin.h
@@ -56,6 +59,7 @@ set(HEADERS Addon.h
             PlayList.h
             RenderCapture.h
             Stat.h
+            SubscriptionInfo.h
             swighelper.h
             Tuple.h
             Window.h

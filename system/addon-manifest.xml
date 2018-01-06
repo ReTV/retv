@@ -13,6 +13,7 @@
   <addon>metadata.artists.universal</addon>
   <addon>metadata.common.allmusic.com</addon>
   <addon>metadata.common.fanart.tv</addon>
+  <addon>metadata.common.htbackdrops.com</addon>
   <addon>metadata.common.imdb.com</addon>
   <addon>metadata.common.musicbrainz.org</addon>
   <addon>metadata.common.theaudiodb.com</addon>
@@ -23,13 +24,45 @@
   <addon>repository.xbmc.org</addon>
   <addon>resource.images.weathericons.default</addon>
   <addon>resource.language.en_gb</addon>
-  <addon>resource.uisounds.kodi</addon>
   <addon>screensaver.xbmc.builtin.black</addon>
   <addon>screensaver.xbmc.builtin.dim</addon>
   <addon optional="true">screensaver.xbmc.builtin.system</addon>
   <addon>script.module.pil</addon>
-  <addon>skin.estuary</addon>
-  <addon>skin.estouchy</addon>
+  <addon>plugin.retv.ditto</addon>
+  <addon>plugin.retv.erosnow</addon>
+  <addon>plugin.retv.hotstar</addon>
+  <addon>plugin.retv.spuul</addon>
+  <addon>plugin.retv.yupptv</addon>
+  <addon>plugin.video.topdocos</addon>
+  <addon>plugin.video.vice</addon>
+  <addon>plugin.video.vimeo</addon>
+  <addon>plugin.video.youtube</addon>
+  <addon>resource.uisounds.retv</addon>
+  <addon>retv.search.tpb</addon>
+  <addon>retv.search.youtube</addon>
+  <addon>screensaver.retv.slideshow</addon>
+  <addon>script.module.addon.common</addon>
+  <addon>script.module.addon.signals</addon>
+  <addon>script.module.beautifulsoup4</addon>
+  <addon>script.module.certifi</addon>
+  <addon>script.module.chardet</addon>
+  <addon>script.module.elementtree</addon>
+  <addon>script.module.html5lib</addon>
+  <addon>script.module.idna</addon>
+  <addon>script.module.lamlib</addon>
+  <addon>script.module.libtorrent</addon>
+  <addon>script.module.parsedom</addon>
+  <addon>script.module.requests</addon>
+  <addon>script.module.searchbase</addon>
+  <addon>script.module.simplejson</addon>
+  <addon>script.module.six</addon>
+  <addon>script.module.xbmcswift2</addon>
+  <addon>script.module.urllib3</addon>
+  <addon>script.module.youtube.dl</addon>
+  <addon>script.retv</addon>
+  <addon>script.retv.autocompletion</addon>
+  <addon>service.subtitles.retv</addon>
+  <addon>skin.retv.2</addon>
   <addon>webinterface.default</addon>
   <addon>xbmc.addon</addon>
   <addon>xbmc.audioencoder</addon>

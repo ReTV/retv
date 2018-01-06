@@ -225,6 +225,8 @@
 #include "pictures/GUIWindowSlideShow.h"
 #include "windows/GUIWindowLoginScreen.h"
 
+#include "retv/ReTV.h"
+
 using namespace ADDON;
 using namespace XFILE;
 #ifdef HAS_DVD_DRIVE
@@ -696,7 +698,8 @@ bool CApplication::Create()
   CUtil::InitRandomSeed();
 
   g_mediaManager.Initialize();
-
+	
+  g_retv.Initialize();
   m_lastRenderTime = XbmcThreads::SystemClockMillis();
   return true;
 }

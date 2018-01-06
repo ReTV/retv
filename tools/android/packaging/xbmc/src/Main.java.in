@@ -38,6 +38,8 @@ import @APP_PACKAGE@.channels.model.Subscription;
 import @APP_PACKAGE@.channels.model.XBMCDatabase;
 import @APP_PACKAGE@.channels.util.TvUtil;
 import @APP_PACKAGE@.content.XBMCFileContentProvider;
+import @APP_PACKAGE@.Utils;
+
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -211,6 +213,7 @@ public class Main extends NativeActivity implements Choreographer.FrameCallback
   public Main()
   {
     super();
+    Utils.sContext = this;
     MainActivity = this;
   }
 

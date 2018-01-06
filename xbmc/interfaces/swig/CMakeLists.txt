@@ -29,7 +29,8 @@ set(INPUTS AddonModuleXbmcaddon.i
            AddonModuleXbmc.i
            AddonModuleXbmcplugin.i
            AddonModuleXbmcvfs.i
-           AddonModuleXbmcwsgi.i)
+           AddonModuleXbmcwsgi.i
+           AddonModuleRetv.i)
 
 set(GROOVY_DIR ${CORE_SOURCE_DIR}/tools/codegenerator/groovy)
 set(GROOVY_VER 2.4.4)

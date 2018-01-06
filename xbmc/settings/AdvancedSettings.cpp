@@ -53,7 +53,7 @@
 #include "utils/JobManager.h"
 #include "utils/XMLUtils.h"
 #include "guilib/GUIWindowManager.h"
-
+#include "retv/ReTV.h"
 #if defined(TARGET_DARWIN_IOS)
 #include "platform/darwin/DarwinUtils.h"
 #endif
@@ -199,6 +199,7 @@ void CAdvancedSettings::Initialize()
   m_DXVACheckCompatibilityPresent = false;
   m_DXVAForceProcessorRenderer = true;
   m_DXVAAllowHqScaling = true;
+  m_FFMpegWaitTimeout = 30000;
   m_videoFpsDetect = 1;
   m_videoBusyDialogDelay_ms = 500;
   m_videoUseDroidProjectionCapture = false;
@@ -414,6 +415,14 @@ void CAdvancedSettings::Initialize()
   m_jsonOutputCompact = true;
   m_jsonTcpPort = 9090;
 
+  m_apiType = ReTV::API_TYPE_LIVE;
+  m_apiSSLMode = 2;
+  m_apiRegion = "";
+  m_forcedDeviceId = "";
+  m_forcedRPCUrl = "";
+  m_androidAppOpenMode = 0;
+  m_contentResolver = "";
+
   m_enableMultimediaKeys = false;
   m_disableminimize = false;
 
@@ -439,6 +448,8 @@ void CAdvancedSettings::Initialize()
   m_musicExtensions += "|.cdda";
   // internal video extensions
   m_videoExtensions += "|.pvr";
+
+  m_showOnlyMediaFiles = false;
 
   m_stereoscopicregex_3d = "[-. _]3d[-. _]";
   m_stereoscopicregex_sbs = "[-. _]h?sbs[-. _]";
@@ -731,6 +742,9 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
     XMLUtils::GetBoolean(pElement,"forcedxvarenderer", m_DXVAForceProcessorRenderer);
     XMLUtils::GetBoolean(pElement, "dxvaallowhqscaling", m_DXVAAllowHqScaling);
     XMLUtils::GetBoolean(pElement, "usedisplaycontrolhwstereo", m_useDisplayControlHWStereo);
+
+	// Timeout for the Video to buffer before it starts playing
+	XMLUtils::GetUInt(pElement, "initialvideobuffertimeout", m_FFMpegWaitTimeout, 30000, UINT_MAX);
     //0 = disable fps detect, 1 = only detect on timestamps with uniform spacing, 2 detect on all timestamps
     XMLUtils::GetInt(pElement, "fpsdetect", m_videoFpsDetect, 0, 2);
 
@@ -867,7 +881,20 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
     XMLUtils::GetBoolean(pElement, "compactoutput", m_jsonOutputCompact);
     XMLUtils::GetUInt(pElement, "tcpport", m_jsonTcpPort);
   }
+  
+  pElement = pRootElement->FirstChildElement("retv");
+  if (pElement)
+  {
+	  XMLUtils::GetString(pElement, "usecustomdeviceid", m_forcedDeviceId);
+	  XMLUtils::GetString(pElement, "forcedrpcurl", m_forcedRPCUrl);
+	  XMLUtils::GetInt(pElement, "api", m_apiType, ReTV::API_TYPE_LIVE, ReTV::API_TYPE_STAGING);
+	  XMLUtils::GetString(pElement, "apiregion", m_apiRegion);
+	  XMLUtils::GetInt(pElement, "apisslmode", m_apiSSLMode, 0, 4);
 
+	  XMLUtils::GetInt(pElement, "androidappmode", m_androidAppOpenMode, 0, 2);
+	  XMLUtils::GetString(pElement, "contentresolver", m_contentResolver);
+  }
+	
   pElement = pRootElement->FirstChildElement("samba");
   if (pElement)
   {
@@ -1522,6 +1549,14 @@ std::string CAdvancedSettings::GetMusicExtensions() const
   }
 
   return result;
+}
+
+std::string CAdvancedSettings::GetMultimediaExtensions() const
+{
+	// Concatenate Music, Video & Picture extensions
+	std::string result = GetMusicExtensions() + "|" + m_pictureExtensions + "|" + m_videoExtensions;
+
+	return result;
 }
 
 void CAdvancedSettings::setInternalMYSQL(const bool enable, const bool init)

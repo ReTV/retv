@@ -1,9 +1,9 @@
-APP_NAME SPMC
-APP_PACKAGE com.semperpax.spmc17
-COMPANY_NAME Semperpax
-WEBSITE http://spmc.semperpax.com/
-APP_EMAIL spmc.support@semperpax.com
-APP_STICKYURL http://paste.semperpax.com
+APP_NAME ReTV
+APP_PACKAGE org.bnplus.retv
+COMPANY_NAME Billion-Plus-Computing-Pvt-Ltd
+WEBSITE http://www.retv.in
+APP_EMAIL support@retv.in
+APP_STICKYURL http://paste.retv.in
 VERSION_MAJOR 17
 VERSION_MINOR 6
 VERSION_TAG alpha2

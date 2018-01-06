@@ -102,6 +102,7 @@
 #include "utils/AMLUtils.h"
 #endif
 
+#include "retv/ReTV.h"
 #define GIGABYTES       1073741824
 #define CAPTURE_QUEUE_MAXDEPTH 3
 
