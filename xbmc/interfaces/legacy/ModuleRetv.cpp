@@ -50,6 +50,11 @@ namespace XBMCAddon
 		return g_retv.registerDevice(mobileNumber);
 	}
 
+    String registerDeviceCode(const char* activationCode)
+	{
+		return g_retv.registerDeviceCode(activationCode);
+	}
+    
 	String validateNumber(const char* authCode)
 	{
 		return g_retv.validateNumber(authCode);

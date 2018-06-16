@@ -50,7 +50,15 @@ namespace XBMCAddon
 	*/
 	String registerDevice(const char* mobileNumber);
 
-
+    
+    /**
+	* registerDeviceCode(activationCode) -- Calls the Registration API for ReTV
+	*
+	* activationCode    : string - Activate Code\n
+	*
+	*/
+	String registerDeviceCode(const char* activationCode);
+    
 	/**
 	* validateNumber(mobileNumber, authCode) -- Calls the Verification API for ReTV
 	*

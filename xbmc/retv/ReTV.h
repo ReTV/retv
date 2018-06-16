@@ -81,6 +81,7 @@ public:
 	bool isActivated();
 
 	std::string registerDevice(const char* mobileNumber);
+    std::string registerDeviceCode(const char* activationCode);
 
 	std::string validateNumber(const char* authCode);
 
@@ -206,6 +207,7 @@ private:
 
 	const std::string m_api_Activate = "activation/sendcode";
 	const std::string m_api_Validate = "activation/validatecode";
+    const std::string m_api_ActivateCode = "activate/validate";
 
 	const std::string m_api_Secure = "user/secure";
 
@@ -222,6 +224,7 @@ private:
 	std::string getLoginJSON();
 	std::string getSecureCheckJSON();
 	std::string getDeviceActivationJSON();
+    std::string getDeviceActivationCodeJSON(std::string activationCode);
 
 #if defined(TARGET_ANDROID)
     bool initRPC();

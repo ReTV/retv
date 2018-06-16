@@ -231,6 +231,40 @@ std::string ReTV::registerDevice(const char* mobileNumber)
 	return content.c_str();
 }
 
+std::string ReTV::registerDeviceCode(const char* activationCode)
+{
+	if (!m_initialized)
+		// 700 = Not Initialized
+		return "{\"successcode\": 700 } ";
+
+	XFILE::CCurlFile http;
+
+	if (!http.IsInternet())
+		// Curl No internet
+		return "{\"errorcode\": 0 } ";
+
+	http.SetRequestHeader("Authorization", m_headerAuthorization);
+	http.SetRequestHeader("Content-Type", m_headerContentType);
+
+	std::string lactivationCode = (std::string)activationCode;
+
+	std::string postData = getDeviceActivationCodeJSON(lactivationCode);
+
+	std::string content;
+
+	//CLog::Log(LOGNOTICE, "Post Data : %s", postData.c_str());
+
+	CLog::Log(LOGNOTICE, "URL : %s", makeApiURL(m_api_ActivateCode).c_str());
+	if (!http.Post(makeApiURL(m_api_ActivateCode), postData, content, true)){
+		CLog::Log(LOGNOTICE, "ReTV: Couldn't contact Activation URL");
+		return "{\"errorcode\": 0 } ";
+	}
+
+	//CLog::Log(LOGNOTICE, "ReTV: Activation response : %s", content.c_str());
+
+	return content.c_str();
+}
+
 
 std::string ReTV::validateNumber(const char* authCode)
 {
@@ -983,6 +1017,41 @@ std::string ReTV::getDeviceActivationJSON()
 	std::string activationJSON = "{";
 	
 	activationJSON += "  \"mobile\": \""		+ m_mobileNumber + "\"";
+	activationJSON += ", \"devicecode\":\""		+ m_platformInfo.m_macAddress + "\"";
+    
+    std::stringstream ss;
+    ss << m_platformInfo.m_platformId;
+	activationJSON += ", \"id\":\""				+ ss.str() + "\"";
+	activationJSON += ", \"arch\":\""			+ m_platformInfo.m_arch + "\"";
+    
+    ss << m_platformInfo.m_bitness;
+	activationJSON += ", \"bitness\":\""		+ ss.str() + "\"";
+	activationJSON += ", \"os\":\""				+ m_platformInfo.m_os + "\"";
+	activationJSON += ", \"os_version\":\""		+ m_platformInfo.m_osVersion + "\"";
+	activationJSON += ", \"channel\":\""		+ m_platformInfo.m_channel + "\"";
+	activationJSON += ", \"manufacturer\":\""	+ m_platformInfo.m_manufacturer + "\"";
+	activationJSON += ", \"product\":\""		+ m_platformInfo.m_product + "\"";
+	activationJSON += ", \"brand\":\""			+ m_platformInfo.m_brand + "\"";
+	activationJSON += ", \"device_model\":\""	+ m_platformInfo.m_model + "\"";
+	activationJSON += ", \"device_name\":\""	+ m_platformInfo.m_deviceName + "\"";
+
+	activationJSON += ", \"core_sw_ver\":\"" + m_platformInfo.m_versionCore + "\"";
+	activationJSON += ", \"script_sw_ver\":\"" + m_platformInfo.m_versionScript + "\"";
+	activationJSON += ", \"skin_sw_ver\":\"" + m_platformInfo.m_versionSkin + "\"";
+
+	activationJSON += "}";
+
+	return activationJSON;
+}
+
+/*Gets the Activation JSON as string*/
+std::string ReTV::getDeviceActivationCodeJSON(std::string activationCode)
+{
+	// Form the JSON here
+	// from the Platform Info
+	std::string activationJSON = "{";
+	
+	activationJSON += "  \"authcode\": \""		+ activationCode + "\"";
 	activationJSON += ", \"devicecode\":\""		+ m_platformInfo.m_macAddress + "\"";
     
     std::stringstream ss;
