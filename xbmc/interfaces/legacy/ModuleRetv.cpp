@@ -160,7 +160,12 @@ namespace XBMCAddon
 #endif
         return path;
     }
-
+    
+    String getDeviceId()
+    {
+		return g_retv.getDeviceId();
+    }
+    
 	void setFallbackDeviceCode(std::string fallbackCode)
 	{
 		g_retv.setFallbackDeviceCode(fallbackCode);

@@ -97,6 +97,7 @@ public:
 	void initAPI(std::string authtoken, unsigned int expiry, const char* username, const char* password);
 	void setFallbackDeviceCode(std::string fallbackCode);
 
+    std::string getDeviceId();
 	bool secureCheck();
 
     void Cleanup();

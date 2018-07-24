@@ -94,6 +94,8 @@ namespace XBMCAddon
     
     String getDownloadDir();
 
+    String getDeviceId();
+    
 	void setFallbackDeviceCode(std::string fallbackCode);
   }
 }

@@ -971,6 +971,12 @@ void ReTV::setFallbackDeviceCode(std::string fallbackCode)
 	}
 }
 
+
+std::string ReTV::getDeviceId(){
+    return m_platformInfo.m_macAddress;
+}
+
+
 int ReTV::getPlatform()
 {
 	return m_platformInfo.m_platformId;
