@@ -1,4 +1,4 @@
-package org.bnplus.@APP_NAME_LC@;
+package com.plexus.@APP_NAME_LC@;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -657,7 +657,7 @@ public class Splash extends Activity {
   protected void startXBMC() {
     // Run @APP_NAME@
     Intent intent = getIntent();
-    intent.setClass(this, org.bnplus.@APP_NAME_LC@.Main.class);
+    intent.setClass(this, com.plexus.@APP_NAME_LC@.Main.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
     startActivity(intent);
     finish();
@@ -674,7 +674,7 @@ public class Splash extends Activity {
         .getRunningTasks(Integer.MAX_VALUE);
     for (RunningTaskInfo task : tasks)
       if (task.topActivity.toString().equalsIgnoreCase(
-          "ComponentInfo{org.bnplus.@APP_NAME_LC@/org.bnplus.@APP_NAME_LC@.Main}")) {
+          "ComponentInfo{com.plexus.@APP_NAME_LC@/com.plexus.@APP_NAME_LC@.Main}")) {
         // @APP_NAME@ already running; just activate it
         startXBMC();
         return;
@@ -712,7 +712,7 @@ public class Splash extends Activity {
         if (!curArch.equalsIgnoreCase(properties.getProperty("native_arch"))
               && !curArch2.equalsIgnoreCase(properties.getProperty("native_arch")))
         {
-          mErrorMsg = "This @APP_NAME@ package is not compatible with your device (device=" + curArch + " vs. package=" + properties.getProperty("native_arch") +").\nPlease check the <a href=\"http://www.retv.in\">ReTV website</a> for more information.";
+          mErrorMsg = "This @APP_NAME@ package is not compatible with your device (device=" + curArch + " vs. package=" + properties.getProperty("native_arch") +").\nPlease check the <a href=\"http://www.google.com\">Solar Plexus website</a> for more information.";
           Log.e(TAG, mErrorMsg);
           mState = InError;
         }
@@ -739,7 +739,7 @@ public class Splash extends Activity {
         } else {
           ret = CheckCpuFeature("neon") || CheckCpuFeature("aarch64") || CheckCpuFeature("asimd");  // aarch64 is always neon; asimd feature also represents neon
           if (!ret) {
-            mErrorMsg = "This @APP_NAME@ package is not compatible with your device (NEON).\nPlease check the <a href=\"http://www.retv.in\">ReTV website</a> for more information.";
+            mErrorMsg = "This @APP_NAME@ package is not compatible with your device (NEON).\nPlease check the <a href=\"http://google.com\">Solar Plexus website</a> for more information.";
             Log.e(TAG, mErrorMsg);
             mState = InError;
           }

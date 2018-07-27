@@ -1,6 +1,6 @@
-APP_NAME ReTV
-COMPANY_NAME Billion_Plus_Computing_Pvt_Ltd
-WEBSITE http://retv.in
+APP_NAME NetTV
+COMPANY_NAME Solar_Plexus
+WEBSITE http://google.com
 VERSION_MAJOR 16
 VERSION_MINOR 1
 VERSION_TAG

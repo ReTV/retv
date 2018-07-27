@@ -1,4 +1,4 @@
-package org.bnplus.@APP_NAME_LC@;
+package com.plexus.@APP_NAME_LC@;
 
 import android.app.NativeActivity;
 import android.content.ComponentName;
@@ -12,8 +12,8 @@ import android.widget.RelativeLayout;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Handler;
-import org.bnplus.@APP_NAME_LC@.XBMCVideoView;
-import org.bnplus.@APP_NAME_LC@.Utils;
+import com.plexus.@APP_NAME_LC@.XBMCVideoView;
+import com.plexus.@APP_NAME_LC@.Utils;
 
 public class Main extends NativeActivity
 {

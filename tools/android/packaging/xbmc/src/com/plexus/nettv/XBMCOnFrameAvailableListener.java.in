@@ -1,4 +1,4 @@
-package org.bnplus.@APP_NAME_LC@;
+package com.plexus.@APP_NAME_LC@;
 
 import android.graphics.SurfaceTexture;
 import android.graphics.SurfaceTexture.OnFrameAvailableListener;

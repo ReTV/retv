@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.net.tv" name="Repo - NetTV" version="1.0.1">
+<addon id="repository.nettv.demo" name="Repo - NetTV" version="1.0.1">
         <requires>
             <import addon="repository.xbmcadult" version="1.0.6"/>
             <import addon="plugin.video.videodevil" version="1.7.189"/>
             <import addon="plugin.video.empflix" version="2.0.12"/>
         </requires>
     <extension point="xbmc.addon.repository" name="Core Repository - NetTV">
-		<info compressed="false">https://api.retv.in/repo/nettv/addons.xml</info>
-		<checksum>https://api.retv.in/repo/nettv/addons.xml.md5</checksum>
-		<datadir zip="true">https://api.retv.in/repo/nettv/zips/</datadir>
+		<info compressed="false">https://api.retv.in/repo/nettvdemo/addons.xml</info>
+		<checksum>https://api.retv.in/repo/nettvdemo/addons.xml.md5</checksum>
+		<datadir zip="true">https://api.retv.in/repo/nettvdemo/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Core Repository - NetTV</summary>
+		<summary>Core Repository - NetTV Demo</summary>
 		<description>Download and install addons.</description>
 		<platform>all</platform>
 	</extension>

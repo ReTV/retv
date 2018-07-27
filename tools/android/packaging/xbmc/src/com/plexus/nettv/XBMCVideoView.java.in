@@ -1,4 +1,4 @@
-package org.bnplus.@APP_NAME_LC@;
+package com.plexus.@APP_NAME_LC@;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
