@@ -2400,14 +2400,14 @@ OUTPUT_FILES="Makefile \
     project/cmake/xbmc-config.cmake \
     tools/android/packaging/xbmc/AndroidManifest.xml \
     tools/android/packaging/Makefile \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/Splash.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/Main.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCBroadcastReceiver.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnFrameAvailableListener.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCSettingsContentObserver.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCOnAudioFocusChangeListener.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/XBMCVideoView.java \
-    tools/android/packaging/xbmc/src/org/bnplus/retv/Utils.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/Splash.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/Main.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/XBMCBroadcastReceiver.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/XBMCOnFrameAvailableListener.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/XBMCSettingsContentObserver.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/XBMCOnAudioFocusChangeListener.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/XBMCVideoView.java \
+    tools/android/packaging/xbmc/src/com/plexus/nettv/Utils.java \
     tools/android/packaging/xbmc/activity_main.xml \
     tools/android/packaging/xbmc/strings.xml \
     addons/xbmc.addon/addon.xml"
